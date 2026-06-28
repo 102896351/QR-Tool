@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== 全局基础样式 ========== */
+:root {
+  color-scheme: light dark;
+  --bg-base-light: #f5f7ff;
+  --bg-base-dark:  #0b0b15;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background: var(--bg-base-light);
+  color: #1f2937;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html.dark body {
+  background: var(--bg-base-dark);
+  color: #e5e7eb;
+}
+
+/* 暗色下滚动条 */
+html.dark ::-webkit-scrollbar { width: 10px; height: 10px; }
+html.dark ::-webkit-scrollbar-track { background: #0b0b15; }
+html.dark ::-webkit-scrollbar-thumb { background: #312e81; border-radius: 999px; }
+
+/* ========== 自定义组件类 ========== */
+@layer components {
+
+  /* 玻璃面板 - 亮色 */
+  .glass-panel {
+    @apply bg-white/70 border border-white/80 shadow-glass;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 1.75rem;
+  }
+
+  /* 玻璃面板 - 暗色 */
+  .glass-panel-dark {
+    @apply bg-white/[0.04] border border-white/10 shadow-glass-dark text-gray-100;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 1.75rem;
+  }
+
+  /* 渐变品牌按钮 */
+  .btn-brand {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl
+           text-white font-semibold tracking-wide
+           bg-gradient-to-r from-brand-500 via-indigo-500 to-purple-500
+           shadow-[0_8px_24px_-8px_rgba(99,102,241,0.6)]
+           transition-all duration-300 ease-out
+           hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-8px_rgba(99,102,241,0.7)]
+           active:translate-y-0 active:shadow-[0_4px_12px_-4px_rgba(99,102,241,0.6)]
+           focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl
+           border border-gray-200 dark:border-white/10
+           bg-white/60 dark:bg-white/[0.04]
+           text-gray-700 dark:text-gray-200 font-medium
+           transition-all duration-200
+           hover:bg-white dark:hover:bg-white/[0.08]
+           hover:border-brand-300 dark:hover:border-brand-500
+           hover:text-brand-600 dark:hover:text-brand-300
+           active:scale-[0.98];
+  }
+
+  /* 输入框 */
+  .input-field {
+    @apply w-full rounded-xl px-4 py-2.5
+           bg-white/80 dark:bg-white/[0.04]
+           border border-gray-200 dark:border-white/10
+           text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-brand-400/60 focus:border-brand-400
+           hover:border-gray-300 dark:hover:border-white/20;
+  }
+
+  .select-field {
+    @apply input-field appearance-none bg-no-repeat bg-right pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+  }
+
+  /* Tab 标签 */
+  .tab-btn {
+    @apply px-4 py-2 rounded-xl text-sm font-medium
+           text-gray-500 dark:text-gray-400
+           transition-all duration-200
+           hover:text-brand-600 dark:hover:text-brand-300
+           hover:bg-brand-50 dark:hover:bg-white/[0.04];
+  }
+  .tab-btn-active {
+    @apply bg-gradient-to-r from-brand-500 to-purple-500 text-white shadow-md
+           hover:text-white hover:from-brand-500 hover:to-purple-500
+           dark:hover:from-brand-500 dark:hover:to-purple-500;
+  }
+
+  /* 章节标题 */
+  .section-label {
+    @apply text-[11px] font-semibold tracking-[0.18em] uppercase
+           text-brand-600 dark:text-brand-300;
+  }
+}
+
+/* ========== 装饰性背景 ========== */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: theme('backgroundImage.mesh-light');
+  background-attachment: fixed;
+}
+html.dark .mesh-bg {
+  background: theme('backgroundImage.mesh-dark');
+}
+
+/* 微噪点纹理,让玻璃感更真实 */
+.noise-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 主题切换按钮图标悬浮 */
+.theme-toggle-btn {
+  @apply relative h-10 w-10 rounded-xl grid place-items-center
+         text-gray-600 dark:text-gray-300
+         bg-white/60 dark:bg-white/[0.04]
+         border border-gray-200 dark:border-white/10
+         transition-all duration-300
+         hover:bg-white dark:hover:bg-white/[0.08]
+         hover:border-brand-300 dark:hover:border-brand-500
+         hover:text-brand-600 dark:hover:text-brand-300
+         hover:shadow-glow-brand;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.45); }
+
+/* 范围输入控件 */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+  height: 1.25rem;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 var(--val, 50%), rgba(99, 102, 241, 0.15) var(--val, 50%));
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #6366f1;
+  box-shadow: 0 2px 8px -2px rgba(99, 102, 241, 0.5);
+  margin-top: -6px;
+  transition: transform 0.15s ease;
+}
+input[type='range']::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type='range']::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.15);
+}
+input[type='range']::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+}
+input[type='range']::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #6366f1;
+  box-shadow: 0 2px 8px -2px rgba(99, 102, 241, 0.5);
+}
+
+/* 颜色选择器 */
+input[type='color'] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+input[type='color']::-webkit-color-swatch-wrapper { padding: 0; }
+input[type='color']::-webkit-color-swatch {
+  border: none;
+  border-radius: 0.75rem;
+}
+
+/* 预览卡片浮起 */
+.qr-preview-card {
+  @apply relative p-6 rounded-3xl bg-white shadow-glass border border-white
+         transition-all duration-500;
+}
+html.dark .qr-preview-card {
+  @apply bg-white/[0.04] border-white/10 shadow-glass-dark;
+}
+.qr-preview-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.875rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(168, 85, 247, 0.4), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* 隐藏滚动条但保持滚动 */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* 减弱动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

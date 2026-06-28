@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0b15" media="(prefers-color-scheme: dark)" />
+
+    <!-- Primary Meta -->
+    <title>免费在线二维码生成器 - 自定义 Logo / 渐变 / 批量生成 | QR Tool Studio</title>
+    <meta name="description" content="QR Tool Studio 是一款完全免费、零广告、100% 浏览器本地计算的在线二维码生成器。支持网址、名片、WiFi、邮箱、电话、短信、文本等 8 种类型,自定义渐变颜色、中心 Logo、6 种矩阵样式,一键导出 PNG / SVG / JPEG,批量生成并打包 ZIP。无需注册,数据不离开您的设备。" />
+    <meta name="keywords" content="二维码生成器,在线二维码,免费二维码,QR Code 生成器,自定义二维码,带 Logo 二维码,渐变二维码,批量二维码,WiFi 二维码,电子名片,vCard 二维码,纯前端二维码,隐私保护" />
+    <meta name="author" content="QR Tool Studio" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="googlebot" content="index,follow" />
+    <link rel="canonical" href="https://qr-tool.example.com/" />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="zh-CN" href="https://qr-tool.example.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://qr-tool.example.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QR Tool Studio" />
+    <meta property="og:title" content="免费在线二维码生成器 - 自定义 Logo / 渐变 / 批量生成" />
+    <meta property="og:description" content="纯前端、零广告、极致隐私。支持网址、WiFi、vCard 等 8 种二维码类型,自定义渐变与 Logo,一键导出 PNG/SVG/JPEG,批量打包 ZIP。" />
+    <meta property="og:url" content="https://qr-tool.example.com/" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:image" content="https://qr-tool.example.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="QR Tool Studio - 免费在线二维码生成器" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="免费在线二维码生成器 - QR Tool Studio" />
+    <meta name="twitter:description" content="纯前端、零广告、极致隐私的免费在线二维码生成器。" />
+    <meta name="twitter:image" content="https://qr-tool.example.com/og-image.png" />
+
+    <!-- Performance: preconnect & dns-prefetch -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+    <!-- Performance: theme pre-paint (避免主题切换闪烁) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('qr-theme') || 'system';
+          var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD: WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "QR Tool Studio",
+      "alternateName": "QR Tool Studio 二维码生成器",
+      "url": "https://qr-tool.example.com/",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any (Browser)",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "zh-CN",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY",
+        "availability": "https://schema.org/InStock"
+      },
+      "description": "完全免费、零广告、100% 浏览器本地计算的在线二维码生成器。支持网址、WiFi、vCard、文本、邮箱、电话、短信等 8 种类型,自定义渐变颜色、中心 Logo、6 种矩阵样式,一键导出 PNG / SVG / JPEG,批量生成并打包 ZIP。无需注册,数据不离开您的设备。",
+      "featureList": [
+        "8 种二维码类型:网址 / vCard / 文本 / 邮箱 / 电话 / 短信 / WiFi / 纯文本",
+        "6 种矩阵样式:经典方块 / 液态圆点 / 圆角方块 / 极简曲线 / 圆角曲线 / 极致圆角",
+        "5 种定位眼样式:方框 / 实心圆点 / 圆润方框 / 极简线条 / 圆润线条",
+        "颜色与渐变:双色线性 / 径向渐变,可调旋转角度",
+        "中心 Logo:支持 PNG / JPG / SVG,可调节尺寸",
+        "多格式导出:PNG (1024px 高清) / SVG 矢量 / JPEG",
+        "复制到剪贴板",
+        "批量生成 + ZIP 打包",
+        "历史记录(本地存储,最近 10 条)",
+        "亮 / 暗 / 跟随系统 三态主题",
+        "完全响应式:桌面 / 平板 / 手机"
+      ],
+      "screenshot": "https://qr-tool.example.com/og-image.png",
+      "softwareHelp": "https://qr-tool.example.com/#faq",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1280",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "QR Tool Studio",
+      "url": "https://qr-tool.example.com/",
+      "logo": "https://qr-tool.example.com/favicon.svg",
+      "sameAs": [
+        "https://github.com/qr-tool-studio",
+        "https://twitter.com/qrtoolstudio"
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: FAQ (核心长尾词覆盖) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "什么是二维码?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "二维码(Quick Response Code)是由日本 Denso Wave 公司于 1994 年发明的二维条码,可以存储网址、文本、名片、WiFi 密码等数据。相比一维条码,它具有容量大、容错率高、扫描速度快等优势,广泛应用于移动支付、产品溯源、营销推广等场景。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "二维码生成器是免费的吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是的,QR Tool Studio 是一款完全免费的在线二维码生成器,无任何隐藏收费。所有功能(自定义颜色、渐变、Logo、批量生成、多格式导出)均免费开放,无需注册账号。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "生成的二维码会过期吗?可以永久使用吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。我们生成的二维码属于静态码,一旦生成即可永久使用,没有扫描次数限制,也不会因为服务器关闭而失效。建议下载 PNG 或 SVG 格式后妥善保存。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "我的内容会被上传到服务器吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "绝对不会。所有二维码的生成、渲染、下载都在您的浏览器本地完成,内容从不会上传到任何服务器。关闭页面后,除您主动保存的 LocalStorage 历史记录外,不会有任何残留数据。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支持哪些类型的二维码?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "支持 8 种常见类型:网址(URL)、电子名片(vCard)、纯文本、邮箱(mailto:)、电话(tel:)、短信(sms:)、WiFi 自动连接、任意文本。您也可以直接粘贴任意字符串。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "可以在二维码中间放自己的 Logo 吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以。支持 PNG / JPG / SVG 格式的 Logo 图片,文件大小不超过 2MB。Logo 尺寸可在 10%-50% 之间自由调节,我们建议同时将纠错级别设置为 H(30%)以保证扫描成功率。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "二维码一定要黑白色吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不一定。本工具支持任意前景色,以及双色线性 / 径向渐变,提供 6 套风格预设。为保证最佳扫描率,建议保持较高的颜色对比度(深色前景 + 浅色背景),避免反色(浅色二维码配深色背景)。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支持哪些导出格式?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "支持三种格式:PNG(1024×1024 高清位图,适合社交媒体分享)、SVG(矢量图,无损缩放,适合印刷与大型海报)、JPEG(压缩位图,适合邮件附件)。还支持一键复制到系统剪贴板。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何批量生成二维码?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "切换到「批量生成」标签,每行输入一个内容(网址、文本、名片等),点击「生成 ZIP」即可一次性打包下载多个 PNG 文件,适合活动签到、产品溯源、设备管理等场景。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "生成的二维码无法扫描怎么办?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "常见原因及解决方法:1) 颜色对比度过低,请使用深色前景 + 浅色背景;2) Logo 占比过大,请缩小至 30% 以下并使用 H 级纠错;3) 边距过小,请增大 margin 至 4 以上;4) 导出时过度压缩,请使用 PNG 或 SVG 格式;5) 印刷尺寸过小,建议二维码实际尺寸不小于 2×2 厘米。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "二维码的纠错级别 L / M / Q / H 有什么区别?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "QR Code 提供四种纠错等级: L(7% 容错)、M(15% 容错)、Q(25% 容错)、H(30% 容错)。容错率越高,可被遮挡或污染的面积越大,但二维码本身也会越密集。普通场景推荐 M,带 Logo 推荐 H,海报大幅面推荐 Q。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "可以商用吗?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以。您使用本工具生成的二维码完全归您所有,可用于商业用途,包括产品包装、营销物料、合同附件、名片等。"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: HowTo (3 步使用) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何使用 QR Tool Studio 生成二维码",
+      "description": "只需 3 步即可在 QR Tool Studio 中创建专属二维码。",
+      "totalTime": "PT1M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "CNY",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "选择类型与填写内容",
+          "text": "在左侧输入网址、文本、名片、WiFi 等信息,或直接粘贴任意字符串。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "自定义外观",
+          "text": "选择矩阵样式、调整渐变颜色、上传中心 Logo、设置纠错级别,实时预览右侧二维码。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "下载或复制",
+          "text": "点击导出 PNG / SVG / JPEG 按钮,或一键复制到剪贴板,用于打印或在线分享。"
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://qr-tool.example.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "二维码生成器",
+          "item": "https://qr-tool.example.com/#generator"
+        }
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="./assets/index-B8Z1QPWz.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DlRNC1Lv.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>

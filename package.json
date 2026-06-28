@@ -1,0 +1,24 @@
+{
+  "name": "qr-tool-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "一款纯前端、零广告、极致隐私的在线二维码生成工具",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host --port 4173"
+  },
+  "dependencies": {
+    "qr-code-styling": "^1.6.0-rc.1",
+    "vue": "^3.5.13",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.7"
+  }
+}
