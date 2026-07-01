@@ -199,7 +199,7 @@ export default {
   'history.tip.2': 'Nur lokal gespeichert, jederzeit löschbar',
   'history.tip.3': 'Bis zu 10 Einträge, neueste zuerst',
 
-  'meta.title': 'Kostenloser Online-QR-Code-Generator — Logo / Verlauf / Stapel | QR Tool Studio',
+  'meta.title': 'QRCode · Kostenloser QR-Code-Generator',
   'meta.desc': 'Kostenloser, leichter QR-Code-Generator im Browser. 8 Typen, Verläufe, Logos, 6 Stile, PNG/SVG/JPEG-Export, Stapel-ZIP. Keine Anmeldung.',
   'theme.light': 'Hell',
   'theme.dark': 'Dunkel',
