@@ -199,7 +199,7 @@ export default {
   'history.tip.2': '履歴はローカル保存のみ、いつでも削除可能',
   'history.tip.3': '最大10件、新しい順',
 
-  'meta.title': '無料オンラインQRコード生成 — カスタムロゴ / グラデーション / 一括 | QR Tool Studio',
+  'meta.title': 'QRCode · 無料QRコード',
   'meta.desc': '無料、軽量、ブラウザ内QRコード生成。8種類対応、グラデーション・ロゴ・6スタイル、PNG/SVG/JPEG書き出し、一括ZIP。登録不要。',
   'theme.light': 'ライト',
   'theme.dark': 'ダーク',
