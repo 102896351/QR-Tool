@@ -10,7 +10,7 @@ import { useTheme } from './composables/useTheme'
 import { useI18n } from './composables/useI18n'
 
 const { isDark } = useTheme()
-const { t, lang } = useI18n()
+const { t, lang, isReady } = useI18n()
 const tab = ref('single')
 
 // 法律弹窗
@@ -56,21 +56,14 @@ function syncMetaDesc() {
 }
 
 onMounted(() => {
-  syncHeadMeta()
-  syncMetaDesc()
-  // JSON-LD 国际化
-  const ld = document.querySelector('script[type="application/ld+json"][data-i18n]')
-  if (ld) {
-    try {
-      const obj = JSON.parse(ld.textContent)
-      obj.description = t('meta.desc')
-      ld.textContent = JSON.stringify(obj)
-    } catch (e) {}
+  // i18n dict 是异步加载,等 ready 后再同步 head(否则 t() 返回 key 字面量)
+  if (isReady.value) {
+    applyI18nToHead()
   }
 })
 
-// 切换语言时刷新 head
-watch(lang, () => {
+// 切换语言 / i18n 就绪时刷新 head
+function applyI18nToHead() {
   syncHeadMeta()
   syncMetaDesc()
   const ld = document.querySelector('script[type="application/ld+json"][data-i18n]')
@@ -81,6 +74,10 @@ watch(lang, () => {
       ld.textContent = JSON.stringify(obj)
     } catch (e) {}
   }
+}
+
+watch([lang, isReady], () => {
+  applyI18nToHead()
 })
 
 // 滚动到指定锚点
