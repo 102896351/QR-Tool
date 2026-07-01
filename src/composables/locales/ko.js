@@ -199,7 +199,7 @@ export default {
   'history.tip.2': '기록은 로컬에만 저장, 언제든지 지울 수 있음',
   'history.tip.3': '최대 10개, 시간 역순',
 
-  'meta.title': '무료 온라인 QR 코드 생성기 — 커스텀 로고 / 그라데이션 / 일괄 | QR Tool Studio',
+  'meta.title': 'QRCode · 무료 QR코드 생성기',
   'meta.desc': '무료, 가벼운 브라우저 내 QR 코드 생성기. 8가지 유형, 그라데이션/로고/6가지 스타일, PNG/SVG/JPEG 내보내기, 일괄 ZIP. 가입 불필요.',
   'theme.light': '라이트',
   'theme.dark': '다크',
