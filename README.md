@@ -1,6 +1,6 @@
 # QR Tool Studio · 纯前端在线二维码生成器
 
-一款零广告、零后端、极致隐私的在线二维码工具,核心计算全部在浏览器内完成,可直接托管到 GitHub Pages / Vercel / Cloudflare Pages 等静态平台。
+一款零后端、极致隐私的在线二维码工具,核心计算全部在浏览器内完成,可直接托管到 GitHub Pages / Vercel / Cloudflare Pages 等静态平台。
 
 ## ✨ 功能特性
 
