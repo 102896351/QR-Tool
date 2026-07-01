@@ -250,7 +250,7 @@ export default {
   'history.tip.3': 'Up to 10 most recent records, in reverse chronological order',
 
   // Meta
-  'meta.title': 'Free Online QR Code Generator — Custom Logo / Gradient / Batch | QR Tool Studio',
+  'meta.title': 'QRCode · Free QR Code Generator',
   'meta.desc': 'Free, ad-light, in-browser QR code generator. 8 types: URL, vCard, Wi-Fi, text, email, phone, SMS. Custom gradients, logos, 6 matrix styles. One-click export PNG / SVG / JPEG, batch ZIP. No sign-up.',
   'theme.light': 'Light',
   'theme.dark': 'Dark',
