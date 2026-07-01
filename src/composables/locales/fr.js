@@ -199,7 +199,7 @@ export default {
   'history.tip.2': 'Stocké localement uniquement, effaçable à tout moment',
   'history.tip.3': 'Jusqu\'à 10 entrées, ordre chronologique inversé',
 
-  'meta.title': 'Générateur de QR Code Gratuit en Ligne — Logo / Dégradé / Lot Personnalisés | QR Tool Studio',
+  'meta.title': 'QRCode · Générateur de QR Gratuit',
   'meta.desc': 'Générateur de QR code gratuit et léger dans le navigateur. 8 types, dégradés, logos, 6 styles, export PNG/SVG/JPEG, ZIP par lot. Sans inscription.',
   'theme.light': 'Clair',
   'theme.dark': 'Sombre',
