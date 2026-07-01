@@ -22,6 +22,8 @@ const current = ref(typeof localStorage !== 'undefined'
   : 'en')
 
 const dicts = {}
+// i18n 就绪状态(字典加载完成后为 true)
+const ready = ref(false)
 
 async function loadDict(code) {
   if (dicts[code]) return dicts[code]
@@ -35,14 +37,19 @@ async function loadDict(code) {
   }
 }
 
-// 立即加载当前语言
+// 立即加载当前语言(同步顶层 import,避免 onMounted 拿到字面量)
 const messages = ref({})
-loadDict(current.value).then(d => { if (d) messages.value = d })
+;(async () => {
+  const d = await loadDict(current.value)
+  if (d) messages.value = d
+  ready.value = true
+})()
 
 // 监听语言变化
 watch(current, async (code) => {
   const d = await loadDict(code)
   if (d) messages.value = d
+  ready.value = true
   try { localStorage.setItem(KEY, code) } catch (e) {}
   // 同步 html lang 属性(SEO)
   if (typeof document !== 'undefined') {
@@ -68,6 +75,7 @@ export function useI18n() {
 
   const lang = computed(() => current.value)
   const currentMeta = computed(() => SUPPORTED.find(s => s.code === current.value))
+  const isReady = computed(() => ready.value)
 
-  return { t, setLang, lang, currentMeta, SUPPORTED }
+  return { t, setLang, lang, currentMeta, isReady, SUPPORTED }
 }
