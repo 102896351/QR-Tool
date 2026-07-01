@@ -240,7 +240,7 @@ export default {
   'history.tip.2': '历史仅保存在本地,可随时一键清空',
   'history.tip.3': '最多保存最近 10 条记录,按时间倒序',
 
-  'meta.title': '免费在线二维码生成器 - 自定义 Logo / 渐变 / 批量生成 | QR Tool Studio',
+  'meta.title': 'QRCode · 免费二维码工具',
   'meta.desc': '免费、轻量的在线二维码生成工具。支持网址、名片、WiFi、文本、邮箱、电话等 8 种类型,自定义渐变颜色、中心 Logo、6 种矩阵样式,一键导出 PNG / SVG / JPEG,批量生成并打包 ZIP。无需注册。',
   'theme.light': '亮色',
   'theme.dark': '暗色',
