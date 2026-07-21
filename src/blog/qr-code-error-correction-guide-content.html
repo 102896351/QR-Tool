@@ -1,0 +1,119 @@
+<p class="lead">QR codes can be damaged, scratched, partially obscured, or have logos punched out of the middle \u2014 and still work. The feature that makes this possible is called error correction, and it has four levels. Pick the wrong one and your code won\u2019t scan. Pick the right one and you can put a 30% hole in the middle of the code without breaking it. This guide explains how the four levels work, when to use each, and the one mistake most generators make by default.</p>
+
+<p>If you\u2019ve ever wondered why some QR codes feel bulletproof and others fail at the first sign of damage, the answer is in the error correction level. L, M, Q, or H \u2014 four letters that determine the difference between a code that works in any condition and one that only works on a clean white poster in good lighting.</p>
+
+<figure>
+  <img src="/blog/qr-code-error-correction-guide/qr-code-error-correction-guide-hero.png" alt="QR code error correction levels" />
+  <figcaption>The four error correction levels: L (7%), M (15%), Q (25%), H (30%). Each adds redundancy to make codes survive damage.</figcaption>
+</figure>
+
+<h2 id="what">What Is QR Code Error Correction?</h2>
+
+<p>Error correction is a mathematical technique that adds redundant data to the QR code so the original content can be recovered even if part of the code is unreadable. The technique is called Reed-Solomon, and it\u2019s the same error correction used in CDs, DVDs, Blu-ray discs, and even NASA\u2019s deep-space communications. It\u2019s battle-tested across 50 years of high-stakes use.</p>
+
+<p>When you choose an error correction level, you\u2019re choosing how much of the code can be damaged before it stops working. A code with low error correction can survive 7% damage. A code with high error correction can survive 30% damage. The tradeoff: higher error correction means the code is visually denser, which makes it harder to scan at small sizes.</p>
+
+<h2 id="levels">The Four Levels Explained</h2>
+
+<p>QR codes offer four error correction levels, settable when you generate the code:</p>
+
+<figure>
+  <img src="/blog/qr-code-error-correction-guide/qr-code-error-correction-guide-comparison.png" alt="QR code error correction comparison" />
+  <figcaption>L, M, Q, H: how much damage each can recover and what the tradeoff costs in code size.</figcaption>
+</figure>
+
+<h3>L (Low) \u2014 7% recovery</h3>
+<p>The smallest, cleanest code. L-level codes have the lowest visual density and scan the fastest in perfect conditions. They survive scratches, light smudges, and the occasional module dropped by a poor camera. They don\u2019t survive large logos, heavy damage, or anything more than minor scuffing.</p>
+
+<p><strong>When to use:</strong> Clean environments with no logo. Use L for digital-only deployments (app screens, social media) where the code is always rendered perfectly and there\u2019s no physical wear.</p>
+
+<h3>M (Medium) \u2014 15% recovery</h3>
+<p>The default for most QR generators and a good general-purpose choice. M-level codes can survive moderate damage, small logos, and most real-world conditions. They\u2019re the right call 70% of the time.</p>
+
+<p><strong>When to use:</strong> Most print and packaging. Business cards, flyers, posters, magazines, product labels. Anywhere the code might get dirty, scratched, or partially obscured.</p>
+
+<h3>Q (Quartile) \u2014 25% recovery</h3>
+<p>A solid choice when you want to add a small logo or expect the code to be in a challenging environment. Q-level codes can survive large logos, significant damage, and most outdoor conditions.</p>
+
+<p><strong>When to use:</strong> Codes with a logo overlay, outdoor signage, packaging that might get wet or scratched, and any deployment where reliability matters more than density.</p>
+
+<h3>H (High) \u2014 30% recovery</h3>
+<p>The maximum recovery. H-level codes can survive massive damage \u2014 a third of the code can be missing and it still works. H-level codes are visually dense, which means they need to be physically larger to be reliably scannable.</p>
+
+<p><strong>When to use:</strong> Codes with large logos, codes in hostile environments (industrial settings, vehicles, outdoor signs), and codes that absolutely cannot fail.</p>
+
+<h2 id="choose">How to Choose the Right Level</h2>
+
+<p>The right error correction level depends on three factors:</p>
+
+<h3>1. Will the code have a logo?</h3>
+<p>If yes, the logo replaces some of the data area. The error correction has to recover the data that was replaced. Small logo (under 15% of code area): use Q. Large logo (15-25% of code area): use H. No logo: use M or L.</p>
+
+<h3>2. What\u2019s the deployment environment?</h3>
+<p>Clean, indoor, controlled: L is fine. Typical office, retail, or restaurant: M is the safe default. Outdoor, industrial, or anywhere the code might get dirty, scratched, or wet: Q or H.</p>
+
+<h3>3. How small will the code be printed?</h3>
+<p>Higher error correction makes the code denser, which means it needs to be physically larger to be scannable. If you need a small code (business card, tiny product label), go with M or L. If you have the space (poster, packaging, signage), go with Q or H.</p>
+
+<h2 id="scanner">What Happens When a Code Is Damaged</h2>
+
+<p>When a phone scans a damaged QR code, here\u2019s what happens behind the scenes:</p>
+
+<ol>
+<li><strong>Read what you can.</strong> The scanner reads every module it can resolve. Damaged or obscured modules are marked as "unknown."</li>
+<li><strong>Apply error correction.</strong> The Reed-Solomon algorithm uses the known modules plus the error correction data to reconstruct the unknown modules. If the damage is within the recovery threshold (7% for L, 30% for H), the original data is fully recovered.</li>
+<li><strong>Reject if too damaged.</strong> If the damage exceeds the recovery threshold, the algorithm can\u2019t reconstruct the data. The scanner shows an error or moves on.</li>
+</ol>
+
+<figure>
+  <img src="/blog/qr-code-error-correction-guide/qr-code-error-correction-guide-scan-demo.png" alt="QR code with progressive damage" />
+  <figcaption>The same QR code at L, M, Q, and H error correction. Each step shows what the code looks like with that level of damage tolerance applied.</figcaption>
+</figure>
+
+<p>Note: the recovery threshold isn\u2019t just about "modules removed." It\u2019s about the total error budget, which includes scratched, smudged, and misread modules. A heavily scratched code that\u2019s still mostly readable might fail even with H-level error correction, while a code with a 30% logo that cleanly replaces 30% of the modules will succeed with H-level because the replaced modules are perfectly known (they\u2019re zeros, not noise).</p>
+
+<h2 id="mistakes">The One Mistake Most Generators Make</h2>
+
+<p>The default error correction level in most QR generators is M. M is fine for clean environments, but it\u2019s the wrong default for the real world. Most printed QR codes get smudged, scratched, or otherwise degraded within weeks. M-level recovery (15%) handles light damage, but the moment you add a logo or the code gets wet, M fails.</p>
+
+<p>For most real-world deployments, Q is the right default. It supports a small logo, survives meaningful damage, and the visual density cost is minor. If you\u2019re unsure which level to use, choose Q.</p>
+
+<h2 id="logo">The Logo Tradeoff, Explained</h2>
+
+<p>Most QR code generators with logo support require error correction level Q or H. Why?</p>
+
+<p>When you add a logo, you\u2019re drawing on top of the data area. The pixels of the logo replace some of the QR code\u2019s modules. The error correction algorithm doesn\u2019t know those replaced modules are part of a logo \u2014 it just sees them as missing or wrong. To recover the data that was replaced, you need enough error correction in the surrounding modules.</p>
+
+<p>Rule of thumb:</p>
+<ul>
+<li>Logo under 15% of code area: Q-level can recover</li>
+<li>Logo 15-25% of code area: H-level can recover</li>
+<li>Logo over 25% of code area: no error correction level can recover; the code will fail to scan</li>
+</ul>
+
+<p>For a typical QR code on a 25mm business card, a logo of about 4-5mm square (centered) is the maximum for Q-level. For larger codes, the logo can scale up proportionally.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Does higher error correction slow down scanning?</h3>
+<p>Marginally. Higher error correction means more modules to read, which adds a few milliseconds to the scan time. In practice, the difference between L and H is under 50ms on a modern phone. For human-scale scanning, the difference is unnoticeable.</p>
+
+<h3>Can I change the error correction level after I generate the code?</h3>
+<p>No. The error correction data is baked into the pattern. If you want to change the level, you need to regenerate the code. This is why picking the right level upfront matters \u2014 you can\u2019t fix it later.</p>
+
+<h3>What\u2019s the highest possible error correction?</h3>
+<p>H, at 30% recovery, is the maximum in the QR code standard. There\u2019s no level I or beyond. 30% is the practical limit because the code has a fixed maximum size (177x177 modules); going higher would require more modules than the standard allows.</p>
+
+<h3>Should I always use H for the most reliability?</h3>
+<p>No. H has costs: the code is denser (harder to scan at small sizes), and it still can\u2019t recover from damage beyond 30%. If you don\u2019t need that level of recovery, the visual density cost isn\u2019t worth it. Most real-world deployments are fine with M or Q.</p>
+
+<figure>
+  <img src="/blog/qr-code-error-correction-guide/qr-code-error-correction-guide-faq-banner.png" alt="Generate QR code" />
+  <figcaption>Pick the right error correction level for your deployment. QRCode Studio lets you choose L, M, Q, or H for free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: When in Doubt, Choose Q</h2>
+
+<p>Error correction is one of those things you don\u2019t think about until your QR code fails to scan. By then it\u2019s too late. Picking the right level upfront saves you from the embarrassment of unreadable codes and the cost of reprinting 50,000 flyers.</p>
+
+<p>For most deployments, Q is the right answer. It supports small logos, survives real-world damage, and the visual density cost is acceptable. Reach for H only when you have a large logo or the code is in a genuinely hostile environment. Default to M only when you have no logo and a controlled environment. Skip L unless you have a specific reason to minimize code size.</p>

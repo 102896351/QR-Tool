@@ -250,7 +250,7 @@ export default {
   'history.tip.3': 'Up to 10 most recent records, in reverse chronological order',
 
   // Meta
-  'meta.title': 'Free Online QR Code Generator — Custom Logo / Gradient / Batch | QR Tool Studio',
+  'meta.title': 'QRCode · Free QR Code Generator',
   'meta.desc': 'Free, ad-light, in-browser QR code generator. 8 types: URL, vCard, Wi-Fi, text, email, phone, SMS. Custom gradients, logos, 6 matrix styles. One-click export PNG / SVG / JPEG, batch ZIP. No sign-up.',
   'theme.light': 'Light',
   'theme.dark': 'Dark',
@@ -274,4 +274,22 @@ export default {
   'footer.about.biz': 'Business',
   'footer.about.theme': 'Theme',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
+,
+  // blog.en
+  'blog.notFoundDesc': 'The article you\u2019re looking for doesn\u2019t exist.',
+  'blog.badge': 'Blog',
+  'blog.readArticle': 'Read article',
+  'blog.notFoundTitle': 'Article not found',
+  'blog.minRead': 'min read',
+  'blog.browseAll': 'Browse all articles',
+  'blog.endCta.desc': 'Free, no signup, works in your browser. Generate your WiFi QR code in under a minute.',
+  'footer.link.blog': 'Blog',
+  'blog.hero.title.l2': 'Playbooks',
+  'blog.backToBlog': 'Back to blog',
+  'blog.hero.title.l1': 'Guides, Tips &',
+  'blog.endCta.title': 'Ready to make your own?',
+  'blog.endCta.button': 'Generate WiFi QR Now',
+  'blog.hero.desc': 'Practical, no-fluff guides to help you get the most out of QR codes. From small business use cases to design best practices.',
+  'blog.empty': 'No articles yet. Check back soon!',
+  'blog.backToList': 'Back to all articles',
 }

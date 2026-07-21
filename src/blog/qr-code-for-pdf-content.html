@@ -1,0 +1,170 @@
+<p class="lead">A QR code for a PDF (or any document) lets users download, view, or open a file with a single scan. The user points their camera, the file opens in their default viewer, and they can read, save, or share it. It\u2019s the most frictionless way to distribute menus, manuals, contracts, reports, and any other document from a physical surface to a phone.</p>
+
+<p>This guide shows you how to make a PDF QR code, how to host the file so it works reliably, and the considerations for large files. It takes about 5 minutes.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-pdf/qr-code-for-pdf-hero.png" alt="QR code for PDF" />
+  <figcaption>PDF QR: one scan, one tap, the file opens. The easiest way to share a 50-page manual, a 4-page contract, or a 1-page menu.</figcaption>
+</figure>
+
+<h2 id="what">What Is a PDF QR Code?</h2>
+
+<p>A PDF QR code is a standard QR code that, when scanned, opens a URL pointing to a PDF file. The user\u2019s phone opens the URL, and depending on the device, the PDF either downloads and opens, or opens in a built-in PDF viewer.</p>
+
+<p>The QR code itself just contains a URL. The PDF is hosted somewhere \u2014 your website, a cloud storage service, or a CDN. The QR code is the bridge between the physical surface (sign, business card, packaging) and the digital file.</p>
+
+<h2 id="when">When to Use a PDF QR Code</h2>
+
+<p>PDF QR codes are useful in any context where you want to distribute a multi-page document from a physical surface:</p>
+
+<ul>
+<li><strong>Restaurant menus.</strong> A multi-page menu on table tents or window clings. Scan to see the full menu with photos and prices.</li>
+<li><strong>Product manuals.</strong> A 50-page manual on product packaging. Scan to get the full manual without printing it.</li>
+<li><strong>Contracts and agreements.</strong> A lease or service agreement on a sign-in desk. Scan to read and sign digitally.</li>
+<li><strong>Annual reports.</strong> A 30-page report on a poster or mailer. Scan to read the full report.</li>
+<li><strong>Brochures.</strong> A 4-page brochure on a small print ad. Scan to get the full version.</li>
+<li><strong>Warranty registrations.</strong> A registration form on a product. Scan to fill out and submit.</li>
+</ul>
+
+<p>PDFs are particularly useful for documents that have visual layout, multiple pages, or need to be printed/saved. Plain text or single-page content usually doesn\u2019t need a PDF \u2014 a web page works fine.</p>
+
+<h2 id="host">Where to Host the PDF</h2>
+
+<figure>
+  <img src="/blog/qr-code-for-pdf/qr-code-for-pdf-comparison.png" alt="PDF hosting options" />
+  <figcaption>Three hosting options: your own server, a cloud service, or a static host. The right choice depends on traffic and file size.</figcaption>
+</figure>
+
+<p>The PDF needs a stable URL that the QR code points to. The URL must:</p>
+
+<ul>
+<li>Be accessible from any phone browser</li>
+<li>Serve the file with the correct MIME type (application/pdf)</li>
+<li>Not require login or authentication</li>
+<li>Not change over time (changing the URL means reprinting the QR code)</li>
+</ul>
+
+<p>Three common hosting approaches:</p>
+
+<h3>1. Your own website</h3>
+<p>Upload the PDF to your web server. Use a stable URL like <code>https://yourbusiness.com/menus/dinner.pdf</code>. Best for businesses that already have a website and IT infrastructure.</p>
+
+<h3>2. Cloud storage (Google Drive, Dropbox, OneDrive)</h3>
+<p>Upload the PDF, get a sharing link, make it public. The URL will be long but it works. Best for small businesses without web servers.</p>
+
+<p>Note: Google Drive and Dropbox sharing links can change format occasionally. If you go this route, test the URL periodically and update the QR code if needed.</p>
+
+<h3>3. Static hosting (Vercel, Netlify, GitHub Pages)</h3>
+<p>Upload the PDF to a static host with a stable URL. Best for high-traffic deployments where reliability matters. The cost is typically $0/month for the kind of traffic QR codes generate.</p>
+
+<h2 id="format">The PDF URL</h2>
+
+<p>The QR code points to the PDF URL. There are two common ways to handle this:</p>
+
+<h3>Direct PDF URL</h3>
+<p>The URL points directly to the PDF file:</p>
+
+<pre><code>https://yourbusiness.com/menus/dinner.pdf</code></pre>
+
+<p>When scanned, the phone either opens the PDF in a built-in viewer, downloads it and opens it, or opens it in a browser. Behavior varies by device.</p>
+
+<h3>HTML page with embedded PDF</h3>
+<p>The URL points to an HTML page that embeds the PDF:</p>
+
+<pre><code>https://yourbusiness.com/menus/dinner</code></pre>
+
+<p>This gives you more control over the user experience. You can add branding, download buttons, related content, or analytics. The cost is more setup work.</p>
+
+<p>For most deployments, the direct PDF URL is fine. The HTML wrapper is useful when you need a custom viewer experience or want to track scans.</p>
+
+<h2 id="size">File Size Considerations</h2>
+
+<p>PDF file size affects both the QR code (the URL gets longer) and the user experience (longer download time). Keep the PDF under 5MB if possible.</p>
+
+<p>Tips for keeping PDFs small:</p>
+
+<ul>
+<li>Compress images in the PDF (use \u201cSave for Web\u201d or similar)</li>
+<li>Use JPEG instead of PNG for photos (PNG is for graphics, JPEG is for photos)</li>
+<li>Use a reasonable resolution (150-200 DPI for screen, 300 DPI for print)</li>
+<li>Avoid embedding fonts you don\u2019t need</li>
+<li>Use a PDF optimizer tool (Adobe Acrobat, Smallpdf, iLovePDF)</li>
+</ul>
+
+<p>A 50-page manual can be 5-50MB depending on the images. A 4-page brochure is usually 500KB-2MB.</p>
+
+<h2 id="viewer">What Users See When They Scan</h2>
+
+<p>The user experience varies by phone and PDF source:</p>
+
+<h3>iOS</h3>
+<p>When a user scans a direct PDF URL, iOS shows a preview of the PDF in Safari. The user can tap to open the full PDF, save it to Files, or share it.</p>
+
+<h3>Android</h3>
+<p>When a user scans a direct PDF URL, Android either opens the PDF in Chrome (which has a built-in PDF viewer) or downloads the file. The user can view, save, or share it.</p>
+
+<h3>Different behaviors</h3>
+<p>The behavior can vary based on the browser, the Android version, and whether the user has a PDF viewer app installed. To get consistent behavior, link to an HTML page that embeds the PDF \u2014 the user always sees a consistent view.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-pdf/qr-code-for-pdf-scan-demo.png" alt="PDF QR use cases" />
+  <figcaption>PDF QR deployments: restaurant menu, product manual, contract, brochure, annual report.</figcaption>
+</figure>
+
+<h2 id="dynamic">Updating the File Without Changing the QR Code</h2>
+
+<p>If you need to update the PDF without changing the QR code, use a redirect:</p>
+
+<ol>
+<li>Host the PDF at a stable URL (e.g., <code>yourbusiness.com/menu.pdf</code>)</li>
+<li>Set up a server redirect so that URL always points to the current file</li>
+<li>Update the actual PDF file whenever the menu changes</li>
+<li>The QR code stays the same \u2014 the redirect always points to the latest version</li>
+</ol>
+
+<p>This is the right approach for restaurant menus, which change seasonally. The QR code on the table tent stays the same for years; the file behind it changes every quarter.</p>
+
+<h2 id="mistakes">5 Common PDF QR Mistakes</h2>
+
+<h3>1. File too large</h3>
+<p>A 50MB PDF will frustrate users on cellular networks. Compress aggressively, or split into multiple smaller PDFs.</p>
+
+<h3>2. URL changes when file updates</h3>
+<p>If the URL contains the file version (e.g., <code>menu-v3.pdf</code>), you have to reprint the QR code every time the menu changes. Use a stable URL with a redirect.</p>
+
+<h3>3. No HTTPS</h3>
+<p>Modern phones warn or block downloads from non-HTTPS URLs. Always host PDFs on HTTPS.</p>
+
+<h3>4. Login required</h3>
+<p>If the user has to log in to access the PDF, most will abandon the scan. Make the PDF public.</p>
+
+<h3>5. Wrong MIME type</h3>
+<p>If the server serves the PDF as <code>application/octet-stream</code> instead of <code>application/pdf</code>, the phone may not know how to handle it. Check the server configuration.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Can I use a free cloud service to host the PDF?</h3>
+<p>Yes, but be aware that the URL can change. If the service is down, the QR code stops working. For business-critical deployments, host on your own infrastructure or a reliable static host.</p>
+
+<h3>What if the PDF has multiple pages?</h3>
+<p>That\u2019s fine. The phone opens the PDF and the user scrolls through. Just keep the file size reasonable (under 5MB).</p>
+
+<h3>Can I track scans of a PDF QR code?</h3>
+<p>Yes, if the URL points to an HTML page (not the direct PDF). Use a tracking redirect or a tracking pixel on the HTML page. Direct PDF URLs don\u2019t support tracking natively.</p>
+
+<h3>Can I make the PDF editable or signable?</h3>
+<p>Yes. Use a PDF form (Acrobat, DocuSign, etc.) and link to it. The user scans, opens the form, fills it out, and submits. Useful for contracts, registrations, and applications.</p>
+
+<h3>Does the PDF QR work on iPad?</h3>
+<p>Yes. iPads open PDFs in the same way as iPhones. The behavior is consistent.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-pdf/qr-code-for-pdf-faq-banner.png" alt="Make a PDF QR code" />
+  <figcaption>Generate a QR code that points to any URL, including your PDFs. QRCode Studio is free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: The Best Way to Share a Document</h2>
+
+<p>PDF QR codes are the most frictionless way to distribute a document from a physical surface. The user scans, the file opens, they can read, save, or share. No app to download, no typing, no friction.</p>
+
+<p>For best results: keep the PDF under 5MB, host it on a stable HTTPS URL, and use a redirect so you can update the file without changing the QR code. Test on multiple phones to make sure the download and view experience works as expected. The 5-minute setup pays back the first time someone scans instead of asking for a paper copy.</p>

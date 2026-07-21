@@ -1,0 +1,175 @@
+<p class="lead">A QR code for email (sometimes called a \u201cmailto QR\u201d) opens a pre-filled email draft when scanned. The recipient, subject, and body are all encoded in the code. The user scans, their mail app opens with everything pre-populated, and they hit send. It\u2019s the most frictionless way to collect email responses at events, in stores, or on printed materials.</p>
+
+<p>This guide shows you how to make a mailto QR code, what to include in the pre-filled fields, and the common mistakes that make them not work. It takes about 5 minutes to set up and 30 seconds to generate.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-email/qr-code-for-email-hero.png" alt="QR code for email" />
+  <figcaption>Mailto QR: one scan, one pre-filled email, one tap to send. The fastest way to collect responses from offline contacts.</figcaption>
+</figure>
+
+<h2 id="what">What Is a Mailto QR Code?</h2>
+
+<p>A mailto QR code is a standard QR code that, when scanned, opens the user\u2019s default email app with a pre-filled message. The mailto URL format is the same one used in web links:</p>
+
+<pre><code>mailto:recipient@example.com?subject=Hello&body=I%20wanted%20to%20reach%20out</code></pre>
+
+<p>When a phone scans a QR code containing this URL, the mail app opens with the recipient, subject, and body all pre-populated. The user just reviews, edits if needed, and hits send.</p>
+
+<h2 id="when">When to Use a Mailto QR Code</h2>
+
+<p>Mailto QR codes are useful in any context where you want to collect email responses from people who aren\u2019t already in front of a computer:</p>
+
+<ul>
+<li><strong>Trade shows and conferences.</strong> \u201cScan to request a follow-up\u201d on a booth display. The recipient is your sales team, the subject is \u201cBooth follow-up [event].\u201d</li>
+<li><strong>Store receipts.</strong> \u201cScan for receipt by email\u201d \u2014 a small QR on the printed receipt that opens a pre-filled email to your receipts address.</li>
+<li><strong>Restaurant feedback.</strong> \u201cScan to tell us how we did\u201d on a table tent. Subject is the date, body has a few starter questions.</li>
+<li><strong>Product packaging.</strong> \u201cScan to register your warranty\u201d \u2014 opens email with the product model pre-filled in the subject.</li>
+<li><strong>Print ads.</strong> \u201cScan to get more info\u201d in a magazine ad opens email with the product name as the subject.</li>
+<li><strong>Business cards.</strong> A mailto QR on the back of a card lets recipients easily send a follow-up without typing your email address.</li>
+</ul>
+
+<h2 id="format">The Mailto Format Explained</h2>
+
+<figure>
+  <img src="/blog/qr-code-for-email/qr-code-for-email-comparison.png" alt="Mailto QR format breakdown" />
+  <figcaption>The 4 fields you can pre-fill: recipient, subject, CC, body. The simpler the URL, the shorter the code.</figcaption>
+</figure>
+
+<p>The mailto URL supports 4 fields:</p>
+
+<pre><code>mailto:RECIPIENT?subject=SUBJECT&cc=CC&body=BODY</code></pre>
+
+<h3>Recipient (required)</h3>
+<p>The email address the message will be sent to. Use a single address for simple cases. For multiple recipients, separate with commas (some mail apps don\u2019t support this):</p>
+
+<pre><code>mailto:sales@example.com</code></pre>
+
+<h3>Subject</h3>
+<p>Pre-fills the subject line. Use something specific that helps the recipient triage:</p>
+
+<pre><code>mailto:support@example.com?subject=Help%20with%20my%20order</code></pre>
+
+<h3>CC (carbon copy)</h3>
+<p>Pre-fills a CC recipient. Useful for routing:</p>
+
+<pre><code>mailto:support@example.com?cc=manager@example.com</code></pre>
+
+<h3>Body</h3>
+<p>Pre-fills the email body. Use this for starter text, structured questions, or context the user can edit:</p>
+
+<pre><code>mailto:support@example.com?subject=Help&body=Order%20number%3A%0A%0AIssue%3A%0A%0A</code></pre>
+
+<p>Note: spaces and special characters must be URL-encoded. <code>%20</code> is a space, <code>%3A</code> is a colon, <code>%0A</code> is a newline.</p>
+
+<h2 id="build">How to Build a Mailto QR Code</h2>
+
+<p>Most QR code generators support a \u201cEmail\u201d or \u201cmailto\u201d format option. You enter the recipient, subject, and body in a form, and the generator creates the QR code. You don\u2019t need to write the URL yourself.</p>
+
+<p>If you want to build it manually, here\u2019s a step-by-step process:</p>
+
+<ol>
+<li>Start with <code>mailto:RECIPIENT</code></li>
+<li>Add <code>?subject=YOUR%20SUBJECT</code></li>
+<li>Add <code>&body=YOUR%20BODY</code></li>
+<li>URL-encode any spaces, special characters, and line breaks</li>
+<li>Paste the complete URL into a QR code generator</li>
+<li>Set the format to \u201cURL\u201d (not \u201cEmail\u201d \u2014 the generator doesn\u2019t know it\u2019s a mailto URL, and that\u2019s fine)</li>
+<li>Test the code with multiple phones</li>
+</ol>
+
+<p>Test specifically that:</p>
+
+<ul>
+<li>The mail app opens (not the browser)</li>
+<li>The recipient is correct</li>
+<li>The subject is pre-filled</li>
+<li>The body is pre-filled (with line breaks preserved if you included them)</li>
+</ul>
+
+<h2 id="mistakes">5 Common Mailto QR Mistakes</h2>
+
+<p>Mailto QR codes are simple but easy to break. Here are the mistakes we see most often:</p>
+
+<h3>1. Forgetting to URL-encode</h3>
+<p>If your subject or body contains a space, colon, or special character, it must be URL-encoded. A subject like <code>Hello World</code> becomes <code>Hello%20World</code> in the URL. A colon becomes <code>%3A</code>. Newlines become <code>%0A</code>. Most QR generators don\u2019t do this for you if you\u2019re entering a raw mailto URL.</p>
+
+<h3>2. Too much body text</h3>
+<p>The mailto URL can get long if the body is detailed. URLs over 200 characters produce dense QR codes that are hard to scan at small sizes. Keep the body under 100 characters. Save detailed instructions for the body itself, not the QR code.</p>
+
+<h3>3. Using the wrong format</h3>
+<p>Some QR generators have an \u201cEmail\u201d format option that tries to do special handling. This often fails in subtle ways. Using the standard \u201cURL\u201d format with a mailto URL is more reliable.</p>
+
+<h3>4. No recipient specified</h3>
+<p>If you set just a subject and body without a recipient, the QR code opens the mail app but leaves the recipient field empty. Most users won\u2019t fill this in. Always set a recipient.</p>
+
+<h3>5. Not testing on multiple devices</h3>
+<p>iOS and Android handle mailto QR codes slightly differently. iOS opens the default mail app; Android opens a chooser. Test on both before deploying.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-email/qr-code-for-email-scan-demo.png" alt="Mailto QR use cases" />
+  <figcaption>Real-world mailto QR deployments: trade show booth, restaurant feedback, store receipt, business card.</figcaption>
+</figure>
+
+<h2 id="vs-form">Mailto QR vs Web Form</h2>
+
+<p>For collecting structured responses (ratings, multiple-choice questions), a web form is usually better than mailto. The reasons:</p>
+
+<ul>
+<li>Forms validate input. Mailto accepts anything.</li>
+<li>Forms are easier to analyze. Mailto is unstructured text.</li>
+<li>Forms work on every phone. Mailto requires a default mail app.</li>
+</ul>
+
+<p>Use mailto when the response is unstructured (\u201cTell us what you think\u201d) or when you specifically want an email back. Use a form when the response has structure or when you need to track submissions.</p>
+
+<h2 id="advanced">Advanced: Multiple Recipients and Templates</h2>
+
+<p>Mailto URLs support a few tricks for routing and templating:</p>
+
+<h3>Multiple recipients</h3>
+<p>Separate multiple addresses with commas:</p>
+
+<pre><code>mailto:sales@example.com,support@example.com</code></pre>
+
+<p>Note: this puts both addresses in the To field. For real CC behavior, use the <code>cc</code> parameter:</p>
+
+<pre><code>mailto:sales@example.com?cc=support@example.com</code></pre>
+
+<h3>Pre-filling the body with placeholders</h3>
+<p>If you want the user to fill in specific fields, pre-fill with placeholder text they can replace:</p>
+
+<pre><code>mailto:feedback@example.com?subject=Order%20feedback&body=Order%20number%3A%20______%0A%0AFeedback%3A%20______</code></pre>
+
+<p>This shows the user where to type and what to type. Better than a blank body that confuses people.</p>
+
+<h3>Using plus addressing for routing</h3>
+<p>Many email systems support <code>plus addressing</code> \u2014 you can add <code>+tag</code> to the local part of an address:</p>
+
+<pre><code>mailto:feedback+event-2025@example.com</code></pre>
+
+<p>You can set up filters to route messages based on the <code>+tag</code>. Useful if you have a single feedback address but want to know which event or campaign a message came from.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>What happens if the user doesn\u2019t have a default mail app?</h3>
+<p>The QR code scan will fail silently or show an error like \u201cNo app to handle this action.\u201d Modern phones always have at least the default mail app installed, so this is rare. If your audience is older or using stripped-down devices, consider a web form instead.</p>
+
+<h3>Can I track scans of a mailto QR code?</h3>
+<p>Not directly, but you can. Use a short URL that redirects to the mailto URL, and put a tracker on the short URL. Or use a unique email address per QR code (e.g., <code>booth-event-2025-001@example.com</code>) and count the messages.</p>
+
+<h3>Will the QR code work on iPad without a mail app?</h3>
+<p>iPads without a default mail app will fail. Most iPads do have the Mail app, but if you\u2019re targeting iPad users specifically, consider a web form fallback.</p>
+
+<h3>How long should the subject and body be?</h3>
+<p>Keep the subject under 50 characters and the body under 200 characters. Total URL under 300 characters is the safe range. Beyond that, the QR code gets dense and harder to scan.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-email/qr-code-for-email-faq-banner.png" alt="Make a mailto QR code" />
+  <figcaption>Generate a mailto QR code with subject and body pre-filled. QRCode Studio is free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: The Fastest Path from Scan to Email</h2>
+
+<p>Mailto QR codes are the most frictionless way to collect email responses from offline contacts. The user scans, the mail app opens with everything pre-filled, and they hit send. No typing, no app navigation, no friction.</p>
+
+<p>Use them for events, retail, restaurants, packaging, and any context where you want a fast path to a real email. Keep the body short, set a recipient, test on multiple phones, and you\u2019re done. The 5-minute setup is worth the conversion lift.</p>

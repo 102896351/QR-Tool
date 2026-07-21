@@ -4,4 +4,4 @@ Allow: /
 # 防止爬取静态资源查询参数
 Disallow: /*?*
 
-Sitemap: https://qr-tool.example.com/sitemap.xml
+Sitemap: https://toolbox168.xyz/sitemap.xml

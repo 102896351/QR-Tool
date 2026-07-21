@@ -199,7 +199,7 @@ export default {
   'history.tip.2': 'Stocké localement uniquement, effaçable à tout moment',
   'history.tip.3': 'Jusqu\'à 10 entrées, ordre chronologique inversé',
 
-  'meta.title': 'Générateur de QR Code Gratuit en Ligne — Logo / Dégradé / Lot Personnalisés | QR Tool Studio',
+  'meta.title': 'QRCode · Générateur de QR Gratuit',
   'meta.desc': 'Générateur de QR code gratuit et léger dans le navigateur. 8 types, dégradés, logos, 6 styles, export PNG/SVG/JPEG, ZIP par lot. Sans inscription.',
   'theme.light': 'Clair',
   'theme.dark': 'Sombre',
@@ -223,4 +223,22 @@ export default {
   'footer.about.biz': 'Affaires',
   'footer.about.theme': 'Thème',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
+,
+  // blog.fr
+  'blog.notFoundDesc': 'L\u2019article que vous cherchez n\u2019existe pas.',
+  'blog.badge': 'Blog',
+  'blog.readArticle': 'Lire l\u2019article',
+  'blog.notFoundTitle': 'Article introuvable',
+  'blog.minRead': 'min de lecture',
+  'blog.browseAll': 'Tous les articles',
+  'blog.endCta.desc': 'Gratuit, sans inscription, dans votre navigateur. Générez votre QR WiFi en moins d’une minute.',
+  'footer.link.blog': 'Blog',
+  'blog.hero.title.l2': 'playbooks',
+  'blog.backToBlog': 'Retour au blog',
+  'blog.hero.title.l1': 'Guides, astuces &',
+  'blog.endCta.title': 'Prêt à créer le vôtre ?',
+  'blog.endCta.button': 'Générer un QR WiFi',
+  'blog.hero.desc': 'Guides pratiques pour tirer le meilleur des QR codes. Des cas PME aux bonnes pratiques de design.',
+  'blog.empty': 'Pas encore d\u2019articles. Revenez bientôt !',
+  'blog.backToList': 'Retour aux articles',
 }

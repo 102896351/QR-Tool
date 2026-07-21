@@ -199,7 +199,7 @@ export default {
   'history.tip.2': '기록은 로컬에만 저장, 언제든지 지울 수 있음',
   'history.tip.3': '최대 10개, 시간 역순',
 
-  'meta.title': '무료 온라인 QR 코드 생성기 — 커스텀 로고 / 그라데이션 / 일괄 | QR Tool Studio',
+  'meta.title': 'QRCode · 무료 QR코드 생성기',
   'meta.desc': '무료, 가벼운 브라우저 내 QR 코드 생성기. 8가지 유형, 그라데이션/로고/6가지 스타일, PNG/SVG/JPEG 내보내기, 일괄 ZIP. 가입 불필요.',
   'theme.light': '라이트',
   'theme.dark': '다크',
@@ -223,4 +223,22 @@ export default {
   'footer.about.biz': '비즈니스',
   'footer.about.theme': '테마',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
+,
+  // blog.ko
+  'blog.notFoundDesc': '찾고 계신 글이 존재하지 않습니다.',
+  'blog.badge': '블로그',
+  'blog.readArticle': '글 읽기',
+  'blog.notFoundTitle': '글을 찾을 수 없음',
+  'blog.minRead': '분 소요',
+  'blog.browseAll': '모든 글 보기',
+  'blog.endCta.desc': '무료, 가입 불필요, 브라우저에서 바로. 1분 이내에 WiFi QR 코드를 생성하세요.',
+  'footer.link.blog': '블로그',
+  'blog.hero.title.l2': '플레이북',
+  'blog.backToBlog': '블로그로 돌아가기',
+  'blog.hero.title.l1': '가이드, 팁,',
+  'blog.endCta.title': '당신만의 QR을 만들어 보세요',
+  'blog.endCta.button': 'WiFi QR 코드 생성',
+  'blog.hero.desc': 'QR 코드 활용을 위한 실용적인 가이드. 소상공인 사례부터 디자인 모범 사례까지.',
+  'blog.empty': '아직 글이 없습니다. 나중에 다시 확인해 주세요!',
+  'blog.backToList': '글 목록으로',
 }

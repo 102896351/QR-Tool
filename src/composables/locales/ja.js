@@ -199,7 +199,7 @@ export default {
   'history.tip.2': '履歴はローカル保存のみ、いつでも削除可能',
   'history.tip.3': '最大10件、新しい順',
 
-  'meta.title': '無料オンラインQRコード生成 — カスタムロゴ / グラデーション / 一括 | QR Tool Studio',
+  'meta.title': 'QRCode · 無料QRコード',
   'meta.desc': '無料、軽量、ブラウザ内QRコード生成。8種類対応、グラデーション・ロゴ・6スタイル、PNG/SVG/JPEG書き出し、一括ZIP。登録不要。',
   'theme.light': 'ライト',
   'theme.dark': 'ダーク',
@@ -223,4 +223,22 @@ export default {
   'footer.about.biz': 'ビジネス',
   'footer.about.theme': 'テーマ',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
+,
+  // blog.ja
+  'blog.notFoundDesc': 'お探しの記事は存在しません。',
+  'blog.badge': 'ブログ',
+  'blog.readArticle': '記事を読む',
+  'blog.notFoundTitle': '記事が見つかりません',
+  'blog.minRead': '分で読了',
+  'blog.browseAll': 'すべての記事を見る',
+  'blog.endCta.desc': '無料、登録不要、ブラウザで動作。1分以内にWiFi QRコードを作成。',
+  'footer.link.blog': 'ブログ',
+  'blog.hero.title.l2': 'プレイブック',
+  'blog.backToBlog': 'ブログに戻る',
+  'blog.hero.title.l1': 'ガイド、ヒント、',
+  'blog.endCta.title': '作ってみませんか？',
+  'blog.endCta.button': 'WiFi QRコードを作成',
+  'blog.hero.desc': 'QRコード活用のための実践的ガイド。中小企業の事例からデザインのベストプラクティスまで。',
+  'blog.empty': '記事がありません。後ほどご確認ください。',
+  'blog.backToList': '記事一覧に戻る',
 }

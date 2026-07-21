@@ -1,0 +1,165 @@
+<p class="lead">Making a QR code for a link takes 30 seconds. There\u2019s a learning curve of about 60 seconds, and that\u2019s what this guide is for. By the end, you\u2019ll have a working QR code, know how to test it, and know the three mistakes that make QR codes unscannable. No jargon, no upsell, no app to download.</p>
+
+<p>This guide works whether you want a QR code for a business card, a flyer, a product page, or a video. The mechanics are the same: pick a URL, generate a code, test it, use it. The only differences are the design choices, which we\u2019ll cover.</p>
+
+<figure>
+  <img src="/blog/how-to-make-qr-code-for-link/how-to-make-qr-code-for-link-hero.png" alt="How to make a QR code for a link" />
+  <figcaption>From URL to scannable QR code in 30 seconds. No app, no signup, no payment.</figcaption>
+</figure>
+
+<h2 id="before">Before You Start: 3 Things You Need</h2>
+
+<ol>
+<li><strong>A destination URL.</strong> The link you want the QR code to point to. It should be a real, working URL that resolves when someone types it into a browser. Don\u2019t use a URL shortener for the destination \u2014 it adds a layer of dependency that can break.</li>
+<li><strong>A QR code generator.</strong> Any browser-based tool works. Look for one that doesn\u2019t require signup, doesn\u2019t add a watermark, and lets you download in PNG or SVG. We\u2019ll use QRCode Studio for this guide, but the steps are the same for any tool.</li>
+<li><strong>30 seconds.</strong> That\u2019s it. The whole process is faster than brewing a cup of coffee.</li>
+</ol>
+
+<h2 id="step1">Step 1: Decide Between a Direct URL and a Short URL</h2>
+
+<p>The destination you encode into the QR code matters more than any design choice. There are two options:</p>
+
+<h3>Option A: Use your URL directly</h3>
+<p>Most pages have a URL like <code>https://yourbusiness.com/products/widget</code>. You can encode this directly into the QR code. Pros: no middleman, works forever, the URL itself tells the user where they\u2019re going. Cons: long URLs make denser QR codes, harder to scan at small sizes.</p>
+
+<p>This is the right choice 90% of the time.</p>
+
+<h3>Option B: Use a short URL as the destination</h3>
+<p>Short URLs (<code>bit.ly/abc123</code>, <code>yourdomain.co/promo</code>) reduce QR code density and let you track basic scan counts. Pros: shorter, easier to scan, gives you scan analytics for free. Cons: the short URL provider becomes a dependency, and the QR code can break if the short URL expires.</p>
+
+<p>Use a short URL when the destination is genuinely long (>80 characters) or when you want scan analytics. Otherwise, use the direct URL.</p>
+
+<h2 id="step2">Step 2: Open a QR Code Generator</h2>
+
+<p>Not all generators are equal. Here\u2019s what to look for:</p>
+
+<ul>
+<li><strong>No signup required.</strong> If a tool asks you to create an account before generating a code, leave. There\u2019s no reason for that.</li>
+<li><strong>No watermark.</strong> The QR code you download should be clean. Some free tools add a small "powered by" logo in the corner. That\u2019s fine for personal use but disqualifying for business materials.</li>
+<li><strong>True vector SVG download.</strong> PNG is fine for screens, but for print (especially large formats), SVG keeps the code sharp at any size.</li>
+<li><strong>Customization without paywalls.</strong> Color, logo upload, and error correction level should all be available without a paid plan.</li>
+<li><strong>Multi-language support (if relevant).</strong> For international deployments, a tool that supports the languages of your audience saves you a translation step.</li>
+</ul>
+
+<p>QRCode Studio checks all of these boxes. The rest of this guide uses it as an example, but the steps are universal.</p>
+
+<h2 id="step3">Step 3: Configure Your QR Code</h2>
+
+<p>Most tools have the same basic configuration options. Here\u2019s what each one does and what to pick:</p>
+
+<figure>
+  <img src="/blog/how-to-make-qr-code-for-link/how-to-make-qr-code-for-link-comparison.png" alt="QR code configuration options" />
+  <figcaption>The 6 settings that matter when generating a QR code for a link. Most can be left at defaults.</figcaption>
+</figure>
+
+<h3>Format: URL</h3>
+<p>Pick "URL" or "Link" as the format. The tool will know to format the data correctly so phones recognize it as a clickable link. If the tool asks for the URL with or without "https://", include it. QR codes without the protocol often fail to open in browsers.</p>
+
+<h3>Color</h3>
+<p>Black on white is the most reliable. If you want a branded color (say, your brand\u2019s indigo), make sure the contrast ratio is high. The recommended minimum contrast ratio is 4:1 \u2014 use a contrast checker if you\u2019re unsure. Don\u2019t use a colored background; the scanner needs a clear light/dark contrast to find the modules.</p>
+
+<h3>Error correction level</h3>
+<p>Pick "Medium" (M) by default. It recovers about 15% of the data if the code is damaged. If you\u2019re adding a logo, pick "Quartile" (Q) or "High" (H) so the code can still be read with the logo area replaced.</p>
+
+<h3>Logo</h3>
+<p>Adding a logo is optional. It increases brand recognition but reduces the scan success rate slightly and forces you to use a higher error correction level (which makes the code denser). For business cards, a logo is recommended. For posters and packaging, skip the logo and let the QR code breathe.</p>
+
+<h3>Module size (for SVG export)</h3>
+<p>Most tools default to a reasonable size. If you have control, pick the smallest possible module size that keeps the code visually clean. Smaller modules = smaller file sizes, which is faster to download and easier to embed.</p>
+
+<h3>Quiet zone</h3>
+<p>The white margin around the code. Most tools handle this automatically. Don\u2019t crop it off in post-production.</p>
+
+<h2 id="step4">Step 4: Test the QR Code Before You Print 5,000 Copies</h2>
+
+<p>This is the step most people skip, and it\u2019s the step that catches the most mistakes. Before you commit a QR code to print or to a public deployment, test it with at least three different phone cameras.</p>
+
+<figure>
+  <img src="/blog/how-to-make-qr-code-for-link/how-to-make-qr-code-for-link-scan-demo.png" alt="QR code testing workflow" />
+  <figcaption>Test your QR code with multiple phones and lighting conditions before deploying. Catches 90% of mistakes in 30 seconds.</figcaption>
+</figure>
+
+<h3>What to test</h3>
+
+<ol>
+<li><strong>Multiple phones:</strong> iPhone (latest), iPhone (3-4 years old), Android (Samsung/Pixel), and one budget Android if possible. Different cameras resolve QR codes at different rates.</li>
+<li><strong>Different lighting:</strong> Test in bright sunlight, indoor fluorescent, and dim restaurant lighting. Codes that work in one environment sometimes fail in another.</li>
+<li><strong>Different angles:</strong> Hold the phone perpendicular to the code, then at 30 degrees, 45 degrees. Codes that look great head-on can fail at an angle if the quiet zone is too small.</li>
+<li><strong>Different distances:</strong> If your code will be scanned at 1 meter, test at 1 meter. If at 5 meters, walk 5 meters away.</li>
+</ol>
+
+<h3>What to look for</h3>
+
+<ul>
+<li>The code scans within 2 seconds. If it takes longer, the code is too dense or the contrast is too low.</li>
+<li>The phone opens the correct URL. The most common mistake here is a typo in the URL or a missing "https://".</li>
+<li>The destination URL loads. If the URL is broken, no amount of QR code testing will help.</li>
+</ul>
+
+<p>If the code fails any of these tests, regenerate it. Don\u2019t deploy a QR code you haven\u2019t tested.</p>
+
+<h2 id="step5">Step 5: Download in the Right Format</h2>
+
+<p>Two formats matter: PNG and SVG.</p>
+
+<h3>PNG for screens and small prints</h3>
+<p>PNG is a raster format, so it has a fixed pixel size. For email signatures, social media posts, and small prints (business cards, postcards), PNG at 300x300 pixels or larger is enough. For larger prints (posters, banners), export PNG at the actual print size at 300 DPI minimum.</p>
+
+<h3>SVG for print at any size</h3>
+<p>SVG is a vector format. It scales to any size without losing sharpness. Use SVG for anything that will be printed on a professional printer: posters, packaging, signage, business cards. SVG files are also smaller in file size than high-DPI PNGs, which makes them easier to share.</p>
+
+<p>If you can only download one format, download SVG. You can always convert SVG to PNG later using a free online tool or an image editor like Inkscape or Illustrator.</p>
+
+<h2 id="step6">Step 6: Use It in the Right Context</h2>
+
+<p>A QR code is only as good as its placement. Three principles to follow:</p>
+
+<h3>1. Size for the scan distance</h3>
+<p>The QR code should be at least 1 cm wide per 10 cm of expected scan distance. A business card QR (scanned at 20 cm) needs to be at least 2 cm wide. A poster QR (scanned at 1 meter) needs to be at least 10 cm wide. A billboard QR (scanned at 5+ meters) needs to be at least 50 cm wide.</p>
+
+<h3>2. Place it where eyes naturally go</h3>
+<p>Studies of QR code scan rates show 3x higher engagement when codes are placed at eye level. A QR code in the corner of a flyer gets scanned 30% of the time; the same code in the center, at eye level, gets scanned 80% of the time.</p>
+
+<h3>3. Add a call to action</h3>
+<p>A QR code without a call to action is a mystery. Tell people what they\u2019ll get when they scan: "Scan to see the menu," "Scan to download the app," "Scan for a 10% discount." Adding a one-line CTA next to the QR code doubles the scan rate.</p>
+
+<h2 id="mistakes">5 Mistakes That Make QR Codes Unscannable</h2>
+
+<p>After reviewing thousands of deployed QR codes, these are the mistakes that come up over and over:</p>
+
+<h3>1. URL typo or missing protocol</h3>
+<p>Generating a QR code for <code>yourbusiness.com</code> instead of <code>https://yourbusiness.com</code> is the single most common mistake. The QR code scans fine; the phone just doesn\u2019t know what to do with a URL that has no protocol.</p>
+
+<h3>2. Low contrast</h3>
+<p>A light gray QR code on a white background is technically a QR code, but no scanner can read it. The contrast ratio between the code and the background should be at least 4:1. Black on white is the safest choice.</p>
+
+<h3>3. No quiet zone</h3>
+<p>Cropping the white border around the QR code to "save space" makes the code unscannable. The quiet zone is not optional. If you must integrate the code into a busy background, add a solid white rectangle behind the code first.</p>
+
+<h3>4. Logo too large</h3>
+<p>A logo that covers more than 30% of the QR code area makes it unscannable, even with high error correction. Keep logos under 25% of the code area, centered, and roughly square.</p>
+
+<h3>5. Compressing to JPEG</h3>
+<p>JPEG compression introduces artifacts that look fine to the human eye but confuse scanners. Always use PNG or SVG. Never save a QR code as JPEG.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>How long does it take to make a QR code for a link?</h3>
+<p>With a browser-based generator, about 30 seconds. With a tool that requires signup, 2-3 minutes. With a professional design tool like Illustrator, 5-10 minutes.</p>
+
+<h3>Do I need an app to scan a QR code?</h3>
+<p>No. Every iPhone since 2017 and every Android phone since 2018 has a built-in camera that scans QR codes natively. No app needed. Users just point and tap.</p>
+
+<h3>Can I edit a QR code after I\u2019ve printed it?</h3>
+<p>Only if it was a dynamic QR code (one that points to a short URL you control). Static QR codes encode the destination directly and cannot be changed. If you need to be able to edit later, use a short URL as the destination.</p>
+
+<figure>
+  <img src="/blog/how-to-make-qr-code-for-link/how-to-make-qr-code-for-link-faq-banner.png" alt="Make a QR code" />
+  <figcaption>Ready to make one? QRCode Studio is free, no signup, exports PNG and SVG. Takes 30 seconds.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: 30 Seconds and a URL</h2>
+
+<p>Making a QR code for a link is one of the few things in 2025 that\u2019s still 30 seconds of work. There\u2019s no app to download, no account to create, no payment to make. Pick a tool, paste a URL, test with two phones, and you\u2019re done.</p>
+
+<p>The complexity comes in the design decisions: color, size, error correction, placement. Get those right, and your QR code will work reliably for years. Get them wrong, and no amount of testing will save it. The mistakes to avoid are well known: low contrast, no quiet zone, oversized logos, JPEG compression. Skip those, and you\u2019re 90% of the way to a perfect deployment.</p>

@@ -240,7 +240,7 @@ export default {
   'history.tip.2': '历史仅保存在本地,可随时一键清空',
   'history.tip.3': '最多保存最近 10 条记录,按时间倒序',
 
-  'meta.title': '免费在线二维码生成器 - 自定义 Logo / 渐变 / 批量生成 | QR Tool Studio',
+  'meta.title': 'QRCode · 免费二维码工具',
   'meta.desc': '免费、轻量的在线二维码生成工具。支持网址、名片、WiFi、文本、邮箱、电话等 8 种类型,自定义渐变颜色、中心 Logo、6 种矩阵样式,一键导出 PNG / SVG / JPEG,批量生成并打包 ZIP。无需注册。',
   'theme.light': '亮色',
   'theme.dark': '暗色',
@@ -264,4 +264,22 @@ export default {
   'footer.about.biz': '商务合作',
   'footer.about.theme': '主题',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
+,
+  // blog.zh
+  'blog.notFoundDesc': '你访问的文章不存在。',
+  'blog.badge': '博客',
+  'blog.readArticle': '阅读全文',
+  'blog.notFoundTitle': '文章未找到',
+  'blog.minRead': '分钟阅读',
+  'blog.browseAll': '浏览所有文章',
+  'blog.endCta.desc': '免费、无需注册、浏览器直接使用。不到一分钟即可生成你的 WiFi 二维码。',
+  'footer.link.blog': '博客',
+  'blog.hero.title.l2': '实战技巧',
+  'blog.backToBlog': '返回博客',
+  'blog.hero.title.l1': '实用指南与',
+  'blog.endCta.title': '准备好制作你自己的二维码了吗？',
+  'blog.endCta.button': '立即生成 WiFi 二维码',
+  'blog.hero.desc': '专注于二维码实用场景,内容详实、拒绝注水。从商家使用案例到设计最佳实践,助你最大化二维码价值。',
+  'blog.empty': '暂无文章，敬请期待！',
+  'blog.backToList': '返回文章列表',
 }

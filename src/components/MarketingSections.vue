@@ -2,6 +2,10 @@
 import { ref } from 'vue'
 import { useI18n } from '../composables/useI18n'
 
+defineProps({
+  onGoBlog: { type: Function, default: null }
+})
+
 const { t } = useI18n()
 
 // 8 种类型(只保留 id + icon,文案走 i18n)
@@ -182,6 +186,18 @@ const featureIcons = [
             <p class="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
               {{ t('mkt.why.desc') }}
             </p>
+            <a
+              v-if="onGoBlog"
+              href="#blog"
+              @click.prevent="onGoBlog"
+              class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-500 to-purple-500 text-white text-sm font-bold shadow-md shadow-brand-500/30 hover:shadow-lg transition-shadow"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+              Read our guides
+              <span class="px-1.5 py-0.5 text-[8px] font-bold rounded bg-white/20">NEW</span>
+            </a>
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div v-for="i in 4" :key="i"

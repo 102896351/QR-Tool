@@ -1,17 +1,61 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import SingleGenerator from './components/SingleGenerator.vue'
 import BatchGenerator from './components/BatchGenerator.vue'
 import HistoryView from './components/HistoryView.vue'
 import MarketingSections from './components/MarketingSections.vue'
 import LegalModal from './components/LegalModal.vue'
+import BlogIndex from './components/blog/BlogIndex.vue'
+import BlogPost from './components/blog/BlogPost.vue'
 import { useTheme } from './composables/useTheme'
 import { useI18n } from './composables/useI18n'
 
 const { isDark } = useTheme()
-const { t, lang } = useI18n()
+const { t, lang, isReady } = useI18n()
 const tab = ref('single')
+
+// 博客 hash 路由:#blog | #blog/[slug]
+const view = ref('home') // 'home' | 'blog-list' | 'blog-post'
+const currentSlug = ref('')
+
+function parseHash() {
+  const h = window.location.hash.replace(/^#\/?/, '')
+  if (h === 'blog' || h === 'blog/') {
+    view.value = 'blog-list'
+    currentSlug.value = ''
+  } else if (h.startsWith('blog/')) {
+    view.value = 'blog-post'
+    currentSlug.value = h.replace(/^blog\//, '').split('/')[0]
+  } else {
+    view.value = 'home'
+    currentSlug.value = ''
+  }
+}
+
+function onHashChange() {
+  parseHash()
+  if (view.value === 'home') {
+    // 回到主页:切到 single tab
+    tab.value = 'single'
+  }
+}
+
+onMounted(() => {
+  parseHash()
+  window.addEventListener('hashchange', onHashChange)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('hashchange', onHashChange)
+})
+
+function goBlog() {
+  window.location.hash = 'blog'
+}
+function goHome() {
+  window.location.hash = ''
+}
 
 // 法律弹窗
 const legalOpen = ref(false)
@@ -56,21 +100,14 @@ function syncMetaDesc() {
 }
 
 onMounted(() => {
-  syncHeadMeta()
-  syncMetaDesc()
-  // JSON-LD 国际化
-  const ld = document.querySelector('script[type="application/ld+json"][data-i18n]')
-  if (ld) {
-    try {
-      const obj = JSON.parse(ld.textContent)
-      obj.description = t('meta.desc')
-      ld.textContent = JSON.stringify(obj)
-    } catch (e) {}
+  // i18n dict 是异步加载,等 ready 后再同步 head(否则 t() 返回 key 字面量)
+  if (isReady.value) {
+    applyI18nToHead()
   }
 })
 
-// 切换语言时刷新 head
-watch(lang, () => {
+// 切换语言 / i18n 就绪时刷新 head
+function applyI18nToHead() {
   syncHeadMeta()
   syncMetaDesc()
   const ld = document.querySelector('script[type="application/ld+json"][data-i18n]')
@@ -81,6 +118,10 @@ watch(lang, () => {
       ld.textContent = JSON.stringify(obj)
     } catch (e) {}
   }
+}
+
+watch([lang, isReady], () => {
+  applyI18nToHead()
 })
 
 // 滚动到指定锚点
@@ -101,8 +142,14 @@ function onNavClick(anchor) {
   <div class="mesh-bg"></div>
 
   <div class="min-h-screen flex flex-col">
-    <AppHeader :active="tab" @change="(v) => tab = v" />
+    <AppHeader :active="tab" :view="view" @change="(v) => tab = v" @goto-blog="goBlog" @goto-home="goHome" />
 
+    <!-- 博客视图 -->
+    <BlogIndex v-if="view === 'blog-list'" />
+    <BlogPost v-else-if="view === 'blog-post'" :slug="currentSlug" />
+
+    <!-- 主页视图 -->
+    <template v-else>
     <!-- Hero(仅在 single 时显示) -->
     <section v-if="tab === 'single'" class="w-full max-w-6xl mx-auto px-4 sm:px-6 mt-8 sm:mt-10">
       <div class="text-center max-w-3xl mx-auto">
@@ -163,7 +210,7 @@ function onNavClick(anchor) {
     </main>
 
     <!-- SEO 内容板块:How / Types / Use Cases / FAQ -->
-    <MarketingSections v-if="tab === 'single'" />
+    <MarketingSections v-if="tab === 'single'" :on-go-blog="goBlog" />
 
     <!-- Footer -->
     <footer class="mt-auto border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.02] backdrop-blur">
@@ -192,6 +239,10 @@ function onNavClick(anchor) {
             <li><a href="#types" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.types') }}</a></li>
             <li><a href="#use-cases" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.usecases') }}</a></li>
             <li><a href="#faq" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.faq') }}</a></li>
+            <li><a href="#blog" @click.prevent="goBlog" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1.5">
+              <span>{{ t('footer.link.blog') || 'Blog' }}</span>
+              <span class="inline-block px-1.5 py-0.5 text-[8px] font-bold rounded bg-gradient-to-r from-brand-500 to-purple-500 text-white">NEW</span>
+            </a></li>
           </ul>
         </div>
 
@@ -215,12 +266,6 @@ function onNavClick(anchor) {
             <li>
               <a href="mailto:andynaonao@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
                 {{ t('footer.about.biz') }}
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1">
-                GitHub
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </a>
             </li>
             <li>
@@ -253,6 +298,8 @@ function onNavClick(anchor) {
         </div>
       </div>
     </footer>
+    </template>
+    <!-- /主页视图 -->
 
     <!-- 法律弹窗 -->
     <LegalModal :open="legalOpen" :type="legalType" @close="closeLegal" />

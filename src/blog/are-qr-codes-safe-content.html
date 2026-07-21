@@ -1,0 +1,148 @@
+<p class="lead">QR codes can\u2019t be hacked. The pattern itself is just data. The risk is in where the data points. This guide explains the real security threats around QR codes, the 4 scam types you need to know about, and 6 practical defenses that take 30 seconds to apply.</p>
+
+<p>If you scan QR codes, you need to know this. If you deploy QR codes for your business, you need to know this even more \u2014 because compromised QR codes undermine the trust you\u2019ve built with your customers.</p>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-hero.png" alt="Are QR codes safe" />
+  <figcaption>QR codes can\u2019t be hacked. But the URLs they point to can. Here\u2019s what to watch for and how to protect yourself.</figcaption>
+</figure>
+
+<h2 id="the-truth">The Truth: QR Codes Are Just Data</h2>
+
+<p>Let\u2019s start with the most important fact: <strong>the QR code itself cannot be hacked</strong>. The pattern of black and white squares is a passive data carrier. It contains a URL, a text string, a contact card, or some other payload. There\u2019s no executable code, no script, no malware. A QR code is exactly as dangerous as the URL it points to.</p>
+
+<p>This means the security question is really: how dangerous is the URL? And the answer is: it depends on the URL. A QR code pointing to <code>google.com</code> is as safe as typing <code>google.com</code> into a browser. A QR code pointing to a phishing site is exactly as dangerous as clicking a phishing link in an email.</p>
+
+<p>The unique risk of QR codes is the <strong>lack of preview</strong>. When you click a link in an email or see one in a search result, you can read the URL before opening it. With a QR code, the phone opens the URL automatically (or with one tap on a preview). You don\u2019t get the same chance to evaluate the destination.</p>
+
+<p>This preview gap is what scammers exploit. Not the QR code itself.</p>
+
+<h2 id="threats">The 4 Real QR Code Threats</h2>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-comparison.png" alt="QR code security threats" />
+  <figcaption>The 4 scam types: quishing, fake parking meters, sticker overlays, and crypto drainers. All exploit the lack of URL preview.</figcaption>
+</figure>
+
+<h3>1. Quishing (QR + phishing)</h3>
+<p>Quishing is the QR-code equivalent of email phishing. The scammer places a malicious QR code somewhere a user trusts \u2014 on a poster, in an email, in a flyer. The user scans, expecting to go to a legitimate site, and lands on a phishing page that steals their credentials.</p>
+
+<p>Common targets: banking credentials, email logins, social media accounts, cryptocurrency wallets. The phishing page looks identical to the real thing; the URL is the only give-away, and most users don\u2019t check URLs after scanning.</p>
+
+<h3>2. Fake parking meters</h3>
+<p>The classic street-level scam. The scammer places a sticker with a malicious QR code over the legitimate QR code on a parking meter. The user thinks they\u2019re paying the city for parking; they\u2019re actually paying the scammer. The city never receives the money, and the user\u2019s payment information is stolen.</p>
+
+<p>Common in: US cities, Europe, anywhere with paid street parking. The scam is hard to spot because the original QR code is hidden under the sticker.</p>
+
+<h3>3. Sticker overlays on restaurant menus</h3>
+<p>The scammer places a sticker QR code on a restaurant menu, often next to a \u201cscan to see our specials\u201d prompt. The user scans, expecting a menu, and lands on a phishing page or malware download.</p>
+
+<p>Common in: tourist areas, business districts, anywhere with high-volume foot traffic. The scam is hard to spot because the sticker looks like a legitimate menu QR.</p>
+
+<h3>4. Crypto drainers</h3>
+<p>The scammer convinces a user to scan a QR code that connects their cryptocurrency wallet to a malicious site. The site then drains the wallet. The user thinks they\u2019re connecting to a legitimate dApp; they\u2019re actually giving a scammer access to their funds.</p>
+
+<p>Common in: crypto Twitter, Discord channels, NFT communities. The scam is sophisticated because the QR code is just a wallet-connection URL, and the malicious site looks like a real dApp.</p>
+
+<h2 id="defenses">6 Defenses That Take 30 Seconds</h2>
+
+<p>You don\u2019t need to be a security expert to protect yourself from QR code scams. These six habits take 30 seconds to apply and cover 95% of the risks:</p>
+
+<h3>1. Check the URL preview before opening</h3>
+<p>Both iOS and Android show a preview of the URL before opening it. Look at the preview. If the URL looks suspicious (typos, weird domain, unexpected TLD), don\u2019t tap to open.</p>
+
+<h3>2. Don\u2019t scan QR codes from untrusted sources</h3>
+<p>Random flyers in tourist areas, QR codes stuck on top of legitimate QR codes, QR codes in spam emails. The risk of scanning from these sources is much higher than scanning from a trusted source (a restaurant you chose, a poster from a brand you trust, a business card from a person you met).</p>
+
+<h3>3. Use a QR scanner that shows the full URL</h3>
+<p>The default phone camera sometimes shows a truncated URL. Third-party QR scanner apps (like Trend Micro\u2019s QR scanner) show the full URL before opening. Install one if you scan QR codes often.</p>
+
+<h3>4. Look for physical tampering</h3>
+<p>If a QR code is on a sticker placed over another code, or if it looks like it was added after the original, don\u2019t scan it. Most legitimate QR codes are printed directly on the surface, not on stickers.</p>
+
+<h3>5. Verify before paying</h3>
+<p>For any QR code that asks you to pay (parking meter, donation box, retail checkout), verify by other means first. Look for a phone number or website on the sign. If the QR code is the only way to pay, look closely for tampering before scanning.</p>
+
+<h3>6. Use a password manager</h3>
+<p>If you scan a QR code that takes you to a login page, the password manager will auto-fill only the correct domain. If the password manager doesn\u2019t auto-fill, the URL is probably wrong.</p>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-scan-demo.png" alt="QR code safety checklist" />
+  <figcaption>30-second safety checklist: preview, trust, look for tampering, verify before paying, use password manager.</figcaption>
+</figure>
+
+<h2 id="for-business">For Businesses: How to Deploy Safe QR Codes</h2>
+
+<p>If you deploy QR codes for your business, you have additional responsibilities. Customers scanning your codes are trusting that the destination is safe. Here\u2019s how to maintain that trust:</p>
+
+<h3>1. Use HTTPS for all QR code destinations</h3>
+<p>Every URL behind a QR code should be HTTPS. Modern phones warn or block downloads from non-HTTPS URLs. HTTPS also gives you basic protection against tampering.</p>
+
+<h3>2. Sign your QR codes</h3>
+<p>Some QR code generators (like ours) can sign the URL cryptographically. The phone can verify the signature before opening the URL. This protects against sticker overlays and other tampering.</p>
+
+<h3>3. Use a recognizable domain</h3>
+<p>URLs from <code>yourbusiness.com/menu</code> are obviously safe. URLs from <code>bit.ly/x7y2p9</code> are not. The more recognizable the domain, the more users will trust the scan.</p>
+
+<h3>4. Print the destination near the QR code</h3>
+<p>Add a line of text near the QR code that says where it goes: \u201cScan to view our menu at yourbusiness.com/menu.\u201d This makes the destination obvious and reduces confusion.</p>
+
+<h3>5. Test before printing</h3>
+<p>Scan your printed QR codes with multiple phones before publishing them. Make sure the URL is correct, the page loads, and the page looks right.</p>
+
+<h2 id="phone-protection">What Phones Do to Protect You</h2>
+
+<p>Modern phones (iOS 11+ and Android 10+) include some built-in protections against QR code scams:</p>
+
+<h3>URL preview</h3>
+<p>Both iOS and Android show the URL before opening the link. This is the single biggest protection \u2014 it gives you a chance to see where you\u2019re going before you get there.</p>
+
+<h3>Safari Safe Browsing / Chrome Safe Browsing</h3>
+<p>Both iOS Safari and Android Chrome use Google Safe Browsing to block known phishing and malware sites. If the QR code URL points to a known bad site, the browser shows a warning before loading.</p>
+
+<h3>App sandboxing</h3>
+<p>QR code scanners run in the app sandbox. They can\u2019t read your other apps, files, or system settings. A malicious QR code can\u2019t install malware or steal your data directly through the camera.</p>
+
+<h3>Updates</h3>
+<p>Apple and Google push regular security updates that include new QR code scam patterns. Keep your phone updated.</p>
+
+<h2 id="what-to-do">What to Do If You Scanned a Bad QR Code</h2>
+
+<p>If you scanned a QR code and something feels wrong, here\u2019s what to do:</p>
+
+<ol>
+<li><strong>Don\u2019t enter any information.</strong> Close the page immediately if it asks for login credentials, payment information, or personal data.</li>
+<li><strong>Don\u2019t download anything.</strong> Close the page if it offers a file download.</li>
+<li><strong>Don\u2019t call any numbers.</strong> Some scam QR codes show a phone number to call. Don\u2019t call.</li>
+<li><strong>Check your accounts.</strong> If you entered credentials on the suspicious site, change those passwords immediately.</li>
+<li><strong>Watch for follow-up scams.</strong> Scammers sometimes target recent victims. Be wary of \u201crecovery\u201d services or unsolicited help offers.</li>
+<li><strong>Report the QR code.</strong> If the QR code was in a public place, report it to the business or property owner. If it was in an email, report it as phishing.</li>
+</ol>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Can a QR code give my phone a virus?</h3>
+<p>Not directly. The QR code itself is just data. A malicious URL could try to download a malicious file, but your phone\u2019s security settings would block it. The bigger risk is phishing: a fake login page that steals your credentials.</p>
+
+<h3>Can a QR code track my location?</h3>
+<p>Only if the destination URL is designed to. A QR code pointing to <code>maps.google.com</code> will ask for location permission. A QR code pointing to a normal webpage can\u2019t track you without your consent.</p>
+
+<h3>Is it safe to scan QR codes in restaurants?</h3>
+<p>Generally yes. Restaurants have been using QR codes for menus since 2020 and most have legitimate deployments. The risk is from sticker overlays placed on top of legitimate codes. If the QR code looks like it was added after the menu was printed, or if it looks like a sticker, don\u2019t scan it.</p>
+
+<h3>Can I scan QR codes offline?</h3>
+<p>Yes, the scan itself works offline. But the destination URL needs internet to load. Some QR codes encode text or contact info that works offline.</p>
+
+<h3>What\u2019s the safest QR code generator?</h3>
+<p>Any generator that creates a clean URL pointing to a known, trusted destination. Avoid generators that require you to scan their QR code to use their service. Use a simple browser-based tool like QRCode Studio.</p>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-faq-banner.png" alt="Generate a safe QR code" />
+  <figcaption>Generate a QR code with HTTPS URL, recognizable domain, and printable destination. QRCode Studio is free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: Use Your Head, Not Just Your Phone</h2>
+
+<p>QR codes can\u2019t be hacked. The risk is in the URL, and the URL is just a link. The same precautions that keep you safe from email phishing apply to QR codes: check the URL, verify the source, don\u2019t enter credentials on suspicious sites, use a password manager.</p>
+
+<p>The unique risk of QR codes is the lack of preview. Your phone makes scanning effortless, which means it\u2019s also effortless to land on a malicious site. The defenses are simple: take 30 seconds to look at the preview, don\u2019t scan from untrusted sources, and treat any unexpected credential prompt as a red flag.</p>

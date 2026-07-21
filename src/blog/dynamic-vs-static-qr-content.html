@@ -1,0 +1,162 @@
+<p class="lead">There are two types of QR codes, and choosing the wrong one can cost you thousands of dollars in subscription fees, broken campaigns, or dead links. This guide explains what each type does, when to use it, and the hidden costs nobody talks about. The honest answer is that 95% of QR code users should be on static codes. The other 5% genuinely need dynamic. Here\u2019s how to tell which one you are.</p>
+
+<p>If you\u2019ve ever seen a QR code generator offer a "free" tier that limits you to static codes and a "pro" tier that unlocks dynamic, you\u2019ve been marketed to. The free vs. paid distinction is real \u2014 dynamic codes do more \u2014 but it\u2019s also misleading. Most QR code use cases don\u2019t need the things dynamic codes add. This guide will help you figure out which is which.</p>
+
+<figure>
+  <img src="/blog/dynamic-vs-static-qr/dynamic-vs-static-qr-hero.png" alt="Dynamic vs static QR codes" />
+  <figcaption>Static vs. dynamic: two different technologies, two different business models, two different price tags.</figcaption>
+</figure>
+
+<h2 id="static">What Is a Static QR Code?</h2>
+
+<p>A static QR code encodes the destination directly into the black-and-white pattern. The URL, the vCard, the WiFi password \u2014 it\u2019s all stored in the code itself. When someone scans it, the phone reads the destination from the pattern and acts on it. There\u2019s no server, no database, no middleman. The code is the destination.</p>
+
+<p>The technical term is "self-contained" or "offline" QR code. The practical term is "the kind that just works."</p>
+
+<h3>How it works</h3>
+
+<ol>
+<li>You enter your content into a generator (URL, text, vCard, etc.).</li>
+<li>The generator calculates the binary data and renders it as modules.</li>
+<li>You download the PNG or SVG.</li>
+<li>You print it, ship it, or display it. Forever.</li>
+</ol>
+
+<p>No subscription, no expiration date, no analytics dashboard, no vendor lock-in. The QR code you print today will work the same way in 2035 (assuming the destination URL still resolves).</p>
+
+<h3>What you can\u2019t do with static</h3>
+
+<ul>
+<li>Change the destination after printing (the code is the destination).</li>
+<li>Track scan counts, locations, or times (there\u2019s no server to log to).</li>
+<li>Set up conditional redirects (e.g., \u201csend iPhone users to App Store, Android users to Google Play\u201d).</li>
+</ul>
+
+<h2 id="dynamic">What Is a Dynamic QR Code?</h2>
+
+<p>A dynamic QR code encodes a short URL that points to a server-side redirect. The server then forwards the user to whatever destination the QR code owner has configured. Change the destination in your dashboard, and the same printed QR code now points somewhere new.</p>
+
+<p>Technically, every dynamic QR code is just a static code pointing to a tracking URL. The magic is what happens after the scan.</p>
+
+<h3>How it works</h3>
+
+<ol>
+<li>You create a dynamic QR code through a vendor\u2019s platform (Beaconstac, Scanova, etc.).</li>
+<li>The vendor gives you a static code that points to their short URL (e.g., <code>qr.beaconstac.com/abc123</code>).</li>
+<li>You configure the destination behind that URL in the vendor\u2019s dashboard.</li>
+<li>When someone scans, the vendor\u2019s server logs the scan, then 301-redirects to the configured destination.</li>
+</ol>
+
+<p>You can change the destination anytime without reprinting the code. The vendor sees the scan data and shows you an analytics dashboard. The trade-off is that you now depend on the vendor being in business, the vendor\u2019s servers being up, and your subscription being current.</p>
+
+<h3>What dynamic adds</h3>
+
+<ul>
+<li>Edit destination post-print (the headline feature).</li>
+<li>Scan analytics: time, location, device type, scan count.</li>
+<li>Conditional redirects based on device, location, or time.</li>
+<li>Password-protected codes, expiration dates, and rate limits.</li>
+<li>Custom landing pages hosted by the vendor.</li>
+</ul>
+
+<h2 id="comparison">Static vs. Dynamic: The Full Comparison</h2>
+
+<figure>
+  <img src="/blog/dynamic-vs-static-qr/dynamic-vs-static-qr-comparison.png" alt="Static vs dynamic QR comparison table" />
+  <figcaption>At-a-glance comparison: static vs. dynamic QR codes across 9 criteria.</figcaption>
+</figure>
+
+<p>Here\u2019s how they stack up on the criteria that actually matter for a real-world deployment:</p>
+
+<h3>Cost</h3>
+<p><strong>Static:</strong> Free, forever. Most generators don\u2019t charge for static codes. <strong>Dynamic:</strong> $5-100/month per code, depending on the platform. At scale, dynamic costs are the single biggest reason businesses eventually migrate back to static.</p>
+
+<h3>Reliability</h3>
+<p><strong>Static:</strong> As reliable as the destination URL. If <code>yourbusiness.com</code> is up, the code works. <strong>Dynamic:</strong> As reliable as your vendor. If the vendor has an outage, goes out of business, or you forget to renew, every printed code in the field stops working. This is the single biggest hidden risk of dynamic.</p>
+
+<h3>Editability</h3>
+<p><strong>Static:</strong> Cannot edit after creation. <strong>Dynamic:</strong> Edit destination anytime. This is the legitimate use case for dynamic: when you genuinely need to change a destination without reprinting thousands of flyers.</p>
+
+<h3>Scan analytics</h3>
+<p><strong>Static:</strong> None built in. You can use a free Bitly link as the destination to get basic scan counts. <strong>Dynamic:</strong> Comprehensive: time, geo, device, repeat vs. unique.</p>
+
+<h3>Expiration</h3>
+<p><strong>Static:</strong> Never expires. The code itself has no expiration. <strong>Dynamic:</strong> Expires when your subscription lapses or the vendor shuts down.</p>
+
+<h3>Vendor lock-in</h3>
+<p><strong>Static:</strong> Zero. The PNG/SVG works with any vendor. <strong>Dynamic:</strong> Total. If you switch vendors, every printed code has to be replaced.</p>
+
+<h3>Print at any size</h3>
+<p><strong>Static:</strong> True vector SVG. <strong>Dynamic:</strong> Same \u2014 the underlying code is still static, just pointing to a short URL.</p>
+
+<h3>Offline resilience</h3>
+<p><strong>Static:</strong> Works without internet on the QR-generating side. <strong>Dynamic:</strong> Requires the vendor\u2019s server to be online to redirect.</p>
+
+<h3>Best for</h3>
+<p><strong>Static:</strong> Permanent use, high-volume deployment, any business that doesn\u2019t want a subscription. <strong>Dynamic:</strong> Campaigns with a short shelf life, businesses that need to A/B test destinations, anyone who genuinely needs scan analytics.</p>
+
+<h2 id="when">When to Use Each: Real-World Scenarios</h2>
+
+<h3>You should use static if:</h3>
+
+<ul>
+<li>The destination won\u2019t change. A business card QR pointing to your LinkedIn profile. A packaging QR pointing to your product page. A window cling pointing to your menu. A sign pointing to your WiFi. None of these need to change.</li>
+<li>You\u2019re deploying at scale. Printing 50,000 product labels? Static. The cost difference between static and dynamic at that scale is thousands of dollars per month.</li>
+<li>You want a 5-year shelf life. A sign installed in 2025 needs to work in 2030. Static codes do. Dynamic codes depend on the vendor still being in business.</li>
+<li>You care about reliability. Static codes have one dependency: the destination URL. Dynamic codes have at least three: the vendor, the subscription, and the destination.</li>
+</ul>
+
+<h3>You should use dynamic if:</h3>
+
+<ul>
+<li>The campaign has a short shelf life. A 30-day event flyer where the destination might change based on availability, weather, or last-minute updates. Dynamic is built for this.</li>
+<li>You genuinely need scan analytics. If you\u2019re running a marketing campaign and need to measure scan-to-conversion rate, dynamic gives you the data. Static doesn\u2019t (without a separate analytics tool).</li>
+<li>You need to A/B test destinations. Two flyers with different destinations, same physical QR code. Dynamic makes this trivial; static requires reprinting.</li>
+<li>The destination depends on context. "Show the iOS app if the user is on iPhone, the Android app if Android" is a dynamic-code use case. So is "show different menus at lunch vs. dinner."</li>
+</ul>
+
+<h2 id="hidden">The Hidden Cost of Dynamic QR Codes</h2>
+
+<p>Dynamic QR platforms are sold as a "free QR code" with a paid tracking layer. The economics are similar to freemium SaaS: get you in the door with a free tier, then charge for the features that matter. Here\u2019s what the marketing doesn\u2019t tell you:</p>
+
+<h3>Subscription stacking</h3>
+<p>You need 5 dynamic codes for a product launch. The vendor charges $10/month per code after the free tier ends. That\u2019s $50/month forever \u2014 for codes that are functionally identical to a static code pointing to a Bitly link. At 2 years, you\u2019ve paid $1,200 for features you used for 3 months.</p>
+
+<h3>Vendor lock-in</h3>
+<p>Want to switch vendors? Tough luck. The short URL <code>qr.beaconstac.com/abc123</code> is hardcoded into your packaging, signage, and business cards. Switching vendors means reprinting all of it. The cost of switching is often higher than the cost of staying.</p>
+
+<h3>Single point of failure</h3>
+<p>Beaconstac, Scanova, and the other dynamic platforms are software-as-a-service companies. SaaS companies fail, get acquired, change pricing, or have outages. When that happens, every QR code you deployed stops working. The internet has stories of businesses that lost 6-figure marketing campaigns because their QR vendor pivoted or shut down.</p>
+
+<h3>Link rot</h3>
+<p>Studies suggest 20-30% of QR codes stop working within 5 years, mostly due to link rot on the destination side. Dynamic codes have two places to rot: the short URL and the destination. Static codes have one.</p>
+
+<h2 id="us">Why QRCode Studio Is Static-Only</h2>
+
+<p>Our tool generates static QR codes only, by design. We considered adding dynamic codes \u2014 the revenue potential is obvious \u2014 but we couldn\u2019t justify it to ourselves. After looking at hundreds of real deployments, we concluded that 95% of users would be better served by static codes, and the 5% who genuinely need dynamic would already be using a dedicated platform like Beaconstac or Bitly.</p>
+
+<p>For the 95%, here\u2019s what we recommend: use a static QR code pointing to a short URL you control (Bitly, your own domain redirect, or a static page). You get the reliability of static with basic scan counts. If you outgrow that, you\u2019ll know \u2014 and you can migrate to dynamic at that point.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Can I convert a static QR code to dynamic later?</h3>
+<p>No. The static code\u2019s pattern encodes the destination directly. You can\u2019t "reprogram" a static code. To switch, you generate a new dynamic code and replace the old one wherever it\u2019s deployed. This is why we recommend starting with dynamic only if you\u2019re sure you need it.</p>
+
+<h3>Do dynamic QR codes scan slower?</h3>
+<p>Yes, slightly. Static codes resolve in a single network round-trip (phone to destination). Dynamic codes require two round-trips (phone to vendor, vendor to destination). On a fast network, the difference is 50-200ms. On a slow network, it can be 1-2 seconds. For most use cases, this isn\u2019t noticeable, but it\u2019s there.</p>
+
+<h3>Are dynamic QR codes more likely to break if the vendor goes out of business?</h3>
+<p>Yes, and this is the single biggest risk of dynamic. The mitigations: (1) choose a vendor with a long track record, (2) maintain a backup list of all your short URLs and configured destinations, (3) periodically test your deployed codes to make sure they still redirect. None of these are required for static codes.</p>
+
+<figure>
+  <img src="/blog/dynamic-vs-static-qr/dynamic-vs-static-qr-faq-banner.png" alt="Make a static QR code" />
+  <figcaption>For 95% of use cases, a static QR code is the right call. Make one free at QRCode Studio.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: The Right QR Code Is the One That Still Works in 5 Years</h2>
+
+<p>The dynamic vs. static question is ultimately a question about trust. Trust that the destination URL stays live. Trust that the vendor stays in business. Trust that the subscription auto-renews. Trust that the analytics data is worth the recurring cost.</p>
+
+<p>For most businesses, that trust is misplaced. The destination URL is the only thing that needs to stay live, and you control that. The vendor is a middleman adding cost and risk. The analytics are useful for marketing teams but irrelevant to the customer experience.</p>
+
+<p>Start with static. Use a short URL you control. If you outgrow it, you\u2019ll know. The QR code you print today can still be working in 2030, and that\u2019s a feature, not a limitation.</p>

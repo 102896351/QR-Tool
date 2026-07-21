@@ -1,0 +1,140 @@
+<p class="lead">A QR code looks like chaos \u2014 a random scatter of black squares on a white background. Up close, it\u2019s one of the most carefully engineered data structures in everyday use. Every module, every pattern, every gap is there for a reason. This guide explains what those reasons are, how a phone camera turns the pattern into a URL in 100 milliseconds, and why some QR codes still work when half of them is missing.</p>
+
+<p>If you\u2019ve ever wanted to understand QR codes rather than just use them, this is the guide. We\u2019ll go from the high-level anatomy down to the data encoding, error correction, and the algorithm your phone uses to read them. By the end, you\u2019ll see QR codes the way engineers see them.</p>
+
+<figure>
+  <img src="/blog/how-qr-codes-work/how-qr-codes-work-hero.png" alt="How QR codes work" />
+  <figcaption>The anatomy of a QR code: 7 structural parts work together to encode up to 3KB of data with built-in error correction.</figcaption>
+</figure>
+
+<h2 id="anatomy">The Anatomy: 7 Parts You\u2019re Looking At</h2>
+
+<p>A QR code isn\u2019t random. It\u2019s a precise arrangement of functional areas, each with a specific job. From outside to inside, here are the parts of a standard QR code:</p>
+
+<h3>1. Quiet zone (the white border)</h3>
+<p>The blank white margin around the entire code. It must be at least 4 modules wide. The quiet zone is what tells the scanner "this is a QR code" before it even starts reading. Without it, the scanner can\u2019t distinguish the code from the background. Most \u201cQR code not scanning\u201d issues are actually quiet zone issues \u2014 a designer placed a logo or text too close to the code and the scanner can\u2019t find the edges.</p>
+
+<h3>2. Finder patterns (the three big squares)</h3>
+<p>Three identical 7x7 squares in the top-left, top-right, and bottom-left corners. They look like nested squares: 7x7 outer, 5x5 white gap, 3x3 black center. The scanner uses these to detect that a QR code is present, locate its corners, and determine its rotation. Even at a 30-degree angle, the three finder patterns give the scanner enough geometry to figure out the orientation and the size of each module.</p>
+
+<h3>3. Separator (the white space around finders)</h3>
+<p>A 1-module-wide white border around each finder pattern. This separates the finder from the data area and prevents confusion. It\u2019s always there but rarely discussed because it\u2019s just whitespace.</p>
+
+<h3>4. Alignment patterns (the small squares)</h3>
+<p>Smaller 5x5 patterns (5x5 outer, 3x3 white, 1x1 center) placed at strategic positions in the data area. There can be 1, 4, 7, or more alignment patterns depending on the QR code size. They correct for distortion when the code is printed on a curved surface or scanned at an angle. Larger codes (more data) need more alignment patterns to maintain accuracy.</p>
+
+<h3>5. Timing patterns (the dotted lines)</h3>
+<p>Two lines of alternating black and white modules: one horizontal between the top finder patterns, one vertical between the top-left and bottom-left finders. They tell the scanner the module size and grid position. If the timing pattern reads correctly, the scanner can map every other module in the code to its actual coordinates.</p>
+
+<h3>6. Format and version information (around the finders)</h3>
+<p>Reserved areas near the finders that store metadata about the code: error correction level, data mask pattern, and (for larger codes) the version number. There are two copies of the format info for redundancy. If one is damaged, the other can still be read.</p>
+
+<h3>7. Data and error correction (the rest)</h3>
+
+<figure>
+  <img src="/blog/how-qr-codes-work/how-qr-codes-work-comparison.png" alt="QR code anatomy diagram" />
+  <figcaption>Inside a QR code: every part has a job. The data area holds your content; the error correction area lets it survive damage.</figcaption>
+</figure>
+
+<p>This is where your content lives. The data area is filled with two interleaved streams: your actual data (the URL, the vCard, the WiFi config) and error correction codes computed from that data. The ratio between data and error correction is determined by the error correction level you chose when generating the code.</p>
+
+<h2 id="data">The Data Itself: How Content Becomes Squares</h2>
+
+<p>When you enter a URL into a QR generator, the content goes through a multi-step encoding process before becoming a pattern. The full pipeline:</p>
+
+<h3>Step 1: Choose a mode</h3>
+<p>The first 4 bits of the data area indicate the encoding mode. There are four modes:</p>
+
+<ul>
+<li><strong>Numeric (0001):</strong> Digits 0-9. Most efficient \u2014 3 digits per 10 bits.</li>
+<li><strong>Alphanumeric (0010):</strong> Digits, uppercase letters, and a few symbols (. $ % * + - / :). 2 characters per 11 bits.</li>
+<li><strong>Byte (0100):</strong> Any 8-bit character, including lowercase, Unicode, emoji. 1 character per 8 bits (or 16 bits for double-byte).</li>
+<li><strong>Kanji (1000):</strong> Shift-JIS Japanese characters. 1 character per 13 bits.</li>
+</ul>
+
+<p>Most QR codes use byte mode because they need to encode URLs (lowercase letters, slashes, colons). The mode is auto-detected from the first few bits when the scanner reads the code.</p>
+
+<h3>Step 2: Encode the character count</h3>
+<p>The next 8-16 bits encode the number of characters in the data. The width depends on the mode and the QR code version. For a version 1 byte-mode code, the count is 8 bits. For a version 40 byte-mode code, the count is 16 bits.</p>
+
+<h3>Step 3: Encode the data</h3>
+<p>The actual content gets encoded according to the mode\u2019s rules. For byte mode, it\u2019s a direct 1:1 mapping of characters to bytes. For alphanumeric, it\u2019s a more complex lookup table. The output is a bit stream.</p>
+
+<h3>Step 4: Add a terminator</h3>
+<p>A 4-bit terminator (0000) marks the end of the data. If there\u2019s leftover space, it\u2019s padded with alternating bits (11101100...) to fill the data area.</p>
+
+<h3>Step 5: Apply error correction</h3>
+<p>The data bit stream is then split into blocks, and Reed-Solomon error correction codes are computed for each block. The error correction bits are appended to the data. This is the magic that lets damaged codes still be read.</p>
+
+<h3>Step 6: Apply a data mask</h3>
+
+<p>Eight different data mask patterns can be applied to the data area to prevent large blocks of solid color that confuse scanners. The generator tests all 8 patterns and picks the one that gives the best balance of black and white modules. The chosen mask is stored in the format information area so the scanner can reverse it.</p>
+
+<h3>Step 7: Render as modules</h3>
+<p>The final bit stream is mapped to the grid as black (1) or white (0) modules. The code is rendered. You download it as a PNG or SVG.</p>
+
+<h2 id="error">Error Correction: The Magic That Makes QR Codes Robust</h2>
+
+<p>The most remarkable thing about QR codes is that they can be damaged and still work. A QR code with the company logo punched out of the middle can still scan. A QR code with 30% of the pattern scratched off can still resolve. This is the result of Reed-Solomon error correction, a mathematical technique that adds redundancy to the data.</p>
+
+<figure>
+  <img src="/blog/how-qr-codes-work/how-qr-codes-work-scan-demo.png" alt="QR code error correction levels" />
+  <figcaption>The four error correction levels: each step adds more redundancy, more damage tolerance, and more visual density.</figcaption>
+</figure>
+
+<p>QR codes offer four error correction levels, settable when you generate the code:</p>
+
+<ul>
+<li><strong>L (Low, ~7% recovery):</strong> Restores 7% of data. Smallest code, lowest visual density. Use when the code is clean and unscannability risk is low.</li>
+<li><strong>M (Medium, ~15% recovery):</strong> Restores 15% of data. The default for most QR generators. Good balance.</li>
+<li><strong>Q (Quartile, ~25% recovery):</strong> Restores 25% of data. Use when there\u2019s risk of damage or you want to add a logo.</li>
+<li><strong>H (High, ~30% recovery):</strong> Restores 30% of data. Largest code, highest visual density. Use when the code will be in a hostile environment or has a large logo.</li>
+</ul>
+
+<p>The error correction works by treating the data as a polynomial over a finite field, then computing additional values that allow the data to be reconstructed from a subset. The mathematics is the same error correction used in CDs, DVDs, Blu-ray discs, and deep-space communications. It\u2019s battle-tested.</p>
+
+<h3>The logo tradeoff</h3>
+<p>Most QR code generators with logo support require error correction level H. Why? Because the logo replaces a chunk of the data area, and you need enough error correction to recover the data that was lost. If you try to add a logo to an L-level code, the logo will replace more data than the code can recover, and the code won\u2019t scan. Q-level supports small logos, H-level supports larger ones.</p>
+
+<h3>Why 30% is the max</h3>
+<p>Reed-Solomon can theoretically correct up to (n-k)/2 errors, where n is the block size and k is the data length. For QR codes, the practical limit is around 30% because the codes need to stay within the maximum module count. Going higher would require more modules, but the maximum code size is fixed by the standard. So 30% is the practical ceiling.</p>
+
+<h2 id="scanner">How Your Phone Reads It: The 100-Millisecond Process</h2>
+
+<p>When you point your camera at a QR code, here\u2019s what happens in roughly 100 milliseconds:</p>
+
+<ol>
+<li><strong>Detect:</strong> The camera frame is searched for the three finder patterns. Once found, the scanner knows it\u2019s looking at a QR code and can determine its position and rotation.</li>
+<li><strong>Extract grid:</strong> Using the finder patterns and timing patterns, the scanner builds a coordinate system and maps every module in the code to a specific position.</li>
+<li><strong>Read format info:</strong> The format information near the finders tells the scanner the error correction level and data mask. The scanner undoes the mask.</li>
+<li><strong>Read data:</strong> Modules in the data area are read as 1 (black) or 0 (white) and concatenated into a bit stream.</li>
+<li><strong>Apply error correction:</strong> Reed-Solomon decoding recovers the data, correcting any bit errors that were introduced by damage, lighting, or perspective distortion.</li>
+<li><strong>Decode content:</strong> The bit stream is parsed according to the mode indicator and character count, and the original content is reconstructed. For a URL, that\u2019s the destination. For a vCard, that\u2019s a contact file. The phone then takes the appropriate action (open browser, save contact, join WiFi).</li>
+</ol>
+
+<p>All of this happens 30 times a second while you hold your phone over the code. The fastest part is the hardware-accelerated image processing on your phone\u2019s image signal processor. The slowest part is usually the network round-trip to actually open the URL.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>What\u2019s the maximum data a QR code can hold?</h3>
+<p>A version 40 QR code (the largest) with low error correction can hold up to 4,296 alphanumeric characters or 2,953 bytes of binary data. In practice, most QR codes hold 20-100 characters because longer codes get visually dense and harder to scan.</p>
+
+<h3>Why are there three finder patterns instead of four?</h3>
+<p>Three non-collinear points are enough to determine a 2D coordinate system. The bottom-right corner is implicit: the scanner can calculate its position from the other three. Three corners also means the code can be placed anywhere in a frame without needing a fourth anchor. The fourth position is used for alignment patterns in larger codes instead.</p>
+
+<h3>Can QR codes be encrypted?</h3>
+<p>No. The QR code standard does not include encryption. The data in a QR code is plain text by design \u2014 the scanner needs to read it without a key. If you need to protect the content, you should put the encrypted data on a server and have the QR code point to a URL that triggers decryption. The QR code itself is just a way to encode a URL or a short string.</p>
+
+<h3>Why do some QR codes have a small logo in the middle?</h3>
+<p>Brand recognition. The logo doesn\u2019t affect scanning as long as the error correction level is high enough (Q or H) to recover the data that was replaced. The logo is drawn on top of the data area, replacing some modules with a recognizable image. The scanner ignores the logo modules and uses error correction to recover the data underneath.</p>
+
+<figure>
+  <img src="/blog/how-qr-codes-work/how-qr-codes-work-faq-banner.png" alt="Make a QR code" />
+  <figcaption>Now that you know how it works, make your own. QRCode Studio is free, no signup, and exports PNG or SVG.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: A 30-Year-Old Design That Aged Beautifully</h2>
+
+<p>The QR code was designed in 1994 for tracking vehicle parts in a Toyota factory. The fact that it\u2019s now used by billions of people every year to open menus, pay for groceries, and join WiFi networks is a testament to how well the design aged. Every part of the standard \u2014 the finder patterns, the alignment patterns, the data masks, the error correction \u2014 was thought through at a level of detail that most modern standards don\u2019t reach.</p>
+
+<p>Next time you scan a QR code, take half a second to look at it. You\u2019re looking at a 30-year-old data structure that just solved a problem you didn\u2019t know you had. The fact that it works in 100 milliseconds, in bad lighting, at awkward angles, through scratched surfaces, is engineering at its best.</p>

@@ -1,0 +1,145 @@
+<p class="lead">The most common QR code mistake isn\u2019t the content, the design, or the placement. It\u2019s the size. A QR code that\u2019s too small won\u2019t scan. A QR code that\u2019s too large looks unprofessional and wastes real estate on your poster, package, or screen. This guide gives you the exact minimum sizes for every common use case, plus a simple distance-based formula you can use for any scenario.</p>
+
+<p>If you only read one section, skip to the <a href="#chart">print and screen size chart</a>. It covers 90% of real-world use cases. If you want to understand <em>why</em> those numbers work, read on.</p>
+
+<figure>
+  <img src="/blog/qr-code-size-guide/qr-code-size-guide-hero.png" alt="QR code size guide" />
+  <figcaption>The 10:1 rule: 1 cm of QR code per 10 cm of scan distance. Memorize it, and you\u2019ll never under-size a code again.</figcaption>
+</figure>
+
+<h2 id="why">Why QR Code Size Matters</h2>
+
+<p>QR codes are made of tiny black squares called modules. A standard QR code has between 21x21 and 177x177 modules depending on how much data you store. The smaller the modules, the harder they are to scan from far away, in poor lighting, or with a low-quality camera.</p>
+
+<p>Three forces determine the minimum size:</p>
+
+<h3>1. Scan distance</h3>
+<p>How far will the user\u2019s phone be from the code when they scan it? A business card QR is scanned at 15-20 cm. A billboard QR is scanned at 5-10 meters. The further the distance, the larger the code needs to be.</p>
+
+<h3>2. Scanning environment</h3>
+<p>Indoor lighting, outdoor sunlight, scratched or curved surfaces, and motion all degrade scan success. Codes in hostile environments need to be 30-50% larger than the minimum to be reliably scannable.</p>
+
+<h3>3. Data density</h3>
+<p>The more data you encode, the more modules the QR code needs. A short URL fits in a 21x21 module code. A 200-character vCard needs a 33x33 or larger. Larger codes need more physical size to keep each module large enough to scan.</p>
+
+<h2 id="rule">The 10:1 Rule: The Industry Standard</h2>
+
+<p>There is one rule that, if you memorize it, will get you within 10% of the correct size for 95% of use cases:</p>
+
+<blockquote>
+  <p><strong>The physical width of a QR code should be at least 1/10th of the distance from which it will be scanned.</strong></p>
+</blockquote>
+
+<p>Examples:</p>
+
+<ul>
+<li>Scanned at 30 cm (phone in hand)? Minimum size: <strong>3 cm</strong>.</li>
+<li>Scanned at 1 m (across a table)? Minimum size: <strong>10 cm</strong>.</li>
+<li>Scanned at 3 m (across a room)? Minimum size: <strong>30 cm</strong>.</li>
+<li>Scanned at 10 m (across a parking lot)? Minimum size: <strong>1 meter</strong>.</li>
+</ul>
+
+<p>This rule comes from the ISO/IEC 18004 standard that defines QR codes. It\u2019s not a marketing heuristic \u2014 it\u2019s the engineering minimum that ensures every phone camera, from a 5-year-old budget Android to the latest iPhone, can read the code.</p>
+
+<h2 id="chart">Print and Screen Size Cheat Sheet</h2>
+
+<p>Here are the recommended minimum sizes for the most common QR code placements, in real-world units:</p>
+
+<figure>
+  <img src="/blog/qr-code-size-guide/qr-code-size-guide-comparison.png" alt="Print and screen QR code size chart" />
+  <figcaption>Minimum QR code sizes for common placements. When in doubt, go 30% larger than these numbers.</figcaption>
+</figure>
+
+<h3>Print sizes</h3>
+
+<p><strong>Business card:</strong> 1.2 x 1.2 cm minimum, 1.5 x 1.5 cm recommended. The card is held close to the phone, so the size can be small. Anything smaller than 1.2 cm will struggle on phones with average-quality cameras.</p>
+
+<p><strong>Flyer or brochure (A4):</strong> 2.5 x 2.5 cm minimum, 3 x 3 cm recommended. The flyer is typically held at 30-50 cm, so a 3 cm code is comfortable to scan.</p>
+
+<p><strong>Magazine or newspaper ad:</strong> 2 x 2 cm minimum. Magazine pages are glossy and printed at high resolution, which helps scanning. Stick to 2 cm or larger.</p>
+
+<p><strong>Product packaging:</strong> 1.5 x 1.5 cm minimum. Packaging is often curved, scratched, or behind a plastic film, so go 30% larger than the calculated minimum to be safe.</p>
+
+<p><strong>Restaurant table tent:</strong> 4 x 4 cm minimum. Customers scan from seated position, which is 40-60 cm away. A 4 cm code is comfortable.</p>
+
+<p><strong>Poster (A2 or larger):</strong> 5 x 5 cm minimum. Posters are typically scanned at 1-2 meters. 5 cm gives a clear scan rate of 95%+ across phone models.</p>
+
+<p><strong>Window cling or storefront:</strong> 8 x 8 cm minimum, with high contrast. Window clings are scanned from the street, often through glass, and are subject to reflections. Go big and use a high error correction level.</p>
+
+<p><strong>Billboard:</strong> 30 x 30 cm minimum. Billboards are scanned at 5-10 meters. Anything smaller gets unreliable. The good news: a billboard QR is usually a short URL with a logo, so the data density stays low and the code can stay compact.</p>
+
+<h3>Screen sizes (pixels)</h3>
+
+<p><strong>Email signature:</strong> 150 x 150 px minimum. Email clients compress images, so go larger than you think. PNG with transparent background works best.</p>
+
+<p><strong>Website hero or banner:</strong> 300 x 300 px minimum, 600 x 600 px preferred for high-DPI displays. Always export at 2x the design size for retina screens.</p>
+
+<p><strong>Mobile app or in-app display:</strong> 200 x 200 px minimum. Phones render pixel-perfect at 2x or 3x, so design at 200 px but export at 600 px.</p>
+
+<p><strong>Social media post:</strong> 600 x 600 px minimum. Instagram and LinkedIn compress images aggressively; going 2x larger than the displayed size keeps the QR scannable after compression.</p>
+
+<p><strong>Slide deck or video overlay:</strong> 400 x 400 px minimum. Make sure the QR has high contrast against the background and isn\u2019t covered by slide elements.</p>
+
+<h2 id="calculator">The Distance-Based Size Calculator</h2>
+
+<p>For any placement that isn\u2019t in the cheat sheet above, use this formula:</p>
+
+<pre><code>Minimum size (cm) = Maximum scan distance (cm) / 10</code></pre>
+
+<p>For pixels on a screen, the formula is similar but distance-based:</p>
+
+<pre><code>Minimum size (px) = Maximum scan distance (cm) * 10</code></pre>
+
+<figure>
+  <img src="/blog/qr-code-size-guide/qr-code-size-guide-scan-demo.png" alt="QR code distance-to-size chart" />
+  <figcaption>Visual calculator: pick your scan distance, read off the minimum QR size.</figcaption>
+</figure>
+
+<p>The two exceptions where the formula needs adjustment:</p>
+
+<h3>Add 30% for difficult environments</h3>
+<p>If the code will be scanned in bright sunlight, on a curved surface, through glass, or from a moving vehicle, multiply the calculated minimum by 1.3. Outdoor posters, food packaging, and vehicle signage all fall in this category.</p>
+
+<h3>Add 50% for high-density data</h3>
+<p>If your QR code stores more than 100 characters of text, a vCard, or a long URL, the code will use more modules. Multiply the calculated minimum by 1.5 to keep each module large enough. This is also why WiFi and vCard codes are typically larger than URL codes for the same placement.</p>
+
+<h2 id="mistakes">The 5 Most Common QR Code Sizing Mistakes</h2>
+
+<p>After reviewing thousands of deployed QR codes, these are the sizing errors that come up over and over.</p>
+
+<h3>1. Business card codes at 0.8 x 0.8 cm</h3>
+<p>Common in designs where the QR is an afterthought. At this size, the modules are 0.3 mm wide, which is below the resolution of many phone cameras. A 1.5 cm code is the safe minimum.</p>
+
+<h3>2. Using a 200 px QR on a 4K display</h3>
+<p>The code looks fine on the design but becomes un-scannable when displayed on a high-DPI screen or zoomed in. Always export at 2x the design size.</p>
+
+<h3>3. Scaling the same code for every use case</h3>
+<p>Designers often generate one QR code and reuse it for business cards, posters, and billboards. A 1.5 cm business card code cannot be used on a billboard \u2014 the modules need to scale with the size. Always regenerate or export at the target size.</p>
+
+<h3>4. Ignoring the quiet zone</h3>
+<p>Every QR code needs a white border (the \u201cquiet zone\u201d) of at least 4 modules around the code. Designers often crop this off, making the code harder to scan. The minimum size recommendation includes the quiet zone.</p>
+
+<h3>5. Compressing QR codes to JPEG</h3>
+<p>JPEG compression adds artifacts that look fine to the human eye but break scanners. Always use PNG or SVG for QR codes. SVG is preferred because it scales to any size without losing sharpness.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>What is the absolute minimum QR code size that still scans?</h3>
+<p>Technically, a QR code can be as small as 1 x 1 cm and still be scannable in perfect conditions with a modern phone. In practice, 1.5 cm is the smallest reliable size for close-up scanning. For anything smaller, you\u2019re gambling on the camera and lighting conditions.</p>
+
+<h3>Does error correction level affect size?</h3>
+<p>Error correction (L, M, Q, H) doesn\u2019t change the physical size of the code, but it changes the number of modules. Higher error correction (H) means more modules, which means each module needs to be slightly larger for the same physical size. If you use H-level correction, multiply your size calculation by 1.1.</p>
+
+<h3>Should I use vector SVG for print?</h3>
+<p>Yes, always. SVG is true vector, so it scales to any size without losing sharpness. PNG works for screens and small prints but degrades when scaled up. For billboards, posters, or anything that might be reprinted at a larger size, SVG is the safer choice.</p>
+
+<figure>
+  <img src="/blog/qr-code-size-guide/qr-code-size-guide-faq-banner.png" alt="Make a scannable QR code" />
+  <figcaption>Ready to make a scannable QR code? QRCode Studio exports PNG and SVG at any size, for free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: When in Doubt, Go Bigger</h2>
+
+<p>The QR code is a forgiving technology. It works in bad lighting, on scratched surfaces, from awkward angles. But it\u2019s not magic. If the modules are too small, no amount of error correction will save it. The 10:1 rule and the cheat sheet above will get you within range for 95% of use cases. For the other 5%, go bigger than you think.</p>
+
+<p>The cost of undersizing: a code nobody can scan. The cost of oversizing: a slightly larger poster. Pick the bigger poster.</p>

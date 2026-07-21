@@ -1,0 +1,138 @@
+<p class="lead">A well-designed QR code is invisible \u2014 it does its job without anyone thinking about it. A badly designed one is a frustrating scan target that customers give up on. The difference is twelve rules: contrast, quiet zone, logo size, error correction, color, alignment, and a few more. Most designers learn these the hard way. This guide gets you there in 5 minutes.</p>
+
+<p>These rules come from looking at thousands of deployed QR codes \u2014 the ones that work and the ones that don\u2019t. Every rule has a reason. Skip one and the code will eventually fail. Follow them all and your code will scan first try, every time, on every phone.</p>
+
+<figure>
+  <img src="/blog/qr-code-design-best-practices/qr-code-design-best-practices-hero.png" alt="QR code design best practices" />
+  <figcaption>12 rules that separate a QR code that works from one that doesn\u2019t. Most designers skip 4-5 of these by accident.</figcaption>
+</figure>
+
+<h2 id="contrast">Rule 1: High Contrast Is Non-Negotiable</h2>
+
+<p>QR code scanners detect modules by looking for the contrast between the dark and light areas. If the contrast is too low, the scanner can\u2019t distinguish modules from each other. The minimum contrast ratio is 4:1, but 7:1 is safer.</p>
+
+<p>What this means in practice: black on white is the safest choice. If you want a colored code, pair a very dark color (navy, dark green) with a very light color (white, cream). Never pair two light colors or two dark colors.</p>
+
+<p>Test: if you squint at your code and the modules are still clearly visible, the contrast is fine. If the modules blend into the background when you squint, the contrast is too low.</p>
+
+<h2 id="quiet">Rule 2: Keep the Quiet Zone Clean</h2>
+
+<p>The quiet zone is the white margin around the entire code, and it must be at least 4 modules wide on all sides. The quiet zone tells the scanner where the code begins. Without it, the scanner can\u2019t distinguish the code from a busy background.</p>
+
+<p>What this means in practice: never let other design elements (text, logos, borders) touch the QR code. If your QR code is on a colored background, add a solid white rectangle behind the code first, then add the quiet zone on top of that white rectangle.</p>
+
+<h2 id="logo">Rule 3: Keep Logos Under 25%</h2>
+
+<p>A logo in the middle of a QR code is fine for brand recognition, but the logo area is data you\u2019ve removed. The error correction has to recover it. The maximum logo area that can be recovered depends on the error correction level:</p>
+
+<ul>
+<li>Q-level error correction: logo up to 15% of code area</li>
+<li>H-level error correction: logo up to 25% of code area</li>
+</ul>
+
+<p>Anything bigger and the code won\u2019t scan. If you want a bigger logo, use a custom QR code design with the logo integrated into the pattern (most generators don\u2019t support this; you\u2019ll need a designer with specialized software).</p>
+
+<h2 id="error">Rule 4: Choose Error Correction Based on Use</h2>
+
+<p>For most deployments, Q-level error correction is the right default. Use H if you have a large logo or expect heavy damage. Use M if you have no logo and a clean environment. Skip L unless code size is critical and you\u2019re deploying in a perfectly controlled environment.</p>
+
+<h2 id="size">Rule 5: Size for the Scan Distance</h2>
+
+<p>The QR code should be at least 1 cm wide per 10 cm of expected scan distance. A business card QR (scanned at 20 cm) needs to be at least 2 cm wide. A poster QR (scanned at 1 m) needs to be at least 10 cm wide. A billboard QR (scanned at 5 m) needs to be at least 50 cm wide.</p>
+
+<p>When in doubt, go 30% larger. The cost of an oversized QR code is a slightly larger poster. The cost of an undersized QR code is a code nobody can scan.</p>
+
+<figure>
+  <img src="/blog/qr-code-design-best-practices/qr-code-design-best-practices-comparison.png" alt="QR code design rules" />
+  <figcaption>The 12 design rules at a glance. Most designers skip the quiet zone, contrast, and logo size rules \u2014 those are the three biggest causes of unscannable codes.</figcaption>
+</figure>
+
+<h2 id="placement">Rule 6: Place It Where Eyes Go</h2>
+
+<p>QR code scan rates vary 3x based on placement. Codes at eye level get scanned 80% of the time when noticed. Codes in corners or at the bottom of pages get scanned 30% of the time. The center of a flyer at eye level is the sweet spot.</p>
+
+<p>What this means in practice: when designing a poster, flyer, or business card, give the QR code a prominent position. Don\u2019t tuck it into a corner. Make it part of the visual hierarchy.</p>
+
+<h2 id="cta">Rule 7: Always Include a Call to Action</h2>
+
+<p>A QR code without context is a mystery. People won\u2019t scan if they don\u2019t know what they\u2019ll get. Adding a one-line call to action next to the QR code doubles the scan rate.</p>
+
+<p>Examples of good CTAs:</p>
+<ul>
+<li>"Scan to see the menu"</li>
+<li>"Scan for a 10% discount"</li>
+<li>"Scan to download the app"</li>
+<li>"Scan to view the video"</li>
+</ul>
+
+<p>Bad CTAs are vague: "Scan here" or no CTA at all. The more specific the value proposition, the more scans.</p>
+
+<h2 id="format">Rule 8: Use Vector SVG for Print</h2>
+
+<p>Always export QR codes for print as vector SVG, not PNG. SVG scales to any size without losing sharpness. PNG is fine for screens, but for professional print, SVG is the only way to ensure the code stays sharp at any size.</p>
+
+<p>If your generator doesn\u2019t export SVG, switch generators. The best free generators (including ours) export SVG by default.</p>
+
+<h2 id="color">Rule 9: Don\u2019t Invert the Code</h2>
+
+<p>QR codes are designed to be dark on light. Some scanners struggle with light-on-dark codes (white modules on a black background), even when the contrast is high. The QR code standard technically allows inversion, but the practical scan success rate drops.</p>
+
+<p>Stay with dark modules on a light background. If you need a code that fits a dark design, put a solid light-colored rectangle behind the code.</p>
+
+<h2 id="format-data">Rule 10: Use the Right Format</h2>
+
+<p>Different data needs different formats:</p>
+
+<ul>
+<li><strong>URL:</strong> Most common. Make sure to include the protocol (https://).</li>
+<li><strong>vCard:</strong> For sharing contact info. Include name, phone, email, organization.</li>
+<li><strong>WiFi:</strong> For sharing network credentials. Include SSID, password, encryption type.</li>
+<li><strong>Email:</strong> Use the mailto: format (recipient@domain.com?subject=...&body=...).</li>
+<li><strong>SMS:</strong> Use the sms: format with phone number and pre-filled message.</li>
+</ul>
+
+<p>Using the right format ensures the phone knows what to do with the data after scanning.</p>
+
+<h2 id="test">Rule 11: Test Before You Deploy</h2>
+
+<p>Always test the QR code with at least 3 different phones and 3 different lighting conditions before deploying it. The most common testing failures are:</p>
+
+<ul>
+<li>Low contrast (fails in bright sunlight)</li>
+<li>Missing quiet zone (fails on busy backgrounds)</li>
+<li>Logo too large (fails on first scan attempt)</li>
+<li>URL typo or missing https:// (fails every time)</li>
+</ul>
+
+<p>Five minutes of testing saves the cost of reprinting 5,000 flyers.</p>
+
+<h2 id="test-pattern">Rule 12: Don\u2019t Apply Visual Effects</h2>
+
+<p>Don\u2019t add drop shadows, gradients, blurs, or any visual effects to the QR code modules themselves. Some designers try to make QR codes prettier with subtle gradients or drop shadows on the modules. Every one of these makes the code less scannable.</p>
+
+<p>If you want visual interest, put the QR code on a colored background, frame it, or surround it with decoration. Leave the modules themselves clean, square, and high-contrast.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Can I use a gradient on my QR code?</h3>
+<p>On the background, yes. On the modules themselves, no. A gradient background that doesn\u2019t touch the modules is fine. A gradient applied to the modules (where some modules are darker than others) destroys the scanner\u2019s ability to detect the pattern.</p>
+
+<h3>Can I round the corners of the modules?</h3>
+<p>It depends on the rounding. Slightly rounded corners (5-10% radius) usually scan fine. Heavily rounded or "leaf" shaped modules can fail on some scanners. If you want a soft look, use slightly rounded modules and accept a 2-5% reduction in scan success rate.</p>
+
+<h3>What\u2019s the best background color?</h3>
+<p>White. White is the safest, highest-contrast choice. Light cream, very light gray, and very light pastels also work. Bright colors, dark colors, and patterns fail most scanners.</p>
+
+<h3>Can I add a frame or border around the QR code?</h3>
+<p>Yes, as long as the border is at least 4 modules away from the outermost module of the code (the quiet zone). Borders closer than that will be detected as part of the code by some scanners, causing failures.</p>
+
+<figure>
+  <img src="/blog/qr-code-design-best-practices/qr-code-design-best-practices-scan-demo.png" alt="QR code design examples" />
+  <figcaption>Three real-world examples: well-designed codes on the left and right, a failed code in the middle. Notice the missing quiet zone and overlapping text in the failed example.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: 12 Rules, One Mindset</h2>
+
+<p>QR code design is governed by one principle: the scanner needs to see the modules clearly. Every rule on this list \u2014 contrast, quiet zone, logo size, color, format \u2014 is a corollary of that principle. If you keep the modules clear and contrasting, the code will work. If you don\u2019t, the code will fail.</p>
+
+<p>The 12 rules aren\u2019t arbitrary restrictions. They\u2019re the engineering requirements of a technology designed to encode data in a pattern that any phone camera can read in 100 milliseconds. Honor the technology, and the technology serves you. Push against it, and you\u2019ll spend your afternoon explaining to your boss why the 5,000 flyers need to be reprinted.</p>

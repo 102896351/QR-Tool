@@ -1,0 +1,171 @@
+<p class="lead">An SMS QR code (sometimes called \u201csms:\u201d QR) opens a pre-filled text message when scanned. The phone number and message body are encoded in the code. The user scans, their messaging app opens with everything pre-populated, and they hit send. It\u2019s the frictionless way to collect SMS opt-ins, run text-based promotions, and let customers reach you without typing a number.</p>
+
+<p>This guide explains how SMS QR codes work, when to use them, and the format requirements. It takes about 5 minutes to set up.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-sms/qr-code-for-sms-hero.png" alt="QR code for SMS" />
+  <figcaption>SMS QR: one scan, one pre-filled text, one tap to send. The fastest way to get customers to text you.</figcaption>
+</figure>
+
+<h2 id="what">What Is an SMS QR Code?</h2>
+
+<p>An SMS QR code is a standard QR code that, when scanned, opens the user\u2019s default messaging app with a pre-filled text message. The phone number (recipient) and message body are encoded in the code. The user reviews, edits if needed, and hits send.</p>
+
+<p>The format follows the standard SMS URI scheme:</p>
+
+<pre><code>sms:+15551234567?body=Hello%20I%20want%20to%20learn%20more</code></pre>
+
+<p>When a phone scans a QR code containing this URL, the messaging app opens with the phone number and body pre-populated.</p>
+
+<h2 id="when">When to Use an SMS QR Code</h2>
+
+<p>SMS QR codes are useful in any context where you want to make it easy for users to text you:</p>
+
+<ul>
+<li><strong>Text-to-join promotions.</strong> \u201cText JOIN to 12345 to receive offers\u201d \u2014 a QR code version makes it one tap instead of typing a number and keyword.</li>
+<li><strong>Customer support.</strong> \u201cText us at 555-1234\u201d on a business card or receipt. Users scan and text without dialing.</li>
+<li><strong>Event check-in.</strong> \u201cText CHECKIN to 12345 at the door\u201d \u2014 no app to download, just text the keyword.</li>
+<li><strong>Lead capture forms.</strong> \u201cText INFO to get a free quote\u201d on a flyer.</li>
+<li><strong>Restaurant waitlists.</strong> \u201cText WAITLIST to join the queue\u201d at the host stand.</li>
+</ul>
+
+<p>SMS QR codes are especially useful for audiences that don\u2019t use apps \u2014 older users, customers without smartphones that can install apps, or markets where SMS is the dominant communication channel.</p>
+
+<h2 id="format">The SMS Format Explained</h2>
+
+<figure>
+  <img src="/blog/qr-code-for-sms/qr-code-for-sms-comparison.png" alt="SMS QR format breakdown" />
+  <figcaption>The 2 fields you can pre-fill: phone number (with country code) and message body. Keep the body short.</figcaption>
+</figure>
+
+<p>The SMS URI supports 2 fields:</p>
+
+<pre><code>sms:PHONE?body=BODY</code></pre>
+
+<h3>Phone number (required)</h3>
+<p>The recipient phone number. Use the full international format starting with <code>+</code> and the country code:</p>
+
+<pre><code>sms:+15551234567</code></pre>
+
+<p>The <code>+</code> and country code make the code work in any country. Without the country code, the message goes to a local number that may or may not be the intended recipient.</p>
+
+<h3>Body</h3>
+<p>Pre-fills the message body. Keep it short \u2014 most messaging apps show a character counter, and users don\u2019t want to receive a 200-character pre-filled message:</p>
+
+<pre><code>sms:+15551234567?body=JOIN</code></pre>
+
+<p>Note: spaces and special characters must be URL-encoded. <code>%20</code> is a space, <code>%0A</code> is a newline.</p>
+
+<h2 id="build">How to Build an SMS QR Code</h2>
+
+<p>Most QR code generators support an \u201cSMS\u201d or \u201cText\u201d format option. You enter the phone number and message body, and the generator creates the QR code.</p>
+
+<p>If you want to build it manually:</p>
+
+<ol>
+<li>Start with <code>sms:+COUNTRYCODEPHONENUMBER</code></li>
+<li>Add <code>?body=YOUR%20MESSAGE</code> (URL-encode any spaces)</li>
+<li>Paste the complete URL into a QR code generator</li>
+<li>Set the format to \u201cURL\u201d</li>
+<li>Test on multiple phones</li>
+</ol>
+
+<p>Test specifically that:</p>
+
+<ul>
+<li>The messaging app opens (not the browser)</li>
+<li>The phone number is correct</li>
+<li>The body is pre-filled</li>
+</ul>
+
+<h2 id="us-international">International Phone Numbers</h2>
+
+<p>SMS QR codes work internationally if you use the full international format. A US number is <code>+1</code> followed by the 10-digit number:</p>
+
+<pre><code>sms:+15551234567</code></pre>
+
+<p>A UK number is <code>+44</code> followed by the number without the leading <code>0</code>:</p>
+
+<pre><code>sms:+447911123456</code></pre>
+
+<p>A Chinese number is <code>+86</code> followed by the 11-digit number:</p>
+
+<pre><code>sms:+8613812345678</code></pre>
+
+<p>Always include the country code. Without it, the message goes to a local number which might not be reachable internationally.</p>
+
+<h2 id="multiple">Multiple Recipients</h2>
+
+<p>The SMS URI can include multiple recipients separated by commas:</p>
+
+<pre><code>sms:+15551234567,+15559876543?body=Bulk%20message</code></pre>
+
+<p>This creates a group message with all recipients. Note: not all messaging apps support this, and group SMS behaves differently on iOS and Android (iOS creates an MMS group, Android creates a true SMS group).</p>
+
+<h2 id="vs-app">SMS QR vs Native App</h2>
+
+<p>For collecting opt-ins and running text-based campaigns, SMS QR codes are often a better choice than building a native app. The reasons:</p>
+
+<ul>
+<li>No app to download. The user already has a messaging app.</li>
+<li>Works on every phone. iOS, Android, even basic flip phones.</li>
+<li>Lower friction. One scan, one tap to send.</li>
+<li>Easier to deploy. No app store approval, no version management.</li>
+</ul>
+
+<p>Use SMS QR codes when the user action is simple (opt in, send a keyword, get info). Use a native app when the user action is complex (browse products, manage account, complete a multi-step process).</p>
+
+<figure>
+  <img src="/blog/qr-code-for-sms/qr-code-for-sms-scan-demo.png" alt="SMS QR use cases" />
+  <figcaption>Common SMS QR deployments: text-to-win, customer support, event check-in, lead capture.</figcaption>
+</figure>
+
+<h2 id="compliance">Compliance Considerations</h2>
+
+<p>SMS marketing is regulated in most countries. Before deploying SMS QR codes at scale, understand the rules:</p>
+
+<h3>US: TCPA (Telephone Consumer Protection Act)</h3>
+<p>You need express written consent before sending marketing text messages. The user opting in by scanning the QR code and sending the message can count as consent, but you should:</p>
+
+<ul>
+<li>Have a clear privacy policy explaining what messages they\u2019ll receive</li>
+<li>Include opt-out instructions in every message (\u201cReply STOP to unsubscribe\u201d)</li>
+<li>Honor opt-outs immediately</li>
+<li>Keep records of consent for at least 4 years</li>
+</ul>
+
+<h3>EU: GDPR</h3>
+<p>Similar requirements. You need explicit, informed consent. The opt-in must be clear about what data you collect, how you use it, and how to opt out.</p>
+
+<h3>Other countries</h3>
+<p>Check local regulations. Canada (CASL), Australia (Spam Act), and most other countries have similar rules.</p>
+
+<p>This guide isn\u2019t legal advice. Consult a lawyer if you\u2019re running a large SMS campaign.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>What\u2019s the difference between sms: and smsto:?</h3>
+<p>The standard URI scheme is <code>sms:</code>. Some older iOS apps used <code>smsto:</code> but it\u2019s not standard. Always use <code>sms:</code> for compatibility.</p>
+
+<h3>Can I track scans of an SMS QR code?</h3>
+<p>Not directly through the QR code. Track via the messaging platform \u2014 count the messages received at the target number, or use a unique keyword per campaign to identify the source.</p>
+
+<h3>What if the user doesn\u2019t have a messaging app?</h3>
+<p>Rare. Every phone has at least a default messaging app. If your audience might be on tablets or other devices without SMS support, consider a web form fallback.</p>
+
+<h3>Can I include multiple keywords in the body?</h3>
+<p>Yes, just URL-encode the body properly. The user can edit before sending. Common pattern: pre-fill with the keyword, let the user add what they need.</p>
+
+<h3>Does SMS QR work on iPad?</h3>
+<p>iPads without cellular don\u2019t have a phone number, so SMS won\u2019t work. iPads with cellular do support SMS. If your audience is iPad-only, use a web form or email instead.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-sms/qr-code-for-sms-faq-banner.png" alt="Make an SMS QR code" />
+  <figcaption>Generate an SMS QR code with phone and body pre-filled. QRCode Studio is free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: The Lowest-Friction Way to Get a Text</h2>
+
+<p>SMS QR codes work because they remove every step between the user and the action. No app to download, no number to type, no message to compose. One scan, one tap to send. The phone number and message are pre-filled, so the user is just one button press away from texting you.</p>
+
+<p>Use them for promotions, support, opt-ins, and any context where you want a fast path to a real text message. Keep the body short, use international format for the phone number, and test on multiple phones. The 5-minute setup pays back the first time someone texts you instead of walking away.</p>

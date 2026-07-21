@@ -199,7 +199,7 @@ export default {
   'history.tip.2': 'Nur lokal gespeichert, jederzeit löschbar',
   'history.tip.3': 'Bis zu 10 Einträge, neueste zuerst',
 
-  'meta.title': 'Kostenloser Online-QR-Code-Generator — Logo / Verlauf / Stapel | QR Tool Studio',
+  'meta.title': 'QRCode · Kostenloser QR-Code-Generator',
   'meta.desc': 'Kostenloser, leichter QR-Code-Generator im Browser. 8 Typen, Verläufe, Logos, 6 Stile, PNG/SVG/JPEG-Export, Stapel-ZIP. Keine Anmeldung.',
   'theme.light': 'Hell',
   'theme.dark': 'Dunkel',
@@ -223,4 +223,22 @@ export default {
   'footer.about.biz': 'Geschäft',
   'footer.about.theme': 'Design',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
+,
+  // blog.de
+  'blog.notFoundDesc': 'Der gesuchte Artikel existiert nicht.',
+  'blog.badge': 'Blog',
+  'blog.readArticle': 'Artikel lesen',
+  'blog.notFoundTitle': 'Artikel nicht gefunden',
+  'blog.minRead': 'Min. Lesezeit',
+  'blog.browseAll': 'Alle Artikel ansehen',
+  'blog.endCta.desc': 'Kostenlos, ohne Anmeldung, im Browser. Erstellen Sie Ihren WiFi-QR-Code in unter einer Minute.',
+  'footer.link.blog': 'Blog',
+  'blog.hero.title.l2': 'Playbooks',
+  'blog.backToBlog': 'Zurück zum Blog',
+  'blog.hero.title.l1': 'Leitfäden, Tipps &',
+  'blog.endCta.title': 'Bereit, Ihren eigenen zu erstellen?',
+  'blog.endCta.button': 'WiFi-QR erstellen',
+  'blog.hero.desc': 'Praxisnahe Leitfäden für QR-Codes. Von KMU-Anwendungsfällen bis zu Design-Best-Practices.',
+  'blog.empty': 'Noch keine Artikel. Schauen Sie bald wieder vorbei!',
+  'blog.backToList': 'Zurück zu allen Artikeln',
 }
