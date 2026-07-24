@@ -8,6 +8,10 @@ import MarketingSections from './components/MarketingSections.vue'
 import LegalModal from './components/LegalModal.vue'
 import BlogIndex from './components/blog/BlogIndex.vue'
 import BlogPost from './components/blog/BlogPost.vue'
+import PrivacyPage from './components/pages/PrivacyPage.vue'
+import TermsPage from './components/pages/TermsPage.vue'
+import ContactPage from './components/pages/ContactPage.vue'
+import AboutPage from './components/pages/AboutPage.vue'
 import { useTheme } from './composables/useTheme'
 import { useI18n } from './composables/useI18n'
 
@@ -15,8 +19,8 @@ const { isDark } = useTheme()
 const { t, lang, isReady } = useI18n()
 const tab = ref('single')
 
-// 博客 hash 路由:#blog | #blog/[slug]
-const view = ref('home') // 'home' | 'blog-list' | 'blog-post'
+// 路由:home | blog-list | blog-post | privacy | terms | contact | about
+const view = ref('home')
 const currentSlug = ref('')
 
 function parseHash() {
@@ -27,6 +31,22 @@ function parseHash() {
   } else if (h.startsWith('blog/')) {
     view.value = 'blog-post'
     currentSlug.value = h.replace(/^blog\//, '').split('/')[0]
+  } else if (h === 'privacy') {
+    view.value = 'privacy'
+    currentSlug.value = ''
+    window.scrollTo(0, 0)
+  } else if (h === 'terms') {
+    view.value = 'terms'
+    currentSlug.value = ''
+    window.scrollTo(0, 0)
+  } else if (h === 'contact') {
+    view.value = 'contact'
+    currentSlug.value = ''
+    window.scrollTo(0, 0)
+  } else if (h === 'about') {
+    view.value = 'about'
+    currentSlug.value = ''
+    window.scrollTo(0, 0)
   } else {
     view.value = 'home'
     currentSlug.value = ''
@@ -148,6 +168,12 @@ function onNavClick(anchor) {
     <BlogIndex v-if="view === 'blog-list'" />
     <BlogPost v-else-if="view === 'blog-post'" :slug="currentSlug" />
 
+    <!-- 法定页面(AdSense 必备) -->
+    <PrivacyPage v-else-if="view === 'privacy'" />
+    <TermsPage v-else-if="view === 'terms'" />
+    <ContactPage v-else-if="view === 'contact'" />
+    <AboutPage v-else-if="view === 'about'" />
+
     <!-- 主页视图 -->
     <template v-else>
     <!-- Hero(仅在 single 时显示) -->
@@ -250,10 +276,10 @@ function onNavClick(anchor) {
         <div>
           <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.legal') }}</h3>
           <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-            <li><button @click="openLegal('privacy')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.legal.privacy') }}</button></li>
+            <li><a href="#privacy" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</a></li>
+            <li><a href="#terms" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</a></li>
             <li><button @click="openLegal('disclaimer')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.legal.disclaimer') }}</button></li>
-            <li><button @click="openLegal('disclaimer')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.legal.terms') }}</button></li>
-            <li><button @click="openLegal('privacy')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.legal.cookie') }}</button></li>
+            <li><a href="#privacy#cookies" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.cookie') }}</a></li>
           </ul>
         </div>
 
@@ -261,8 +287,8 @@ function onNavClick(anchor) {
         <div>
           <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.about') }}</h3>
           <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-            <li><button @click="openLegal('about')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.about.about') }}</button></li>
-            <li><button @click="openLegal('contact')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.about.contact') }}</button></li>
+            <li><a href="#about" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</a></li>
+            <li><a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</a></li>
             <li>
               <a href="mailto:andynaonao@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
                 {{ t('footer.about.biz') }}
@@ -288,11 +314,13 @@ function onNavClick(anchor) {
             <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
               <button @click="openLegal('disclaimer')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.disclaimer') }}</button>
               <span>·</span>
-              <button @click="openLegal('privacy')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</button>
+              <a href="#privacy" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</a>
               <span>·</span>
-              <button @click="openLegal('about')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</button>
+              <a href="#terms" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</a>
               <span>·</span>
-              <button @click="openLegal('contact')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</button>
+              <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</a>
+              <span>·</span>
+              <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</a>
             </div>
           </div>
         </div>
