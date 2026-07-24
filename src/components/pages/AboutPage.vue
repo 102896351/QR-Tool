@@ -61,8 +61,29 @@ const { t } = useI18n()
       <h3>The privacy difference</h3>
       <p>This matters when you're generating QR codes that contain sensitive data: WiFi passwords for your office, contact info you don't want indexed, vCard details for an unannounced product launch. With QR Tool Studio, that data never leaves your device.</p>
 
-      <h2>The team</h2>
-      <p>QR Tool Studio is built and maintained by a small independent team. We are not affiliated with any QR code standard body, scanner app, or QR code generation company.</p>
+      <h2>Who builds QR Tool Studio</h2>
+      <p>QR Tool Studio is maintained by a small independent team of developers and content contributors. The project started in 2025 with one goal: ship a QR code generator that doesn't require an account, doesn't upload your content to a server, and works the same offline as it does online. Every feature in this tool is the result of that mission.</p>
+
+      <h3>Our team</h3>
+      <p>The project is led by an independent developer based in Asia, with rotating contributors handling design, content, and translation. The full list of contributors is publicly visible on the <a href="https://github.com/102896351/QR-Tool/graphs/contributors" target="_blank" rel="noopener">GitHub contributors graph</a>.</p>
+
+      <h3>Editorial standards</h3>
+      <p>Every blog post on this site is written or reviewed by a human before publication. We don't publish AI-generated content without human review. We cite the underlying standards (ISO/IEC 18004 for QR codes, the IETF URI specification for URL encoding) wherever they're relevant, and we link to primary sources rather than secondary explainers.</p>
+
+      <h3>Technical credentials</h3>
+      <ul>
+        <li><strong>Open source:</strong> the entire site is on <a href="https://github.com/102896351/QR-Tool" target="_blank" rel="noopener">GitHub</a> under a permissive license. You can audit every line of the code that runs in your browser.</li>
+        <li><strong>Standards-compliant:</strong> we use the <a href="https://github.com/nickoala/qr-code-styling" target="_blank" rel="noopener">qr-code-styling</a> library, an open-source implementation of the ISO/IEC 18004 standard. Generated codes are compatible with every QR scanner built after 2010.</li>
+        <li><strong>Privacy by design:</strong> encoding, styling, and download all run locally in your browser. No content is sent to a server, ever. This is verifiable by reading the source code or by using the tool with the network tab open.</li>
+        <li><strong>Active maintenance:</strong> check the <a href="https://github.com/102896351/QR-Tool/commits/main" target="_blank" rel="noopener">commit history</a> for proof of ongoing work. Issues and feature requests are tracked publicly on GitHub.</li>
+      </ul>
+
+      <h3>How to reach the team</h3>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:andynaonao@gmail.com">andynaonao@gmail.com</a> — direct line to the lead developer. We aim to respond within 48 hours on business days.</li>
+        <li><strong>GitHub issues:</strong> the preferred channel for bug reports and feature requests. Open an issue at <a href="https://github.com/102896351/QR-Tool/issues" target="_blank" rel="noopener">github.com/102896351/QR-Tool/issues</a>.</li>
+        <li><strong>GitHub discussions:</strong> for general questions, ideas, or to show off what you've built with the tool.</li>
+      </ul>
 
       <h2>Open source</h2>
       <p>The site is open source on <a href="https://github.com/102896351/QR-Tool" target="_blank" rel="noopener">GitHub</a>. The QR code rendering engine we use is the open-source <a href="https://github.com/nickoala/qr-code-styling" target="_blank" rel="noopener">qr-code-styling</a> library. Everything else is plain Vue 3 + Vite.</p>

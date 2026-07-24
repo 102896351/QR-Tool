@@ -235,6 +235,28 @@ function onNavClick(anchor) {
       <HistoryView v-else @apply="applyHistoryItem" />
     </main>
 
+    <!-- AdSense: display ad (under generator, before SEO content) -->
+    <!--
+      Placeholder slot ID. After AdSense approves toolbox168.xyz:
+        1. Create a "Display ad" unit in AdSense dashboard
+        2. Replace data-ad-slot below with the new slot ID
+        3. Reload to confirm ad renders
+    -->
+    <aside class="w-full max-w-6xl mx-auto px-4 sm:px-6 mt-2 mb-8" aria-label="Sponsored content">
+      <div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center">Advertisement</div>
+      <ins
+        class="adsbygoogle block w-full min-h-[120px]"
+        style="display:block; min-height:120px"
+        data-ad-client="ca-pub-1606763409380030"
+        data-ad-slot="0000000000"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+
     <!-- SEO 内容板块:How / Types / Use Cases / FAQ -->
     <MarketingSections v-if="tab === 'single'" :on-go-blog="goBlog" />
 

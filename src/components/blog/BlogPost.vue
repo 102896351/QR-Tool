@@ -69,11 +69,21 @@ function syncHead() {
     description: p.description,
     image: `https://toolbox168.xyz${p.cover}`,
     datePublished: p.date,
-    author: { '@type': 'Organization', name: p.author },
+    author: {
+      '@type': 'Organization',
+      name: p.author,
+      url: 'https://toolbox168.xyz/#about',
+      email: 'mailto:andynaonao@gmail.com'
+    },
     publisher: {
       '@type': 'Organization',
       name: 'QR Tool Studio',
+      url: 'https://toolbox168.xyz/',
       logo: { '@type': 'ImageObject', url: 'https://toolbox168.xyz/favicon.svg' }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://toolbox168.xyz/#blog/${p.slug}`
     }
   })
 }
@@ -144,11 +154,49 @@ watch([() => props.slug, isReady], () => {
       />
     </figure>
 
+    <!-- AdSense: in-article (top) -->
+    <!--
+      Placeholder slot ID. After AdSense approves toolbox168.xyz:
+        1. Create an "In-article ad" unit in AdSense dashboard
+        2. Replace data-ad-slot below with the new slot ID
+        3. Reload to confirm ad renders
+    -->
+    <aside class="my-8" aria-label="Sponsored content">
+      <div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center">Advertisement</div>
+      <ins
+        class="adsbygoogle block w-full"
+        style="display:block; text-align:center"
+        data-ad-client="ca-pub-1606763409380030"
+        data-ad-slot="0000000001"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+      ></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+
     <!-- Article body -->
     <article
       class="blog-content"
       v-html="post.content"
     ></article>
+
+    <!-- AdSense: in-article (bottom, before end CTA) -->
+    <aside class="my-8" aria-label="Sponsored content">
+      <div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center">Advertisement</div>
+      <ins
+        class="adsbygoogle block w-full"
+        style="display:block; text-align:center"
+        data-ad-client="ca-pub-1606763409380030"
+        data-ad-slot="0000000002"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+      ></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
 
     <!-- Inline CTA at end -->
     <div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 text-white text-center">
