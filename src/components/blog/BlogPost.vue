@@ -160,8 +160,12 @@ watch([() => props.slug, isReady], () => {
         1. Create an "In-article ad" unit in AdSense dashboard
         2. Replace data-ad-slot below with the new slot ID
         3. Reload to confirm ad renders
+
+      v-if: ONLY show after post + i18n ready. Hides during loading and
+      route transitions to comply with AdSense "no ads on screens
+      without publisher content" policy.
     -->
-    <aside class="my-8" aria-label="Sponsored content">
+    <aside v-if="post && isReady" class="my-8" aria-label="Sponsored content">
       <div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center">Advertisement</div>
       <ins
         class="adsbygoogle block w-full"
@@ -183,7 +187,7 @@ watch([() => props.slug, isReady], () => {
     ></article>
 
     <!-- AdSense: in-article (bottom, before end CTA) -->
-    <aside class="my-8" aria-label="Sponsored content">
+    <aside v-if="post && isReady" class="my-8" aria-label="Sponsored content">
       <div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center">Advertisement</div>
       <ins
         class="adsbygoogle block w-full"

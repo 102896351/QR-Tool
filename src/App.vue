@@ -241,8 +241,15 @@ function onNavClick(anchor) {
         1. Create a "Display ad" unit in AdSense dashboard
         2. Replace data-ad-slot below with the new slot ID
         3. Reload to confirm ad renders
+
+      v-if: ONLY show on home view (most content-rich). Hide on legal pages
+      and during SPA route transitions to comply with AdSense "no ads on
+      screens without publisher content" policy.
     -->
-    <aside class="w-full max-w-6xl mx-auto px-4 sm:px-6 mt-2 mb-8" aria-label="Sponsored content">
+    <aside
+      v-if="view === 'home' && tab === 'single'"
+      class="w-full max-w-6xl mx-auto px-4 sm:px-6 mt-2 mb-8" aria-label="Sponsored content"
+    >
       <div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center">Advertisement</div>
       <ins
         class="adsbygoogle block w-full min-h-[120px]"
