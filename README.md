@@ -59,3 +59,5 @@ npm run build
 ---
 
 © QR Tool Studio · 用心做工具
+
+<!-- deploy trigger: 1784943959 -->
