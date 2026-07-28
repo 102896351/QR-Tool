@@ -24,8 +24,8 @@ const __dirname = dirname(__filename);
 
 const SITE = 'https://toolbox168.xyz';
 
-// 7 languages + x-default (matches the i18n in src/composables/locales/)
-const HREFLANGS = ['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es'];
+// Single language (en) + x-default — keep sitemap simple, content is English-only anyway
+const HREFLANGS = ['en'];
 
 // Priority & changefreq by URL type
 const RULES = {
@@ -136,7 +136,7 @@ ${blocks.join('\n')}
   console.log(`✅  sitemap generated (${totalWritten} location${totalWritten === 1 ? '' : 's'})`);
   console.log(`    ${urlCount} URLs (1 home + 4 anchors + ${posts.length} blog posts)`);
   console.log(`    sitemap-0.xml: ${sizeKB} KB (limit 50 KB)`);
-  console.log(`    hreflangs: ${HREFLANGS.length} languages + x-default per URL`);
+  console.log(`    hreflangs: ${HREFLANGS.length} language + x-default per URL`);
 }
 
 main();
