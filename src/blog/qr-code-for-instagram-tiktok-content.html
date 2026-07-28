@@ -1,0 +1,226 @@
+<p class="lead">A QR code in a 60-second video is a weird product design challenge. The viewer sees it for 2–5 seconds, often while their thumb is hovering over the screen, often in low light, and almost always at an angle that makes a flat code look like a tilted mess. <strong>Most QR codes that show up in TikTok and Instagram Reels don't get scanned — and a lot of the time it's the designer's fault.</strong> This guide covers how to put a scannable QR code in short-form video that actually works, including the placement, the timing, the size, and the link behind the code.</p>
+
+<p>By the end, you will know the four placement rules that determine whether your code gets scanned or ignored, the right way to size a code for vertical video, and a small set of dynamic-link tricks that make TikTok QR codes actually useful instead of just decoration.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-instagram-tiktok/qr-code-for-instagram-tiktok-hero.png" alt="A vertical 9:16 short video with a QR code in the bottom corner, scannable from a phone held at arm's length" />
+  <figcaption>QR code placement in a 9:16 vertical video. The code sits in the bottom-right, away from the caption strip and the like/comment buttons.</figcaption>
+</figure>
+
+<h2 id="why-most-codes-fail">Why Most QR Codes in Short Video Don't Get Scanned</h2>
+
+<p>The first thing to understand is that a QR code in a video is not the same as a QR code on a poster. On a poster, the viewer can walk closer, angle the phone, and take their time. In a 60-second video, the code is on screen for 2–5 seconds, the viewer is not moving toward it, and the code is competing for attention with whatever the creator is actually talking about.</p>
+
+<p>The failure modes are predictable:</p>
+
+<ul>
+<li><strong>Too small:</strong> A code that fits a corner of the frame at "preview size" is invisible when the viewer watches full-screen.</li>
+<li><strong>Wrong position:</strong> A code behind the caption strip, under the like button, or in a part of the frame the algorithm crops out.</li>
+<li><strong>Wobble or motion blur:</strong> The code is overlaid on moving footage, and the camera shake softens the edges.</li>
+<li><strong>Bad contrast:</strong> A colored code on a busy background. Looks fine to the eye; the scanner sees noise.</li>
+<li><strong>Wrong timing:</strong> The code appears for half a second in a 60-second video. The viewer never gets a clear window to scan.</li>
+<li><strong>Useless destination:</strong> The code links to a homepage. The viewer scanned because they wanted a specific thing; a homepage makes them re-search.</li>
+</ul>
+
+<p>The good news: each of these has a fix. None of them require a special tool or a developer.</p>
+
+<h2 id="placement-rules">The 4 Placement Rules</h2>
+
+<p>Where you put the code is the single biggest decision. Most of the rules below are about avoiding the parts of the screen that are crowded or get cropped.</p>
+
+<h3>Rule 1: Bottom-right is the safest corner</h3>
+<p>On Instagram Reels and TikTok, the right side of the screen is reserved for engagement buttons: like, comment, share, remix. The bottom-right corner is the area with the least overlap. Keep the code in the bottom 1/4 of the screen, right side, away from the like button cluster.</p>
+
+<p>Why bottom-right works:</p>
+<ul>
+<li>Below the centerline, where the eye scans less aggressively</li>
+<li>Away from the caption strip (the big white box at the bottom in TikTok)</li>
+<li>Away from the algorithm's auto-caption overlay</li>
+<li>Consistent across devices — both Android and iOS put engagement on the right</li>
+</ul>
+
+<h3>Rule 2: Keep the code out of the lower-third</h3>
+<p>The lower-third of a vertical video (roughly the bottom 30%) is the most-cropped area. TikTok's auto-caption can render text right over a code, making it unscannable. The safe zone is the bottom 1/4 of the screen, but more towards the right.</p>
+
+<h3>Rule 3: Don't overlay the code on a face or text</h3>
+<p>Creators love putting the code "where the eye naturally goes," which is the center of the frame. That's exactly the wrong place. The viewer's eyes are on the creator's face, not on the code, and the code is competing with the face for attention. A scannable code needs an empty zone around it.</p>
+
+<h3>Rule 4: Don't move the code during the video</h3>
+<p>If the code appears in the corner at second 1, moves to the other corner at second 5, and disappears at second 30, the viewer has to remember the position and the timing. Static placement for the entire duration is easier to scan and easier to remember.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-instagram-tiktok/qr-code-for-instagram-tiktok-comparison.png" alt="Side-by-side comparison: good QR code placement vs bad placement in short video" />
+  <figcaption>Good placement (left) keeps the code in a static bottom-right corner. Bad placement (right) overlays the code on a face and lets it move during the video.</figcaption>
+</figure>
+
+<h2 id="size-and-duration">Size and Duration Math</h2>
+
+<p>For a QR code to scan from a phone held at arm's length, you need a minimum of about 1.5 cm of physical size on the phone screen. At 1080x1920 resolution, that is roughly 60x60 to 80x80 pixels for a typical version 3 code. The bigger the code, the more forgiving the scan.</p>
+
+<p>The math works out to roughly these sizes:</p>
+<ul>
+<li><strong>Minimum scannable:</strong> 80x80 pixels on a 1080-wide frame (about 7% of frame width)</li>
+<li><strong>Comfortable:</strong> 150x150 pixels (about 14% of frame width, big enough to scan from across the room)</li>
+<li><strong>Oversized:</strong> 250x250+ pixels (over 23% of frame width, looks spammy in some contexts)</li>
+</ul>
+
+<h3>How long should the code be on screen?</h3>
+<p>The minimum dwell time for a viewer to notice a code, decide to scan, and pull out their phone is about 2 seconds. The comfortable dwell time is 4-5 seconds. A code that flashes for half a second and disappears is functionally invisible.</p>
+
+<p>The right call: have the code on screen for the entire video, or at least 5–8 seconds in a single visible block. If you want to keep the code visible but emphasize a different moment, dim the code to 60% opacity during the action scenes and 100% during the call-to-action frame.</p>
+
+<h3>Module size matters too</h3>
+<p>A QR code's physical size is what determines whether it scans. A 200x200 pixel code with 21x21 modules is a single module of about 10 pixels — comfortable. The same 200x200 code with a 41x41 grid (more data) is 5 pixels per module — borderline. Plan your code for the smallest data, not the largest.</p>
+
+<h2 id="contrast-and-color">Contrast and Color</h2>
+
+<p>The scanner does not see color — it sees contrast. A black-on-white code is the standard because black-on-white has the highest contrast ratio (21:1) and works on every scanner. If you want a colored code, the practical minimum is 4:1 contrast between the dark and light modules, and 7:1 is better.</p>
+
+<h3>What works</h3>
+<ul>
+<li>Black on white, dark gray on light gray, or navy on cream</li>
+<li>Brand color on white (if the brand color is dark enough — most dark blues, greens, and purples work; pastels don't)</li>
+<li>White code on a dark background (inverted QR code) — also scans, but some older scanners struggle</li>
+</ul>
+
+<h3>What doesn't work</h3>
+<ul>
+<li>Yellow on white (contrast too low, scanner sees no code)</li>
+<li>Light gray on white (too low contrast)</li>
+<li>Brand gradient on a colorful background (the scanner sees a blur, not a code)</li>
+<li>Bright red on black (low contrast for some scanners, depends on the algorithm)</li>
+</ul>
+
+<h3>Drop shadow and glow</h3>
+<p>Adding a subtle drop shadow or a thin white outline around the code helps the scanner detect the edges when the code is on a busy background. The outline should be 2-3 modules thick, and white is the most universally readable.</p>
+
+<h2 id="link-strategy">The Link Strategy That Makes Scanning Worth It</h2>
+
+<p>A QR code in a video is a bridge. The viewer scans, expects something specific, and decides in 5 seconds whether to stay. The link behind the code matters more than the code itself.</p>
+
+<h3>Don't link to a homepage</h3>
+<p>Most "scan to learn more" QR codes link to the brand's homepage. The viewer has to re-search for whatever the video was about. The scan wasted both the viewer's time and your opportunity.</p>
+
+<h3>Link directly to the product, the page, the offer</h3>
+<p>If the video is about a specific product, the code should go to that product's page. If the video is about a tutorial, the code should go to the full written tutorial. If the video is a recipe, the code should go to the recipe with the ingredient list. Specificity beats brand presence every time.</p>
+
+<h3>Use dynamic QR codes for video</h3>
+<p>A static QR code is locked to one URL. If you re-edit the video, the code points to the old destination. A dynamic QR code lets you change the destination without changing the code. The viewer scans once; you decide later what they see.</p>
+
+<p>This is especially useful for Instagram Reels, where creators often repost the same video with a new product. The dynamic code stays the same; the destination updates.</p>
+
+<h3>Track scans, optimize later</h3>
+<p>Most dynamic QR code services give you a scan count, the device type, and the country of origin. After the video has been live for a week, look at the data. If the scan rate is below 1% of video views, the code placement is probably wrong. If the scan-to-conversion rate is low, the destination page is probably wrong. Optimize the placement first, then the destination, not the other way around.</p>
+
+<h2 id="where-the-code-points">Where the Code Should Actually Point</h2>
+
+<p>Specific destinations, organized by video type:</p>
+
+<h3>Product showcase videos</h3>
+<p>Link to the product page. Not the brand's homepage, not the category page — the specific product. The viewer should be able to add the item to their cart in 2 taps from the destination.</p>
+
+<h3>Tutorial videos</h3>
+<p>Link to a written tutorial with the full steps, ingredient lists, and code snippets. The video is the preview; the destination is the actual content.</p>
+
+<h3>Event promotion</h3>
+<p>Link to the event registration page. If the event is sold out, the code should link to a waitlist. If the event is in a week, the code can link to a calendar add.</p>
+
+<h3>Restaurant or cafe videos</h3>
+<p>Link to the menu or the location's Google Maps entry. The viewer is usually thinking "I want to go there" or "what's good to eat." A menu link with a phone number for reservations closes the loop.</p>
+
+<h3>Real estate walkthroughs</h3>
+<p>Link to the property listing. A video tour is the hook; the listing has the price, the photos, and the agent's contact.</p>
+
+<figure>
+  <img src="/blog/qr-code-for-instagram-tiktok/qr-code-for-instagram-tiktok-scan-demo.png" alt="Four example short videos, each with a QR code in the bottom-right pointing to a specific destination: product page, tutorial, event registration, restaurant menu" />
+  <figcaption>Same placement rule (bottom-right), different destinations. Each code points to a specific page, not a homepage.</figcaption>
+</figure>
+
+<h2 id="sticker-overlay">Using the Platform's Built-in Code Stickers</h2>
+
+<p>Instagram and TikTok both have sticker systems that let you place a code-like link sticker directly on the video. These are not real QR codes (they're platform-specific tappable links), but they share the same design problem.</p>
+
+<h3>Instagram link sticker</h3>
+<p>The Instagram link sticker appears as a small URL at the top of the video. Tapping it opens the destination. Pros: discoverable, no scanning required. Cons: limited to one URL, no analytics, and the link sticker can be obscured by the caption strip in tall videos.</p>
+
+<h3>TikTok link in bio</h3>
+<p>TikTok's "link in bio" model means the video itself doesn't have a clickable link. The viewer has to leave the video, go to the creator's profile, and tap the bio link. This is a friction-heavy flow; the QR code is a faster alternative.</p>
+
+<h3>Which to use</h3>
+<p>If your video is on Instagram and the destination is one of your own posts or reels, the link sticker is faster. If your video is on TikTok or you want a more universal solution, a real QR code overlay is the way.</p>
+
+<h2 id="production-tips">Production Tips That Actually Matter</h2>
+
+<h3>Render the code separately, then composite</h3>
+<p>Don't try to scan a code that's been through video compression. The H.264 codec softens edges and reduces color depth, both of which make a code harder to scan. Render the code as a transparent PNG, then composite it onto the video in a video editor (Premiere, Final Cut, CapCut) with the original PNG quality intact.</p>
+
+<h3>Use a high-contrast plate</h3>
+<p>When the code is on screen, the background should be a high-contrast color — solid black, solid white, or a flat color. A code over a busy background (a kitchen, a city street, a printed shirt) needs a semi-transparent black or white "plate" behind it to keep the contrast.</p>
+
+<h3>Add a one-second "scan me" animation</h3>
+<p>A subtle one-second animation when the code first appears (a small pulse, a fading-in CTA text "scan to learn more") improves scan rates by 30-50% in published case studies. The animation does the work of telling the viewer "this is here, on purpose, scan it."</p>
+
+<h3>Test on multiple devices</h3>
+<p>Scan the code on at least three devices: iPhone with native camera, Android phone with Google Lens, and an older phone with a third-party scanner. The same code can scan perfectly on one and fail on another, especially if the code is high-density or low-contrast.</p>
+
+<h2 id="mistakes">Common Mistakes to Avoid</h2>
+
+<h3>Mistake 1: Static code, dynamic video</h3>
+<p>A static QR code becomes a dead end when the video is taken down, the product is sold out, or the campaign ends. Use a dynamic QR code with a redirect service. The code on the video stays the same; the destination changes.</p>
+
+<h3>Mistake 2: Code behind the creator's username</h3>
+<p>TikTok puts the creator's @username in the bottom-left. A code in the same area gets visually merged with the username. Move the code right, away from the username.</p>
+
+<h3>Mistake 3: Animated codes</h3>
+<p>A QR code that "bounces" or "rotates" looks cute in the editor and scans poorly in the wild. The scanner needs stable edges. Static codes scan 5-10x faster than animated codes on average.</p>
+
+<h3>Mistake 4: Trusting the platform's preview</h3>
+<p>The Instagram Reels preview is 9:16. The actual viewing surface might be 9:16 on a phone, 4:3 on a tablet, or 1:1 cropped on a desktop. Test the video at every size a viewer might watch it.</p>
+
+<h2 id="analytics">What to Track</h2>
+
+<p>Three numbers tell you whether the code is doing its job:</p>
+<ul>
+<li><strong>Scan rate:</strong> Scans / video views. Industry average for organic videos is 0.5-2%. If you are under 0.5%, the placement is wrong. If you are over 5%, the destination is doing the work.</li>
+<li><strong>Time to scan:</strong> How long after the video started did the scan happen? If most scans happen in the first 2 seconds, the code is being noticed immediately. If most happen after 30 seconds, the viewer watched the whole video first and then decided.</li>
+<li><strong>Scan-to-action rate:</strong> Of the people who scanned, how many did the thing you wanted (added to cart, signed up, etc.)? This is a destination quality number, not a code quality number.</li>
+</ul>
+
+<p>If scan rate is low, fix placement. If placement is fine and scan rate is still low, the code might be too small or contrast too low. If scan rate is high but scan-to-action is low, the destination is the problem.</p>
+<figure>
+  <img src="/blog/qr-code-for-instagram-tiktok/qr-code-for-instagram-tiktok-faq-banner.png" alt="Bottom-right, static, on screen for 5+ seconds, pointing to a specific destination. That is the entire playbook for QR c" />
+  <figcaption>Bottom-right, static, on screen for 5+ seconds, pointing to a specific destination. That is the entire playbook for QR codes in short video.</figcaption>
+</figure>
+
+
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Does TikTok allow QR codes in videos?</h3>
+<p>Yes, as an image overlay. TikTok does not have a native QR code sticker, but creators can composite a QR code into their video using any video editor. The link sticker is a different feature, with platform-specific behavior, not a true QR code.</p>
+
+<h3>How big should a QR code be in a TikTok video?</h3>
+<p>Minimum 80x80 pixels on a 1080-wide frame. The bigger the better, within reason — codes over 250x250 pixels start to look like spam. The sweet spot is 150-200 pixels for a version 3-5 code.</p>
+
+<h3>Should I use a static or dynamic QR code for short video?</h3>
+<p>Dynamic. Videos get reposted, products change, campaigns end. A dynamic code lets you change the destination without re-rendering the video. The trade-off is a small monthly fee for the redirect service.</p>
+
+<h3>How do I make a QR code look on-brand?</h3>
+<p>Pick a brand color with at least 4:1 contrast against white. Use rounded module corners if your generator supports it. Add a thin white outline if the code sits on a busy background. Test on three devices before publishing.</p>
+
+<h3>Can I put a QR code in the caption text?</h3>
+<p>No. Caption text is rendered by the platform; you cannot insert scannable images into captions. Use a code overlay in the video itself, or use the platform's link sticker.</p>
+
+<h3>Do QR codes in Reels get scanned more than in TikTok?</h3>
+<p>About the same. The placement and timing matter more than the platform. Reels favors static bottom placement; TikTok favors static top-right or bottom-right. Test both, look at scan data, and pick the winner.</p>
+
+<h2 id="next">What to Read Next</h2>
+<p>If you are encoding the same URL across many videos, a dynamic QR code is the right call. If you are encoding different URLs, you will want a generator that handles brand colors and rounded modules well. These guides cover both:</p>
+<ul>
+<li><a href="#blog/qr-code-design-best-practices">QR Code Design Best Practices</a> — Brand-friendly code styling</li>
+<li><a href="#blog/qr-code-with-logo">QR Code with Logo</a> — Center logo without breaking scans</li>
+<li><a href="#blog/qr-code-statistics-2025">QR Code Statistics 2025</a> — How people actually use QR codes</li>
+<li><a href="#blog/qr-code-error-correction-guide">QR Code Error Correction Guide</a> — Picking the right correction level for moving backgrounds</li>
+</ul>
+
+<p>Place the code in the bottom-right, leave it there for the whole video, and link to a specific destination, not a homepage. Most of the rest is just polish.</p>

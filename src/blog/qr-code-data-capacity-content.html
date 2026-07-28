@@ -1,0 +1,195 @@
+<p class="lead">A QR code is a 2D barcode. It's made of black and white squares, and those squares encode a string of text. The question is: how long can that string be? <strong>The honest answer is "it depends," and the range is wider than most people think.</strong> The smallest QR codes hold 17 characters. The largest hold nearly 3,000 alphanumeric characters or about 7,000 digits. A Chinese character uses 2 bytes, so the practical limit for Chinese text drops to around 1,800 characters. Emoji? Forget it — one emoji can use 4 bytes and the visible limit for emoji-only QR codes is about 1,500.</p>
+
+<p>By the end, you will know the real upper bound for any QR code, why your scanner says "data too large" sometimes, and what to do when you actually need to encode that much data.</p>
+
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-hero.png" alt="QR code data capacity chart: version vs storage across L, M, Q, H error correction" />
+  <figcaption>QR code storage grows with version. The catch is that bigger storage also means a denser code, which is harder to scan at small sizes.</figcaption>
+</figure>
+
+<h2 id="quick-answer">The Quick Answer</h2>
+
+<p>If you need the number right now, here it is. The biggest practical QR code, version 40 with low error correction, can hold:</p>
+
+<ul>
+  <li><strong>Numeric only (0–9):</strong> 7,089 characters</li>
+  <li><strong>Alphanumeric (0–9, A–Z, space, $%*+-./:):</strong> 4,296 characters</li>
+  <li><strong>Byte mode (any byte 0–255):</strong> 2,953 characters (or 1,468 Chinese/CJK characters in UTF-8)</li>
+</ul>
+
+<p>Real-world QR codes stop well short of these limits. Scanning distance, lighting, and print size all make a dense, maxed-out QR code impractical. The codes you see on packaging, posters, and menus are usually versions 3 through 7, holding between 20 and 200 characters.</p>
+
+<h2 id="the-three-modes">The Three Encoding Modes</h2>
+
+<p>QR codes aren't one-size-fits-all. They have three primary encoding modes, and choosing the right one is the difference between fitting 100 characters and fitting 1,000.</p>
+
+<h3>1. Numeric mode (most efficient)</h3>
+<p>Each digit is encoded in 3.33 bits — the most efficient mode by far. Use it for phone numbers, IDs, dates, prices, and any data that's all digits. This is why a phone number (10 digits) fits in a tiny QR code that scans from 10 feet away.</p>
+
+<h3>2. Alphanumeric mode</h3>
+<p>Each character takes 5.5 bits. The character set is the 45 characters supported: 0–9, A–Z (uppercase only), space, and $%*+-./:. Use it for URLs, codes, and most English text. Note: no lowercase, no accents. If you need "café," use byte mode.</p>
+
+<h3>3. Byte mode (binary)</h3>
+<p>Each byte is 8 bits. This is the only mode that handles arbitrary text, including lowercase, accented characters, emoji, and binary data like images or audio clips. UTF-8 text goes here. The trade-off: 8 bits per character is the least efficient of the three modes, so the code needs more modules to hold the same logical content.</p>
+
+<p>There is also a fourth mode, Kanji, optimized for Japanese characters, that encodes 13 bits per character. It's rarely used outside Japan.</p>
+
+<h2 id="version-and-capacity">Version and Capacity, Side by Side</h2>
+
+<p>QR codes come in 40 versions. Version 1 is a 21x21 module grid. Each version adds 4 modules per side, so version 40 is 177x177. The bigger the grid, the more data it can hold. The actual capacity depends on the version and the error correction level.</p>
+
+<p>Here is the real table. The numbers come straight from the QR Code spec (ISO/IEC 18004). Error correction levels are L (7%), M (15%), Q (25%), and H (30%) — higher correction means more redundancy and less capacity.</p>
+
+<h3>Numeric mode (digits 0-9)</h3>
+<ul>
+  <li><strong>Version 1, L:</strong> 41 characters</li>
+  <li><strong>Version 5, M:</strong> 290 characters</li>
+  <li><strong>Version 10, H:</strong> 213 characters</li>
+  <li><strong>Version 20, L:</strong> 2,224 characters</li>
+  <li><strong>Version 40, L:</strong> 7,089 characters (max)</li>
+</ul>
+
+<h3>Alphanumeric mode (uppercase, digits, few symbols)</h3>
+<ul>
+  <li><strong>Version 1, L:</strong> 25 characters</li>
+  <li><strong>Version 5, M:</strong> 178 characters</li>
+  <li><strong>Version 10, H:</strong> 131 characters</li>
+  <li><strong>Version 20, L:</strong> 1,367 characters</li>
+  <li><strong>Version 40, L:</strong> 4,296 characters (max)</li>
+</ul>
+
+<h3>Byte mode (any binary data)</h3>
+<ul>
+  <li><strong>Version 1, L:</strong> 17 characters</li>
+  <li><strong>Version 5, M:</strong> 114 characters</li>
+  <li><strong>Version 10, H:</strong> 86 characters</li>
+  <li><strong>Version 20, L:</strong> 858 characters</li>
+  <li><strong>Version 40, L:</strong> 2,953 characters (max)</li>
+</ul>
+
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-comparison.png" alt="QR code version comparison: small code (v3, ~50 chars) vs medium (v10, ~200 chars) vs large (v25, ~1000 chars) vs max (v40)" />
+  <figcaption>Same data, different versions. The leftmost code is version 3 (29x29 modules), the rightmost is version 25 (117x117). Same 100-character payload.</figcaption>
+</figure>
+
+<h2 id="how-to-choose">How to Choose the Right Version</h2>
+
+<p>You almost never pick a version manually. The QR generator picks it for you based on your data and your error correction level. What you pick is:</p>
+
+<h3>Step 1: Decide on error correction</h3>
+<p>Higher correction lets the code survive damage (a smudged code on a coffee cup, a partially obscured code on a billboard) but takes more space.</p>
+<ul>
+  <li><strong>L (7%):</strong> Clean indoor use, no logo. Maximum capacity.</li>
+  <li><strong>M (15%):</strong> Default. Good for most printed materials. A small logo fits in the margin.</li>
+  <li><strong>Q (25%):</strong> Outdoor or industrial use. Smudges, scratches, weathering.</li>
+  <li><strong>H (30%):</strong> Center logo, harsh environments, low-light scanning. The code is recoverable even with 30% damaged.</li>
+</ul>
+
+<h3>Step 2: Estimate your data size</h3>
+<p>Count your characters. If your text is 30 alphanumeric characters and 1 URL, you are in version 3 territory. If you are encoding a 500-character WiFi password, version 15. If you are encoding 2,000 bytes of Chinese text, version 30+.</p>
+
+<h3>Step 3: Let the generator pick</h3>
+<p>Any modern QR generator — including the one in this tool — picks the smallest version that fits your data with your chosen correction level. You do not need to do this math by hand.</p>
+
+<h2 id="real-limits">The Real Limits Most People Hit</h2>
+
+<p>The spec's 7,089-character max is real but practically meaningless. Here are the limits that actually matter for everyday use.</p>
+
+<h3>URLs are the bottleneck</h3>
+<p>The vast majority of QR codes encode a URL. Modern URLs are 50 to 200 characters, especially with UTM parameters, deep links, and tracking. A URL-heavy QR code lands in version 4–8 territory — small, scannable, fits anywhere.</p>
+
+<p>If you are encoding a 1,000-character URL (some analytics setups, some deep links), you are in version 20+, which is a 97x97 module grid. That is a large code that needs a print area of at least 4 cm x 4 cm to scan reliably. Most people solve this by using a short URL or a redirect service.</p>
+
+<h3>Chinese and emoji: a real cost</h3>
+<p>Chinese text in UTF-8 takes 3 bytes per character (most CJK). One Chinese character is the same as 3 English characters in byte mode. So 100 Chinese characters uses the same code space as 300 English characters, which means a larger QR code for the same logical content.</p>
+
+<p>Emoji are worse: a single emoji can be 4 bytes. The visible "red heart" ❤️ is U+2764 U+FE0F, which is 6 bytes in UTF-8. A QR code that just says "I ❤️ QR codes" is encoding 16 characters in 26 bytes of data. The capacity math still works, but you are using byte mode for the whole string.</p>
+
+<h3>Binary payloads (images, audio, business cards)</h3>
+<p>People sometimes ask "can I put an image or audio clip in a QR code?" The honest answer: yes, but the practical limit is small. A 200x200 pixel image is roughly 12 KB compressed. That is way more than the 2,953-byte byte mode limit. Stick to vCard business cards, which are 200–500 bytes — that fits comfortably in a small code.</p>
+
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-scan-demo.png" alt="Side-by-side: small QR code for a short URL vs large QR code for a 1,000-character payload" />
+  <figcaption>The smaller code (left) is for a 60-character URL. The larger code (right) is for a 1,000-character text block. Same error correction, very different physical size.</figcaption>
+</figure>
+
+<h2 id="when-you-actually-need-it">When You Actually Need Maximum Capacity</h2>
+
+<p>There are real reasons to max out a QR code. They are rare but they exist.</p>
+
+<h3>1. Long WiFi credentials</h3>
+<p>WPA2 passwords can be up to 63 characters. Combined with SSID and security type, a WiFi QR code is 40–80 characters — well within easy capacity.</p>
+
+<h3>2. vCard business cards</h3>
+<p>A full vCard with name, title, company, multiple phones, emails, and a website can hit 300–500 characters. v3–v5 codes handle this easily. The vCard format is verbose; using vCard 3.0 instead of 4.0 saves characters.</p>
+
+<h3>3. SMS or email with pre-filled body</h3>
+<p>An SMS with a long pre-filled body (e.g., "Hi, I would like to order...") can hit 200+ characters. Email bodies get long fast. Both fit in v5–v10 codes.</p>
+
+<h3>4. Digital tickets and boarding passes</h3>
+<p>PDF417 and Aztec codes handle this better than QR, but QR can encode a record locator plus passenger name plus a few fields. Real-world boarding passes are 100–200 characters.</p>
+
+<h2 id="micro-qr">Micro QR: For Really Small Codes</h2>
+
+<p>There is a variant called Micro QR, designed for cases where a tiny physical size matters more than capacity. Micro QR only has versions M1 through M4, with module sizes from 11x11 to 17x17. The capacity is correspondingly tiny:</p>
+
+<ul>
+  <li><strong>M1:</strong> 5 numeric, 3 alphanumeric, 2 byte</li>
+  <li><strong>M4:</strong> 35 numeric, 21 alphanumeric, 15 byte</li>
+</ul>
+
+<p>Micro QR is used for things like part labels on electronics or single-character codes. The standard scanner on your phone will read it, but most consumer apps do not generate it.</p>
+
+<h2 id="how-to-read">How to Read the Capacity of a Code You Already Have</h2>
+
+<p>If you generated a QR code and want to know how much room you have left, the easiest way is to decode it and look at the version number in the metadata. Most QR decoder libraries expose this. In the browser, libraries like jsQR or qrcode-reader return the version. The capacity tables are then just lookup.</p>
+
+<p>Or, simpler: just try to add more characters and re-generate. The generator will tell you if it cannot fit your data. If you see "data too large" with a v40 code and byte mode, you have hit the absolute ceiling of 2,953 bytes. The fix is to compress, shorten, or move to a different code type (Data Matrix, PDF417) that handles more.</p>
+
+<h2 id="mistakes">Common Mistakes When You Approach the Limit</h2>
+
+<h3>Mistake 1: Using byte mode when numeric or alphanumeric would do</h3>
+<p>If your data is a phone number or a code like "ABC-1234," numeric or alphanumeric mode cuts the size by 2-3x. Always pick the most restrictive mode that fits your data.</p>
+
+<h3>Mistake 2: Choosing H correction when M would do</h3>
+<p>Adding a small center logo only needs M correction. H correction is for codes that will be physically damaged. If your code is going on a phone screen, you do not need H.</p>
+
+<h3>Mistake 3: Ignoring scan distance</h3>
+<p>A 100x100 module code looks great on a 10 cm x 10 cm poster, but it will not scan from across the room. If you are encoding more than 200 characters, you need a larger code physically, or you need a smaller code with a short URL redirect.</p>
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-faq-banner.png" alt="A flat "max size" view of QR code capacity: 7,089 digits / 4,296 alpha / 2,953 bytes at v40-L, with real-world safe limi" />
+  <figcaption>A flat "max size" view of QR code capacity: 7,089 digits / 4,296 alpha / 2,953 bytes at v40-L, with real-world safe limits of 200-500 chars. Pick the version, not the size.</figcaption>
+</figure>
+
+
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>What is the maximum size of a QR code?</h3>
+<p>Version 40 is the largest standard QR code, at 177x177 modules. It holds 7,089 numeric characters, 4,296 alphanumeric, or 2,953 bytes. The physical size depends on the print resolution; typically 30 cm x 30 cm or more for high-density codes.</p>
+
+<h3>Can a QR code hold an image?</h3>
+<p>Technically yes, but practically no. A small thumbnail (say, 100x100 pixels at low quality) is 5–15 KB compressed, which is 5x the maximum byte capacity. Stick to vCards and short URLs.</p>
+
+<h3>How much data can a QR code hold in Chinese?</h3>
+<p>In UTF-8 byte mode, a QR code holds about 1,468 Chinese characters at the maximum version 40. The reason: each CJK character is 3 bytes in UTF-8, and you have 2,953 bytes total. The Kanji encoding mode (if your generator supports it) is more efficient: about 1,817 characters at version 40.</p>
+
+<h3>Why is my QR code not generating?</h3>
+<p>You have hit the capacity limit. The generator cannot fit your data into a version 40 code, even with the lowest correction. The fix is to compress, shorten, or use a different code format (Data Matrix, PDF417, Aztec) that handles larger payloads.</p>
+
+<h3>How do I know what version my QR code is?</h3>
+<p>Decode it with any QR library. The library returns the version number (1-40) along with the data. The version is also embedded in the alignment patterns of the code itself, but reading it visually is not easy.</p>
+
+<h3>What is the difference between L, M, Q, and H error correction?</h3>
+<p>The four levels indicate how much of the code can be damaged and still scan. L recovers from 7% data loss, M from 15%, Q from 25%, H from 30%. H gives the most resilience but reduces capacity. For most print use, M is the default and right choice.</p>
+
+<h2 id="next">What to Read Next</h2>
+<p>If you are encoding a lot of data, the next thing you want is a code that scans well at small physical sizes. These guides cover that:</p>
+<ul>
+<li><a href="#blog/qr-code-size-guide">QR Code Size Guide</a> — How big to print, scan distance math</li>
+<li><a href="#blog/qr-code-error-correction-guide">QR Code Error Correction Guide</a> — When to use L, M, Q, H</li>
+<li><a href="#blog/qr-code-design-best-practices">QR Code Design Best Practices</a> — Make codes that look good and still scan</li>
+<li><a href="#blog/qr-code-for-wedding">QR Code for Wedding</a> — A real-world example with vCard-sized payloads</li>
+</ul>
+
+<p>Pick a correction level that matches your environment, and let the generator pick the version. If you are hitting v40 and still not fitting, the answer is not a bigger QR code — it is a smaller payload.</p>
