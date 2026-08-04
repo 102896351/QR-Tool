@@ -1,0 +1,129 @@
+<p class="lead">You generated a perfect QR code in your browser, exported it as a 1024-pixel PNG, and dropped it into a flyer. The flyer came back from the printer and now nobody can scan it. The code looks identical to the one on your screen. What changed? Everything: the paper, the ink, the size, the contrast, the lighting where it lives, the phone that scans it. A <strong>QR code printing guide</strong> is the bridge between a code that scans on your monitor and a code that scans in the wild. This guide covers the 10 rules every designer, printer, and marketer needs to know — with the math, the most common failure modes, and a checklist you can tape to your wall.</p><p>By the end, you’ll know exactly how to print a QR code that scans first try, on every phone, in every lighting condition, for the next 5 years.</p>
+<figure>
+  <img src="/blog/qr-code-printing-guide/qr-code-printing-guide-hero.png" alt="QR code printing guide: business card next to poster showing size comparison" />
+  <figcaption>The same QR code at three sizes: business card, poster, billboard. The size math behind each is what makes it scannable.</figcaption>
+</figure>
+
+<h2 id="rule1">Rule 1: Size to the Scan Distance (The 10:1 Rule)</h2>
+<p>The single most common printing mistake is making the QR code too small. The rule of thumb: <strong>the QR code must be at least 1/10th the size of the scan distance</strong>. So:</p>
+<ul>
+<li><strong>10 cm away</strong> (handheld): QR code can be 1 cm × 1 cm.</li>
+<li><strong>50 cm away</strong> (table menu): QR code should be 5 cm × 5 cm.</li>
+<li><strong>1 meter away</strong> (wall poster at standing height): QR code should be 10 cm × 10 cm.</li>
+<li><strong>3 meters away</strong> (window display): QR code should be 30 cm × 30 cm.</li>
+<li><strong>10 meters away</strong> (billboard): QR code should be 1 m × 1 m or larger.</li>
+</ul>
+<p>Printers who skip this math produce posters with a 2 cm QR code. Customers walk up, can’t scan, walk away. The whole point of the code is wasted.</p>
+<h3>Why 10:1 specifically</h3>
+<p>Modern phones have a minimum focus distance of about 8 cm and a camera field of view of about 65 degrees. At a 10:1 ratio, the QR code fills 30-50% of the camera frame, which is the sweet spot for the phone’s auto-focus and decoder to lock on. Go smaller than 10:1 and the code becomes a smudge in the frame; go much larger and the phone can’t focus on the entire code at once.</p>
+<h2 id="rule2">Rule 2: Maintain Contrast (No Inverted Codes Without Testing)</h2>
+<p>The standard QR code is black on white. The contrast ratio between dark and light modules should be at least <strong>4:1</strong>, measured as luminance (a 70% gray code on white still scans; a 30% gray code on white does not).</p>
+<h3>What ruins contrast</h3>
+<ul>
+<li><strong>Light-colored inks on dark backgrounds</strong> — printers love printing white ink on colored paper, but the resulting contrast is often 3:1, just below the threshold.</li>
+<li><strong>Transparent backgrounds</strong> — a QR code with no background relies on whatever it’s printed on. On a beige business card, that fails.</li>
+<li><strong>Yellow or cyan on white</strong> — yellow has a luminance of about 90% (close to white’s 100%), so yellow-on-white reads as a faint tint, not a contrast.</li>
+</ul>
+<h3>The brand color exception</h3>
+<p>You can use any color for the dark modules, as long as the contrast ratio with the background is 4:1 or higher. Navy on white: fine. Forest green on white: fine. Red on white: fine. Pastel pink on white: not fine. If your brand color is light, invert the code (light modules on a dark brand background) — but test scan it before committing to a 10,000-piece print run.</p>
+<h2 id="rule3">Rule 3: Honor the Quiet Zone (The 4-Module Border)</h2>
+<p>A QR code must be surrounded by a clear, empty border called the <strong>quiet zone</strong>. The minimum size is 4 modules wide on all four sides. A module is the smallest square in the code; for a typical code, that translates to about 16% of the code’s width on each side.</p>
+<figure>
+  <img src="/blog/qr-code-printing-guide/qr-code-printing-guide-comparison.png" alt="QR code comparison: code with quiet zone vs code without quiet zone" />
+  <figcaption>Left: code with full quiet zone (scans reliably). Right: code with quiet zone cropped (scans intermittently).</figcaption>
+</figure>
+<p>The quiet zone is the difference between a QR code and a square. Most failed scans are not from bad codes — they’re from codes whose quiet zone was eaten by an adjacent design element. A logo placed too close, a paragraph that bleeds into the border, a background pattern that touches the edge — all of these silently break the scanner’s ability to detect the code’s boundaries.</p>
+<h2 id="rule4">Rule 4: Pick the Right Error Correction Level</h2>
+<p>QR codes have four error correction levels, expressed as a percentage of code that can be damaged and still scan:</p>
+<ul>
+<li><strong>L (7%)</strong> — smallest code, used for clean indoor environments with no logo.</li>
+<li><strong>M (15%)</strong> — default, good for most uses.</li>
+<li><strong>Q (25%)</strong> — survives some damage, recommended for outdoor use or codes with a small logo.</li>
+<li><strong>H (30%)</strong> — largest code, used for codes that will be damaged (laser-etched metal, sprayed with sealant, on rough fabric).</li>
+</ul>
+<p>For printed QR codes on paper, the rule is: <strong>use Q if you have any doubt</strong>. The size increase from M to Q is small, and the resilience gain is large. Use H only when you know the surface will damage the code.</p>
+<h2 id="rule5">Rule 5: Match Resolution to Size (300 DPI Minimum)</h2>
+<p>Print resolution is measured in DPI (dots per inch). For QR codes, the minimum is <strong>300 DPI at final print size</strong>. Below that, the modules become blurry rectangles instead of crisp squares, and the scanner’s error correction has to work harder.</p>
+<h3>The math</h3>
+<p>A 3 cm × 3 cm QR code at 300 DPI is 354 × 354 pixels. A 10 cm × 10 cm code at 300 DPI is 1,181 × 1,181 pixels. Most QR code generators export at 1024 px, which is fine for the 10 cm size but undersized for anything larger. For a 30 cm × 30 cm code, you need at least 3,500 × 3,500 px. Use the SVG export if your generator offers it — vector scales infinitely without resolution loss.</p>
+<h3>Why PNG can be too small</h3>
+<p>The PNG export at 1024 px has a fixed resolution. If you scale it up in Photoshop or Illustrator, you’ll see pixelation. The fix: export SVG and scale the vector. The printer software will rasterize it at whatever DPI the job requires, and the code stays sharp.</p>
+<h2 id="rule6">Rule 6: Test on Real Devices Before Mass Printing</h2>
+<p>Every phone is different. Older phones have slower cameras and narrower fields of view. Newer phones handle large codes gracefully. The minimum test protocol:</p>
+<ol>
+<li>Print one proof at final size, on final paper, with final ink.</li>
+<li>Scan it with 5 different phones: an iPhone 12 (older), an iPhone 15 (current), a Samsung Galaxy S22, a Pixel 7, and a budget Android (sub-$200).</li>
+<li>Scan it in the lighting where it will live: window-lit, fluorescent, dim restaurant, bright sunlight.</li>
+<li>If any phone fails in any lighting, fix the size or contrast and re-print before committing to the full run.</li>
+</ol>
+<p>This 30-minute test saves the 10,000-piece re-print cost. It’s not optional.</p>
+<h2 id="rule7">Rule 7: Pick the Right Material and Finish</h2>
+<p>Paper, ink, and finish affect scannability. The hierarchy from worst to best:</p>
+<figure>
+  <img src="/blog/qr-code-printing-guide/qr-code-printing-guide-scan-demo.png" alt="QR code scan demo: phone scanning a laminated QR code on a poster" />
+  <figcaption>A phone scanning a laminated QR code on a glossy poster. Lamination protects against UV, water, and fingerprints.</figcaption>
+</figure>
+<ul>
+<li><strong>Matte uncoated paper</strong> — good for indoor use, easy to scan, but absorbs fingerprints and fades in direct sunlight.</li>
+<li><strong>Matte coated paper</strong> — better ink density, more vibrant color, still scannable.</li>
+<li><strong>Glossy paper</strong> — most vibrant, but glare from overhead lights can cause scan failures. Avoid placing glossy codes near windows.</li>
+<li><strong>Vinyl</strong> — waterproof, outdoor-durable, scannable if printed at high DPI.</li>
+<li><strong>Laminated</strong> — best for outdoor and high-traffic indoor. Adds a protective layer, prevents fading, easy to clean.</li>
+</ul>
+<h3>The glare problem</h3>
+<p>Glossy lamination or paper reflects overhead light directly into the phone’s camera, washing out the contrast. The fix: angle the print slightly, use matte lamination, or place the code where overhead light doesn’t hit it directly. A code under a window in the morning is fine; a code under a fluorescent light is fine; a code under both is a glare disaster.</p>
+<h2 id="rule8">Rule 8: Place Codes Where Phones Naturally Aim</h2>
+<p>People scan QR codes in 3 ways: while holding their phone in front of them (parallel to the code), while tilting down at a menu (45 degrees), and while glancing up at a poster (looking up). The scan path of the phone is mostly horizontal at chest height, not at eye level.</p>
+<h3>Where to place codes for different surfaces</h3>
+<ul>
+<li><strong>Restaurant table tent</strong>: at the natural hand-rest position, 30 cm from the table edge.</li>
+<li><strong>Wall poster</strong>: at 130-150 cm height (chest height for the average adult).</li>
+<li><strong>Window cling</strong>: at adult eye level (160 cm), but test scan from outside (reflections).</li>
+<li><strong>Product packaging</strong>: on the back or side that customers naturally rotate to, not the top or bottom.</li>
+</ul>
+<h2 id="rule9">Rule 9: Add a CTA (Call to Action) Below the Code</h2>
+<p>A QR code without a label has a scan rate of about 35%. A QR code with a one-line label (“Scan to see the menu”, “Scan for 10% off”) has a scan rate of about 75%. The label tells the customer what they’ll get, and removes the “what is this?” hesitation.</p>
+<p>The label should be:</p>
+<ul>
+<li>One short sentence, 6-8 words.</li>
+<li>Above the code (so it’s read first) or below (so it’s read after the visual).</li>
+<li>In the same language as the rest of the design.</li>
+<li>High contrast, same as the code.</li>
+</ul>
+<h2 id="rule10">Rule 10: Plan for the Long Term (Tracking and Updates)</h2>
+<p>Static QR codes never expire. Dynamic QR codes (which redirect through a vendor) can break if the vendor goes out of business, raises prices, or gets hacked. For long-term use (a poster that will hang for 3 years), prefer static codes and use a URL shortener you control (your own domain).</p>
+<p>For codes that need to track scans (marketing campaigns), use dynamic codes but plan for vendor lock-in. A 5-year campaign should use a vendor with a 5-year track record. If the vendor disappears, your codes stop working.</p>
+<h2 id="faq">FAQ</h2>
+<figure>
+  <img src="/blog/qr-code-printing-guide/qr-code-printing-guide-faq-banner.png" alt="FAQ banner: common QR code printing questions and answers" />
+  <figcaption>The 6 questions designers and printers ask most about QR code printing.</figcaption>
+</figure>
+<h3>What file format should I export for printing?</h3>
+<p>SVG if you have it. Vector scales infinitely. PNG at 1024 px minimum for small prints (under 30 cm). TIFF at 300 DPI for high-end offset printing. Avoid JPEG for QR codes — the compression artifacts degrade the crisp module edges.</p>
+<h3>Can I print a QR code on fabric?</h3>
+<p>Yes, but use error correction level H (30%) and print at 300 DPI minimum. Fabric warps and absorbs ink unevenly, so the code will lose some sharpness. Test on a swatch first.</p>
+<h3>How do I know if my print is too small?</h3>
+<p>Print the proof at final size. Hold it at the expected scan distance. If you can’t visually identify the finder patterns (the three big squares in the corners) at that distance, the code is too small or the contrast is wrong.</p>
+<h3>Why does my code look fine on screen but fail to scan when printed?</h3>
+<p>Three likely causes: (1) the print resolution is below 300 DPI and the modules are blurry; (2) the paper color is reducing contrast (e.g., cream paper with light gray code); (3) the scanner can’t find the quiet zone because of a busy background or adjacent design element.</p>
+<h3>Can I use a colored background under a black QR code?</h3>
+<p>Yes, as long as the contrast ratio is at least 4:1 and the background is solid (no pattern or gradient). A subtle full-bleed photo background with the code overlaid in white usually scans; the same code on a heavily patterned background usually doesn’t.</p>
+<h3>What about metallic inks (gold, silver)?</h3>
+<p>Metallic inks are reflective, which produces glare. They scan reliably when the print is at an angle to the dominant light source, but fail under direct overhead light. Test before committing to a large run.</p>
+<h2 id="checklist">Pre-Print Checklist</h2>
+<p>Tape this to your wall before every QR code print job:</p>
+<ol>
+<li>Code size is 1/10 of the scan distance or larger.</li>
+<li>Quiet zone is 4 modules wide on all 4 sides.</li>
+<li>Contrast ratio between code and background is 4:1 or higher.</li>
+<li>Resolution is 300 DPI at final print size (or use SVG).</li>
+<li>Error correction level is Q or H for outdoor / logo use.</li>
+<li>Test scan on 5 phones in 3 lighting conditions.</li>
+<li>Paper / finish chosen for the environment.</li>
+<li>Placement height matches typical scan posture.</li>
+<li>One-line CTA above or below the code.</li>
+<li>Static vs dynamic decision documented (vendor, expiration, redirect plan).</li>
+</ol>
+<h2 id="next">What to Do Next</h2>
+<p>A QR code is only as good as the print. If you need a free QR code generator that exports SVG (vector, infinite-resolution), PNG (1024 px, ready to print), and respects all 10 rules above by default — <a href="/">QR Tool Studio</a> is the tool for the job. Generate the code, follow the checklist above, print it, scan it. If it doesn’t scan first try, work the checklist backward until it does.</p>
+<p>For the technical side of QR code design (error correction levels, sizing math), see <a href="/blog/qr-code-error-correction-guide">QR code error correction</a>. For what to put inside a QR code (URL, vCard, WiFi), see <a href="/blog/how-qr-codes-work">how QR codes work</a>. For specific print sizing on common surfaces, see <a href="/blog/qr-code-size-guide">QR code size guide</a>.</p>
