@@ -13,12 +13,14 @@ const posts = postsData
 const post = computed(() => posts.find(p => p.slug === props.slug))
 
 function goBack() {
-  window.location.hash = 'blog'
+  history.pushState(null, '', '/blog')
+  window.dispatchEvent(new PopStateEvent('popstate'))
   window.scrollTo({ top: 0, behavior: 'instant' })
 }
 
 function goToGenerator() {
-  window.location.hash = ''
+  history.pushState(null, '', '/')
+  window.dispatchEvent(new PopStateEvent('popstate'))
   setTimeout(() => {
     document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' })
   }, 100)

@@ -20,61 +20,97 @@ const { t, lang, isReady } = useI18n()
 const tab = ref('single')
 
 // 路由:home | blog-list | blog-post | privacy | terms | contact | about
+// History mode — paths like /blog, /blog/<slug>, /privacy, etc.
 const view = ref('home')
 const currentSlug = ref('')
 
-function parseHash() {
-  const h = window.location.hash.replace(/^#\/?/, '')
-  if (h === 'blog' || h === 'blog/') {
+function parsePath(pathname) {
+  let p = (pathname || '/').replace(/\/+$/, '') || '/'
+  if (p === '/' || p === '') {
+    view.value = 'home'
+    currentSlug.value = ''
+  } else if (p === '/blog') {
     view.value = 'blog-list'
     currentSlug.value = ''
-  } else if (h.startsWith('blog/')) {
+  } else if (p.startsWith('/blog/')) {
     view.value = 'blog-post'
-    currentSlug.value = h.replace(/^blog\//, '').split('/')[0]
-  } else if (h === 'privacy') {
+    currentSlug.value = p.replace(/^\/blog\//, '').split('/')[0]
+    window.scrollTo(0, 0)
+  } else if (p === '/privacy') {
     view.value = 'privacy'
     currentSlug.value = ''
     window.scrollTo(0, 0)
-  } else if (h === 'terms') {
+  } else if (p === '/terms') {
     view.value = 'terms'
     currentSlug.value = ''
     window.scrollTo(0, 0)
-  } else if (h === 'contact') {
+  } else if (p === '/contact') {
     view.value = 'contact'
     currentSlug.value = ''
     window.scrollTo(0, 0)
-  } else if (h === 'about') {
+  } else if (p === '/about') {
     view.value = 'about'
     currentSlug.value = ''
     window.scrollTo(0, 0)
   } else {
+    // Unknown path → home (GitHub Pages 404 fallback lands here)
     view.value = 'home'
     currentSlug.value = ''
   }
 }
 
-function onHashChange() {
-  parseHash()
+function onPopState() {
+  parsePath(window.location.pathname)
   if (view.value === 'home') {
-    // 回到主页:切到 single tab
     tab.value = 'single'
   }
 }
 
+// Hash-based legacy links (e.g. from old emails, bookmarks) → redirect to history paths
+function redirectLegacyHash() {
+  const h = window.location.hash.replace(/^#\/?/, '')
+  if (!h) return false
+  // Map old #/blog/<slug> to /blog/<slug>
+  let target = null
+  if (h === 'blog' || h === 'blog/') target = '/blog'
+  else if (h.startsWith('blog/')) target = '/' + h
+  else if (['privacy', 'terms', 'contact', 'about'].includes(h)) target = '/' + h
+  if (target) {
+    history.replaceState(null, '', target)
+    parsePath(target)
+    return true
+  }
+  return false
+}
+
 onMounted(() => {
-  parseHash()
-  window.addEventListener('hashchange', onHashChange)
+  // Legacy hash migration first
+  if (!redirectLegacyHash()) {
+    parsePath(window.location.pathname)
+  }
+  window.addEventListener('popstate', onPopState)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('hashchange', onHashChange)
+  window.removeEventListener('popstate', onPopState)
 })
 
 function goBlog() {
-  window.location.hash = 'blog'
+  if (window.location.pathname !== '/blog') {
+    history.pushState(null, '', '/blog')
+    view.value = 'blog-list'
+    currentSlug.value = ''
+    window.scrollTo(0, 0)
+  }
 }
 function goHome() {
-  window.location.hash = ''
+  if (window.location.pathname !== '/') {
+    history.pushState(null, '', '/')
+    view.value = 'home'
+    currentSlug.value = ''
+    tab.value = 'single'
+    window.scrollTo(0, 0)
+  }
 }
 
 // 法律弹窗
@@ -156,6 +192,43 @@ function onNavClick(anchor) {
   showFeaturesAnchor.value = false
   goAnchor(anchor)
 }
+
+// 全局拦截页内 <a href="/blog/..."> 点击,避免整页刷新
+// (history 模式下页面会刷新,需要拦截走 pushState)
+function onDocClick(e) {
+  const a = e.target?.closest?.('a[href]')
+  if (!a) return
+  const href = a.getAttribute('href')
+  if (!href) return
+  // 只拦截站内路径(以 / 开头但不以 // 开头)
+  if (!href.startsWith('/') || href.startsWith('//')) return
+  // 排除 mailto / tel / 锚点 / 静态资源
+  if (href.startsWith('/#') || href.includes('#') && !href.startsWith('/blog') && !['/privacy', '/terms', '/contact', '/about'].some(p => href === p || href.startsWith(p + '?'))) {
+    // 锚点链接,允许默认行为
+    if (href.startsWith('/#')) return
+  }
+  // 拦截 /blog, /blog/<slug>, /privacy, /terms, /contact, /about
+  const path = href.split('?')[0].split('#')[0]
+  if (['/blog', '/privacy', '/terms', '/contact', '/about'].includes(path) || path.startsWith('/blog/')) {
+    e.preventDefault()
+    if (window.location.pathname === path) {
+      // Already on this path, just scroll top
+      window.scrollTo(0, 0)
+      return
+    }
+    history.pushState(null, '', path)
+    parsePath(path)
+    // blog-list/post 滚顶,其他页在 parsePath 里已处理
+    if (path === '/blog') window.scrollTo(0, 0)
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', onDocClick)
+})
+onBeforeUnmount(() => {
+  document.removeEventListener('click', onDocClick)
+})
 </script>
 
 <template>
@@ -197,7 +270,7 @@ function onNavClick(anchor) {
             {{ t('hero.cta.primary') }}
           </button>
           <button @click="goAnchor('how')" class="btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             {{ t('hero.cta.secondary') }}
           </button>
         </div>
@@ -236,16 +309,6 @@ function onNavClick(anchor) {
     </main>
 
     <!-- AdSense: display ad (under generator, before SEO content) -->
-    <!--
-      Placeholder slot ID. After AdSense approves toolbox168.xyz:
-        1. Create a "Display ad" unit in AdSense dashboard
-        2. Replace data-ad-slot below with the new slot ID
-        3. Reload to confirm ad renders
-
-      v-if: ONLY show on home view (most content-rich). Hide on legal pages
-      and during SPA route transitions to comply with AdSense "no ads on
-      screens without publisher content" policy.
-    -->
     <aside
       v-if="view === 'home' && tab === 'single'"
       class="w-full max-w-6xl mx-auto px-4 sm:px-6 mt-2 mb-8" aria-label="Sponsored content"
@@ -288,13 +351,13 @@ function onNavClick(anchor) {
         <div>
           <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.product') }}</h3>
           <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-            <li><a href="#generator" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.generator') }}</a></li>
-            <li><a href="#batch" @click.prevent="tab='batch'" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.batch') }}</a></li>
-            <li><a href="#how" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.how') }}</a></li>
-            <li><a href="#types" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.types') }}</a></li>
-            <li><a href="#use-cases" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.usecases') }}</a></li>
-            <li><a href="#faq" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.faq') }}</a></li>
-            <li><a href="#blog" @click.prevent="goBlog" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1.5">
+            <li><a href="/#generator" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.generator') }}</a></li>
+            <li><a href="/#batch" @click.prevent="tab='batch'" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.batch') }}</a></li>
+            <li><a href="/#how" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.how') }}</a></li>
+            <li><a href="/#types" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.types') }}</a></li>
+            <li><a href="/#use-cases" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.usecases') }}</a></li>
+            <li><a href="/#faq" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.faq') }}</a></li>
+            <li><a href="/blog" @click.prevent="goBlog()" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1.5">
               <span>{{ t('footer.link.blog') || 'Blog' }}</span>
               <span class="inline-block px-1.5 py-0.5 text-[8px] font-bold rounded bg-gradient-to-r from-brand-500 to-purple-500 text-white">NEW</span>
             </a></li>
@@ -305,10 +368,10 @@ function onNavClick(anchor) {
         <div>
           <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.legal') }}</h3>
           <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-            <li><a href="#privacy" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</a></li>
-            <li><a href="#terms" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</a></li>
+            <li><a href="/privacy" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</a></li>
+            <li><a href="/terms" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</a></li>
             <li><button @click="openLegal('disclaimer')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.legal.disclaimer') }}</button></li>
-            <li><a href="#privacy#cookies" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.cookie') }}</a></li>
+            <li><a href="/privacy#cookies" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.cookie') }}</a></li>
           </ul>
         </div>
 
@@ -316,8 +379,8 @@ function onNavClick(anchor) {
         <div>
           <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.about') }}</h3>
           <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-            <li><a href="#about" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</a></li>
-            <li><a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</a></li>
+            <li><a href="/about" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</a></li>
+            <li><a href="/contact" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</a></li>
             <li>
               <a href="mailto:andynaonao@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
                 {{ t('footer.about.biz') }}
@@ -343,13 +406,13 @@ function onNavClick(anchor) {
             <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
               <button @click="openLegal('disclaimer')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.disclaimer') }}</button>
               <span>·</span>
-              <a href="#privacy" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</a>
+              <a href="/privacy" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</a>
               <span>·</span>
-              <a href="#terms" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</a>
+              <a href="/terms" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</a>
               <span>·</span>
-              <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</a>
+              <a href="/about" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.about') }}</a>
               <span>·</span>
-              <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</a>
+              <a href="/contact" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.about.contact') }}</a>
             </div>
           </div>
         </div>

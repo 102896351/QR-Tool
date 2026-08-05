@@ -78,17 +78,18 @@ function main() {
   // Home page
   blocks.push(urlBlock(`${SITE}/`, lastmod, RULES.home.priority, RULES.home.changefreq));
 
-  // Anchor routes (single-page sections)
-  blocks.push(urlBlock(`${SITE}/#blog`,     lastmod, RULES.blogIndex.priority, RULES.blogIndex.changefreq));
-  blocks.push(urlBlock(`${SITE}/#generator`, lastmod, RULES.tool.priority,     RULES.tool.changefreq));
-  blocks.push(urlBlock(`${SITE}/#batch`,     lastmod, RULES.batch.priority,    RULES.batch.changefreq));
-  blocks.push(urlBlock(`${SITE}/#faq`,       lastmod, RULES.faq.priority,      RULES.faq.changefreq));
+  // History-mode routes (real URLs, not hash fragments)
+  blocks.push(urlBlock(`${SITE}/blog`,         lastmod, RULES.blogIndex.priority, RULES.blogIndex.changefreq));
+  blocks.push(urlBlock(`${SITE}/privacy`,      lastmod, RULES.tool.priority,      RULES.tool.changefreq));
+  blocks.push(urlBlock(`${SITE}/terms`,        lastmod, RULES.batch.priority,     RULES.batch.changefreq));
+  blocks.push(urlBlock(`${SITE}/contact`,      lastmod, RULES.faq.priority,       RULES.faq.changefreq));
+  blocks.push(urlBlock(`${SITE}/about`,        lastmod, RULES.faq.priority,       RULES.faq.changefreq));
 
-  // Blog posts
+  // Blog posts (each as independent URL)
   for (const post of posts) {
     const rule = RULES[post.category] || RULES.Guide;
     blocks.push(urlBlock(
-      `${SITE}/#blog/${post.slug}`,
+      `${SITE}/blog/${post.slug}`,
       post.date || lastmod,
       rule.priority,
       rule.changefreq,

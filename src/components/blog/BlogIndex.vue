@@ -11,7 +11,8 @@ const sortedPosts = computed(() => {
 })
 
 function goToPost(slug) {
-  window.location.hash = `blog/${slug}`
+  history.pushState(null, '', `/blog/${slug}`)
+  window.dispatchEvent(new PopStateEvent('popstate'))
   window.scrollTo({ top: 0, behavior: 'instant' })
 }
 

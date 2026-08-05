@@ -6,7 +6,7 @@
   "description": "一款纯前端、极致隐私的在线二维码生成工具",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-404-fallback.js && node scripts/prerender-blog.js",
     "preview": "vite preview --host --port 4173"
   },
   "dependencies": {

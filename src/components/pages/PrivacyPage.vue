@@ -65,7 +65,7 @@ const { t } = useI18n()
         <li>Know what data is collected about you (see Section 2 above)</li>
         <li>Request deletion of any data we hold (we hold no personal data, but third-party services may; see their policies)</li>
         <li>Opt out of personalized advertising (Google Ad Settings: <a href="https://adssettings.google.com/" target="_blank" rel="noopener">adssettings.google.com</a>)</li>
-        <li>Object to processing (contact us via the <a href="#contact">Contact</a> page)</li>
+        <li>Object to processing (contact us via the <a href="/contact">Contact</a> page)</li>
       </ul>
 
       <h2>7. Third-party policies</h2>
@@ -79,7 +79,7 @@ const { t } = useI18n()
       <p>We may update this policy as the tool evolves. Significant changes will be announced on the homepage. The "Last updated" date at the top of this page reflects the current version.</p>
 
       <h2>9. Contact</h2>
-      <p>For privacy-related questions or data requests, see our <a href="#contact">Contact</a> page.</p>
+      <p>For privacy-related questions or data requests, see our <a href="/contact">Contact</a> page.</p>
     </div>
   </div>
 </template>

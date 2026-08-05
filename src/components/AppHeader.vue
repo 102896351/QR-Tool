@@ -29,7 +29,7 @@ function onBlogClick(e) {
   <header class="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
     <div class="flex items-center justify-between gap-3">
       <!-- Logo -->
-      <a href="#" @click="onLogoClick" class="flex items-center gap-3 group">
+      <a href="/" @click="onLogoClick" class="flex items-center gap-3 group">
         <div class="relative h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
           <svg viewBox="0 0 64 64" width="26" height="26" class="text-white">
             <rect x="6" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"/>
@@ -66,7 +66,7 @@ function onBlogClick(e) {
         </nav>
         <!-- Blog 入口 -->
         <a
-          href="#blog"
+          href="/blog"
           @click="onBlogClick"
           :class="['inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm font-semibold transition-all border',
                    view === 'blog-list' || view === 'blog-post'

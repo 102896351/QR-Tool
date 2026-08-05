@@ -142,7 +142,7 @@ const featureIcons = [
         </h2>
         <p class="mt-3 text-gray-600 dark:text-gray-300">
           <span>{{ t('mkt.faq.sub') }}</span>
-          <a href="#" class="text-brand-600 dark:text-brand-300 hover:underline">{{ t('legal.contact.title') }}</a>
+          <a href="/contact" class="text-brand-600 dark:text-brand-300 hover:underline">{{ t('legal.contact.title') }}</a>
         </p>
       </div>
       <div class="max-w-3xl mx-auto glass-panel dark:glass-panel-dark p-2 sm:p-3 noise-bg">
@@ -188,7 +188,7 @@ const featureIcons = [
             </p>
             <a
               v-if="onGoBlog"
-              href="#blog"
+              href="/blog"
               @click.prevent="onGoBlog"
               class="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-500 to-purple-500 text-white text-sm font-bold shadow-md shadow-brand-500/30 hover:shadow-lg transition-shadow"
             >
@@ -215,7 +215,7 @@ const featureIcons = [
       <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
         {{ t('mkt.cta.title') }}
       </h2>
-      <a href="#generator" class="btn-brand mt-6 inline-flex">
+      <a href="/#generator" class="btn-brand mt-6 inline-flex">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         {{ t('mkt.cta.button') }}
       </a>
