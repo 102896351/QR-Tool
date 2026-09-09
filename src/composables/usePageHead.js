@@ -58,7 +58,9 @@ export function useHreflang(pathOrGetter) {
   const getPath = typeof pathOrGetter === 'function' ? pathOrGetter : () => pathOrGetter
   useHead(() => {
     const path = getPath() || '/'
-    const stripped = path.replace(/^\/(en|zh|ja|ko|fr|de|es)(?=\/|$)/, '') || '/'
+    // 去语言前缀，并统一补尾斜杠（与 sitemap 一致，避免 Google 视为两个 URL）
+    let stripped = path.replace(/^\/(en|zh|ja|ko|fr|de|es)(?=\/|$)/, '') || '/'
+    if (!stripped.endsWith('/')) stripped += '/'
     const links = SUPPORTED.map((s) => ({
       rel: 'alternate',
       hreflang: s.code,

@@ -18,19 +18,24 @@ const posts = postsData
 const post = computed(() => posts.find(p => p.slug === props.slug))
 
 /**
-  * canonical 与 hreflang 的「去前缀」路径：
+  * canonical 与 hreflang 的「去前缀」路径（统一带尾斜杠，与 sitemap 一致）：
   *   /zh/blog/foo/  →  /blog/foo/
   *   /blog/foo/     →  /blog/foo/
-  * en 页 canonical 走无前缀；其它语言 canonical 保留前缀。
   */
 const pathNoPrefix = computed(() => {
-  const p = route.path
-  return p.replace(/^\/(en|zh|ja|ko|fr|de|es)(?=\/|$)/, '') || '/'
+  let p = route.path.replace(/^\/(en|zh|ja|ko|fr|de|es)(?=\/|$)/, '') || '/'
+  if (!p.endsWith('/')) p += '/'
+  return p
 })
 
 const currentLang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
 
-const canonical = computed(() => `${SITE}${route.path}`)
+// 当前语言 + 尾斜杠的完整路径（canonical 自指）
+const canonical = computed(() => {
+  let p = route.path
+  if (!p.endsWith('/')) p += '/'
+  return `${SITE}${p}`
+})
 
 const hreflangLinks = computed(() => {
   const stripped = pathNoPrefix.value
