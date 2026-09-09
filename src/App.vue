@@ -5,7 +5,7 @@ import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
 import LegalModal from './components/LegalModal.vue'
 import { useTheme } from './composables/useTheme'
-import { useI18n } from './composables/useI18n'
+import { useI18n, applyLocale, langFromPath } from './composables/useI18n'
 import { tab } from './composables/useTab'
 import { legalOpen, legalType, closeLegal } from './composables/useLegal'
 
@@ -20,9 +20,22 @@ const view = computed(() => route.meta?.view || 'home')
 watch(
   () => route.name,
   (name) => {
-    if (name === 'home') tab.value = 'single'
+    if (name && name.endsWith('-home')) tab.value = 'single'
   }
 )
+
+/**
+ * 路由语言 ↔ i18n 状态双向同步：
+ * - 进入新页面时按 URL 前缀 / meta.lang 强制设定当前语言（覆盖 localStorage）
+ * - 第一次 setup 也跑一次 immediate=true，确保 SSR/prebuild 阶段就用正确的字典
+ */
+function syncLangFromRoute() {
+  const code = route.meta?.lang || langFromPath(route.path)
+  if (code && code !== lang.value) applyLocale(code)
+}
+
+syncLangFromRoute()
+watch(() => route.fullPath, syncLangFromRoute)
 
 /** 同步 <html lang>，便于 Google 判断页面语言 */
 function applyI18nToHead() {

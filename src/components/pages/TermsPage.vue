@@ -1,13 +1,18 @@
 <script setup>
-import { useI18n } from '../../composables/useI18n'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n, DEFAULT_LOCALE } from '../../composables/useI18n'
 import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+const route = useRoute()
+const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+const termsPath = computed(() => lang.value === DEFAULT_LOCALE ? '/terms/' : `/${lang.value}/terms/`)
 
 usePageHead({
   title: 'Terms of Service — QR Tool Studio',
   description:
     'The terms for using QR Tool Studio: a free, browser-based QR code generator with no account, no upload and no usage limits. Plain language, no legalese.',
-  path: '/terms/'
+  path: termsPath.value
 })
 </script>
 

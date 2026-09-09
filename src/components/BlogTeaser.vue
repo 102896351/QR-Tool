@@ -1,10 +1,16 @@
 <script setup>
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import postsData from '../blog/posts.json'
-import { useI18n } from '../composables/useI18n'
+import { useI18n, DEFAULT_LOCALE } from '../composables/useI18n'
 
 const { t } = useI18n()
+const route = useRoute()
+const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+function lp(p) {
+  if (lang.value === DEFAULT_LOCALE) return p
+  return `/${lang.value}${p === '/' ? '/' : p}`
+}
 
 /**
  * 首页「最新指南」区块。
@@ -40,7 +46,7 @@ function formatDate(d) {
         </p>
       </div>
       <RouterLink
-        to="/blog/"
+        :to="lp('/blog/')"
         class="hidden sm:inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 hover:underline"
       >
         {{ t('blog.browseAll') }}
@@ -51,7 +57,7 @@ function formatDate(d) {
     <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 list-none p-0 m-0">
       <li v-for="post in featured" :key="post.slug">
         <RouterLink
-          :to="`/blog/${post.slug}/`"
+          :to="lp(`/blog/${post.slug}/`)"
           class="group flex h-full flex-col rounded-2xl border border-gray-200/60 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] p-5 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-400/50"
         >
           <div class="flex items-center gap-2 text-[11px] text-gray-500 dark:text-gray-400 mb-2">
@@ -78,7 +84,7 @@ function formatDate(d) {
     </ul>
 
     <div class="mt-7 text-center sm:hidden">
-      <RouterLink to="/blog/" class="btn-ghost">
+      <RouterLink :to="lp('/blog/')" class="btn-ghost">
         {{ t('blog.browseAll') }}
       </RouterLink>
     </div>

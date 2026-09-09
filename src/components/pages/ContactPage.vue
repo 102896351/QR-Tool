@@ -1,14 +1,22 @@
 <script setup>
-import { ref } from 'vue'
-import { useI18n } from '../../composables/useI18n'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n, DEFAULT_LOCALE } from '../../composables/useI18n'
 import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+const route = useRoute()
+const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+const contactPath = computed(() => lang.value === DEFAULT_LOCALE ? '/contact/' : `/${lang.value}/contact/`)
+function lp(p) {
+  if (lang.value === DEFAULT_LOCALE) return p
+  return `/${lang.value}${p === '/' ? '/' : p}`
+}
 
 usePageHead({
   title: 'Contact QR Tool Studio — Support, Bugs & Partnerships',
   description:
     'Contact the QR Tool Studio team for bug reports, feature requests, privacy questions or partnership inquiries. Email or GitHub — we reply within 1-3 business days.',
-  path: '/contact/'
+  path: contactPath.value
 })
 
 const form = ref({ name: '', email: '', subject: 'general', message: '' })
@@ -169,7 +177,7 @@ function submit() {
       </p>
       <div class="grid sm:grid-cols-3 gap-4">
         <RouterLink
-          to="/#faq"
+          :to="lp('/#faq')"
           class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition"
         >
           <div class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Frequently asked questions</div>
@@ -178,7 +186,7 @@ function submit() {
           </p>
         </RouterLink>
         <RouterLink
-          to="/blog/"
+          :to="lp('/blog/')"
           class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition"
         >
           <div class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Step-by-step guides</div>
@@ -187,7 +195,7 @@ function submit() {
           </p>
         </RouterLink>
         <RouterLink
-          to="/privacy/"
+          :to="lp('/privacy/')"
           class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition"
         >
           <div class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Privacy questions</div>

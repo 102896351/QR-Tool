@@ -1,8 +1,8 @@
 <script setup>
 import { computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { useI18n } from '../../composables/useI18n'
+import { useI18n, SUPPORTED, DEFAULT_LOCALE } from '../../composables/useI18n'
 import postsData from '../../blog/posts.json'
 import { SITE, BRAND } from '../../config.js'
 
@@ -10,12 +10,41 @@ const props = defineProps({
   slug: { type: String, required: true }
 })
 
-const { t, isReady } = useI18n()
+const { t, isReady, lang } = useI18n()
 const router = useRouter()
+const route = useRoute()
 const posts = postsData
 
 const post = computed(() => posts.find(p => p.slug === props.slug))
-const canonical = computed(() => `${SITE}/blog/${post.value?.slug}/`)
+
+/**
+  * canonical 与 hreflang 的「去前缀」路径：
+  *   /zh/blog/foo/  →  /blog/foo/
+  *   /blog/foo/     →  /blog/foo/
+  * en 页 canonical 走无前缀；其它语言 canonical 保留前缀。
+  */
+const pathNoPrefix = computed(() => {
+  const p = route.path
+  return p.replace(/^\/(en|zh|ja|ko|fr|de|es)(?=\/|$)/, '') || '/'
+})
+
+const currentLang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+
+const canonical = computed(() => `${SITE}${route.path}`)
+
+const hreflangLinks = computed(() => {
+  const stripped = pathNoPrefix.value
+  const links = []
+  for (const s of SUPPORTED) {
+    const href = s.code === DEFAULT_LOCALE
+      ? `${SITE}${stripped}`
+      : `${SITE}/${s.code}${stripped === '/' ? '/' : stripped}`
+    links.push({ rel: 'alternate', hreflang: s.code, href })
+  }
+  // x-default 指向英文版（去前缀）
+  links.push({ rel: 'alternate', hreflang: 'x-default', href: `${SITE}${stripped}` })
+  return links
+})
 
 function formatDate(dateStr) {
   const d = new Date(dateStr)
@@ -23,16 +52,18 @@ function formatDate(dateStr) {
 }
 
 function goBack() {
-  router.push('/blog/')
+  // 回列表：保留当前语言
+  const target = currentLang.value === DEFAULT_LOCALE ? '/blog/' : `/${currentLang.value}/blog/`
+  router.push(target)
 }
 
 function goToGenerator() {
-  router.push('/#generator')
+  router.push(`/${currentLang.value === DEFAULT_LOCALE ? '' : currentLang.value + '/'}#generator`)
 }
 
 /**
  * 相关文章：同分类优先，不足则用最新的补齐，最多 3 篇。
- * 目的是给 Google 更多站内爬取路径（原站所有页面零内链，是收录失败的主因之一）。
+ * 链接保留当前语言前缀，指向同语言的对应文章页。
  */
 const related = computed(() => {
   if (!post.value) return []
@@ -43,9 +74,14 @@ const related = computed(() => {
   return [...sameCat, ...others].slice(0, 3)
 })
 
+function relatedHref(slug) {
+  return currentLang.value === DEFAULT_LOCALE ? `/blog/${slug}/` : `/${currentLang.value}/blog/${slug}/`
+}
+
 useHead(() => {
   const p = post.value
   if (!p) return { title: `Not found | ${BRAND}` }
+  const titleText = currentLang.value === DEFAULT_LOCALE ? p.title : `${p.title} | ${BRAND}`
   return {
     title: `${p.title} | ${BRAND} Blog`,
     meta: [
@@ -55,12 +91,16 @@ useHead(() => {
       { property: 'og:image', content: `${SITE}${p.cover}` },
       { property: 'og:type', content: 'article' },
       { property: 'og:url', content: canonical.value },
+      { property: 'og:locale', content: currentLang.value },
       { property: 'article:published_time', content: p.date },
       { name: 'twitter:title', content: p.title },
       { name: 'twitter:description', content: p.description },
       { name: 'twitter:card', content: 'summary_large_image' }
     ],
-    link: [{ rel: 'canonical', href: canonical.value }],
+    link: [
+      { rel: 'canonical', href: canonical.value },
+      ...hreflangLinks.value
+    ],
     script: [
       {
         type: 'application/ld+json',
@@ -72,6 +112,7 @@ useHead(() => {
           image: `${SITE}${p.cover}`,
           datePublished: p.date,
           dateModified: p.date,
+          inLanguage: currentLang.value,
           author: { '@type': 'Organization', name: p.author, url: `${SITE}/about/` },
           publisher: {
             '@type': 'Organization',
@@ -88,8 +129,8 @@ useHead(() => {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: currentLang.value === DEFAULT_LOCALE ? `${SITE}/` : `${SITE}/${currentLang.value}/` },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: currentLang.value === DEFAULT_LOCALE ? `${SITE}/blog/` : `${SITE}/${currentLang.value}/blog/` },
             { '@type': 'ListItem', position: 3, name: p.title, item: canonical.value }
           ]
         })
@@ -118,6 +159,26 @@ onMounted(() => {
       </svg>
       {{ t('blog.backToList') }}
     </button>
+
+    <!-- 非英文页提示：本文为英文原文（按当前 Option A 设计，正文只翻译界面、不翻译文章正文） -->
+    <div
+      v-if="currentLang !== 'en'"
+      class="mb-6 p-4 rounded-xl border border-amber-200/70 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/[0.08] text-amber-900 dark:text-amber-100 text-sm flex items-start gap-3"
+      role="status"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-none text-amber-500">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <div>
+        <div class="font-semibold">{{ t('blog.langNotice.title') }}</div>
+        <div class="mt-1 text-amber-900/80 dark:text-amber-100/80">
+          {{ t('blog.langNotice.desc') }}
+          <RouterLink :to="`/blog/${post.slug}/`" class="font-semibold underline underline-offset-2 ml-1">
+            {{ t('blog.langNotice.cta') }}
+          </RouterLink>
+        </div>
+      </div>
+    </div>
 
     <!-- Article header -->
     <header class="mb-8">
@@ -224,7 +285,7 @@ onMounted(() => {
       <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <li v-for="rp in related" :key="rp.slug">
           <RouterLink
-            :to="`/blog/${rp.slug}/`"
+            :to="relatedHref(rp.slug)"
             class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow"
           >
             <div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5">

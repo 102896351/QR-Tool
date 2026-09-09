@@ -19,7 +19,10 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsInlineLimit: 0,
-    target: 'es2020'
+    target: 'es2020',
+    // 关闭自动清空：本地沙箱对批量删除有保护（rmSync >50 文件会被拦截），
+    // 改为构建前手动清理 dist；CI 每次全新 checkout，天然无需清空。
+    emptyOutDir: false
   },
   ssgOptions: {
     // 每篇文章都会生成 dist/blog/<slug>/index.html

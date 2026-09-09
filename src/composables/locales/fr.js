@@ -223,7 +223,8 @@ export default {
   'footer.about.biz': 'Affaires',
   'footer.about.theme': 'Thème',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
-,
+
+,
   // blog.fr
   'blog.notFoundDesc': 'L\u2019article que vous cherchez n\u2019existe pas.',
   'blog.badge': 'Blog',
@@ -241,4 +242,7 @@ export default {
   'blog.hero.desc': 'Guides pratiques pour tirer le meilleur des QR codes. Des cas PME aux bonnes pratiques de design.',
   'blog.empty': 'Pas encore d\u2019articles. Revenez bientôt !',
   'blog.backToList': 'Retour aux articles',
+  'blog.langNotice.title': 'Anglais uniquement',
+  'blog.langNotice.desc': 'Cet article est actuellement disponible uniquement en anglais.',
+  'blog.langNotice.cta': 'Lire en anglais →',
 }

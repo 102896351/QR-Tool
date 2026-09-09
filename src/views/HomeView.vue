@@ -1,18 +1,20 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import SingleGenerator from '../components/SingleGenerator.vue'
 import BatchGenerator from '../components/BatchGenerator.vue'
 import HistoryView from '../components/HistoryView.vue'
 import MarketingSections from '../components/MarketingSections.vue'
 import BlogTeaser from '../components/BlogTeaser.vue'
-import { useI18n } from '../composables/useI18n'
+import { useI18n, SUPPORTED, DEFAULT_LOCALE } from '../composables/useI18n'
+import { useHreflang } from '../composables/usePageHead'
 import { tab } from '../composables/useTab'
 import { SITE, BRAND } from '../config.js'
 
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
 
 const seedText = ref('')
 
@@ -30,9 +32,16 @@ function goAnchor(id) {
   }, 50)
 }
 
+const currentLang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+const homeUrl = computed(() => currentLang.value === DEFAULT_LOCALE ? `${SITE}/` : `${SITE}/${currentLang.value}/`)
+const blogUrl = computed(() => currentLang.value === DEFAULT_LOCALE ? `${SITE}/blog/` : `${SITE}/${currentLang.value}/blog/`)
+
 function goBlog() {
-  router.push('/blog/')
+  router.push(currentLang.value === DEFAULT_LOCALE ? '/blog/' : `/${currentLang.value}/blog/`)
 }
+
+// 各语言 hreflang（首屏 + 所有视图共享）
+useHreflang(() => route.path)
 
 // ---------- 结构化数据 ----------
 function stripHtml(s = '') {
@@ -53,12 +62,13 @@ const webAppLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: BRAND,
-  url: `${SITE}/`,
+  url: homeUrl.value,
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any (Browser)',
   browserRequirements: 'Requires JavaScript. Requires HTML5.',
   isAccessibleForFree: true,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  inLanguage: currentLang.value,
   featureList: [
     '8 QR code types: URL / vCard / text / email / phone / SMS / WiFi / location',
     '6 matrix styles and 5 eye styles',
@@ -76,6 +86,7 @@ const howToLd = {
   name: 'How to create a QR code',
   description: 'Create a custom QR code in three steps.',
   totalTime: 'PT1M',
+  inLanguage: currentLang.value,
   estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '0' },
   step: [
     { '@type': 'HowToStep', position: 1, name: 'Pick a type and enter your content', text: 'Paste a URL, fill in vCard or WiFi details, or type plain text.' },
@@ -88,8 +99,8 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
-    { '@type': 'ListItem', position: 2, name: 'QR Code Generator', item: `${SITE}/#generator` }
+    { '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl.value },
+    { '@type': 'ListItem', position: 2, name: 'QR Code Generator', item: `${homeUrl.value}#generator` }
   ]
 }
 
@@ -100,11 +111,12 @@ useHead(() => ({
     { property: 'og:title', content: t('meta.title') },
     { property: 'og:description', content: t('meta.desc') },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: `${SITE}/` },
+    { property: 'og:url', content: homeUrl.value },
+    { property: 'og:locale', content: currentLang.value },
     { name: 'twitter:title', content: t('meta.title') },
     { name: 'twitter:description', content: t('meta.desc') }
   ],
-  link: [{ rel: 'canonical', href: `${SITE}/` }],
+  link: [{ rel: 'canonical', href: homeUrl.value }],
   script: [
     { type: 'application/ld+json', innerHTML: JSON.stringify(webAppLd) },
     { type: 'application/ld+json', innerHTML: JSON.stringify(howToLd) },

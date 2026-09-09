@@ -264,7 +264,8 @@ export default {
   'footer.about.biz': '商务合作',
   'footer.about.theme': '主题',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
-,
+
+,
   // blog.zh
   'blog.notFoundDesc': '你访问的文章不存在。',
   'blog.badge': '博客',
@@ -282,4 +283,7 @@ export default {
   'blog.hero.desc': '专注于二维码实用场景,内容详实、拒绝注水。从商家使用案例到设计最佳实践,助你最大化二维码价值。',
   'blog.empty': '暂无文章，敬请期待！',
   'blog.backToList': '返回文章列表',
+  'blog.langNotice.title': '仅英文版本',
+  'blog.langNotice.desc': '本文目前仅有英文版本，欢迎阅读原文。',
+  'blog.langNotice.cta': '阅读英文原文 →',
 }

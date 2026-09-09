@@ -1,22 +1,32 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { useI18n } from '../../composables/useI18n'
+import { useI18n, DEFAULT_LOCALE } from '../../composables/useI18n'
+import { useHreflang } from '../../composables/usePageHead'
 import postsData from '../../blog/posts.json'
 import { SITE, BRAND } from '../../config.js'
 
 const { t } = useI18n()
 const router = useRouter()
+const route = useRoute()
 const posts = ref(postsData)
 
 const sortedPosts = computed(() => {
   return [...posts.value].sort((a, b) => new Date(b.date) - new Date(a.date))
 })
 
+const currentLang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+const blogUrl = computed(() => currentLang.value === DEFAULT_LOCALE ? `${SITE}/blog/` : `${SITE}/${currentLang.value}/blog/`)
+function postUrl(slug) { return currentLang.value === DEFAULT_LOCALE ? `/blog/${slug}/` : `/${currentLang.value}/blog/${slug}/` }
+function postUrlAbs(slug) { return currentLang.value === DEFAULT_LOCALE ? `${SITE}/blog/${slug}/` : `${SITE}/${currentLang.value}/blog/${slug}/` }
+
 function goToPost(slug) {
-  router.push(`/blog/${slug}/`)
+  router.push(postUrl(slug))
 }
+
+// 各语言 hreflang
+useHreflang(() => route.path)
 
 useHead(() => ({
   title: `QR Code Guides & Tutorials | ${BRAND} Blog`,
@@ -28,9 +38,10 @@ useHead(() => ({
     },
     { property: 'og:title', content: `QR Code Guides & Tutorials | ${BRAND} Blog` },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: `${SITE}/blog/` }
+    { property: 'og:url', content: blogUrl.value },
+    { property: 'og:locale', content: currentLang.value }
   ],
-  link: [{ rel: 'canonical', href: `${SITE}/blog/` }],
+  link: [{ rel: 'canonical', href: blogUrl.value }],
   script: [
     {
       type: 'application/ld+json',
@@ -38,11 +49,12 @@ useHead(() => ({
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         name: 'QR Code Guides',
-        url: `${SITE}/blog/`,
+        url: blogUrl.value,
+        inLanguage: currentLang.value,
         hasPart: sortedPosts.value.map((p) => ({
           '@type': 'BlogPosting',
           headline: p.title,
-          url: `${SITE}/blog/${p.slug}/`,
+          url: postUrlAbs(p.slug),
           datePublished: p.date
         }))
       })
@@ -82,7 +94,7 @@ function formatDate(dateStr) {
         class="group glass-panel dark:glass-panel-dark overflow-hidden noise-bg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       >
         <!-- 封面 + 标题做成真实 <a>，保证 Google 能从列表页抓到文章 URL -->
-        <RouterLink :to="`/blog/${post.slug}/`" class="block">
+        <RouterLink :to="postUrl(post.slug)" class="block">
         <!-- Cover image -->
         <div class="relative aspect-[1200/630] overflow-hidden bg-gradient-to-br from-brand-500/10 to-purple-500/10">
           <img
@@ -107,7 +119,7 @@ function formatDate(dateStr) {
             <span>·</span>
             <span>{{ post.readTime }} {{ t('blog.minRead') }}</span>
           </div>
-          <RouterLink :to="`/blog/${post.slug}/`">
+          <RouterLink :to="postUrl(post.slug)">
             <h2 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-300 transition-colors line-clamp-2">
               {{ post.title }}
             </h2>

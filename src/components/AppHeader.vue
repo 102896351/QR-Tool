@@ -1,9 +1,18 @@
 <script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ThemeToggle from './ThemeToggle.vue'
 import LangSwitcher from './LangSwitcher.vue'
-import { useI18n } from '../composables/useI18n'
+import { useI18n, DEFAULT_LOCALE } from '../composables/useI18n'
 
 const { t } = useI18n()
+const route = useRoute()
+const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+function lp(p) {
+  if (lang.value === DEFAULT_LOCALE) return p
+  return `/${lang.value}${p === '/' ? '/' : p}`
+}
+
 const tabs = [
   { id: 'single', labelKey: 'header.nav.single' },
   { id: 'batch',  labelKey: 'header.nav.batch' },
@@ -14,18 +23,13 @@ const props = defineProps({
   view:   { type: String, default: 'home' }
 })
 const emit = defineEmits(['change', 'goto-blog', 'goto-home'])
-
-function onBlogClick(e) {
-  e.preventDefault()
-  emit('goto-blog')
-}
 </script>
 
 <template>
   <header class="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
     <div class="flex items-center justify-between gap-3">
       <!-- Logo -->
-      <RouterLink to="/" class="flex items-center gap-3 group">
+      <RouterLink :to="lp('/')" class="flex items-center gap-3 group">
         <div class="relative h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
           <svg viewBox="0 0 64 64" width="26" height="26" class="text-white">
             <rect x="6" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"/>
@@ -61,9 +65,8 @@ function onBlogClick(e) {
           >{{ t(tb.labelKey) }}</button>
         </nav>
         <!-- Blog 入口 -->
-        <a
-          href="/blog/"
-          @click="onBlogClick"
+        <RouterLink
+          :to="lp('/blog/')"
           :class="['inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm font-semibold transition-all border',
                    view === 'blog-list' || view === 'blog-post'
                      ? 'bg-gradient-to-r from-brand-500 to-purple-500 text-white border-transparent shadow-md shadow-brand-500/30'
@@ -74,7 +77,7 @@ function onBlogClick(e) {
           </svg>
           <span>Blog</span>
           <span v-if="view === 'home'" class="hidden sm:inline-block px-1.5 py-0.5 text-[8px] font-bold rounded bg-gradient-to-r from-brand-500 to-purple-500 text-white">NEW</span>
-        </a>
+        </RouterLink>
         <ThemeToggle />
         <LangSwitcher />
       </div>
