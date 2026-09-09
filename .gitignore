@@ -34,6 +34,7 @@ pnpm-debug.log*
 # Vite / build cache
 .vite/
 .cache/
+.vite-ssg-temp/
 *.tsbuildinfo
 
 # Misc

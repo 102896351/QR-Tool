@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b15" media="(prefers-color-scheme: dark)">
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="zOTaNzeXJI3rJeU7OaOfx53VfgePqHJN6X9knR99SdY">
+
+    <!-- Google AdSense -->
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1606763409380030" crossorigin="anonymous"></script>
+
+    <!--
+      Primary Meta 仅为兜底值：真实 title / description / canonical / og / JSON-LD
+      由各路由组件通过 @unhead/vue 在构建期写入，每个页面各不相同。
+    -->
+    <title>How to Scan a QR Code from a Screenshot (iPhone &amp; Android, 2025) | QR Tool Studio Blog</title>
+    <meta name="description" content="Modern phones can scan QR codes from any image in your photo library. No app, no printer, no second device. 10 seconds.">
+    <meta name="author" content="QR Tool Studio">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="googlebot" content="index,follow">
+    <link rel="canonical" href="https://toolbox168.xyz/ko/blog/how-to-scan-qr-from-screenshot">
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="x-default" href="https://toolbox168.xyz/blog/how-to-scan-qr-from-screenshot">
+    <link rel="alternate" hreflang="en" href="https://toolbox168.xyz/blog/how-to-scan-qr-from-screenshot">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="QR Tool Studio">
+    <meta property="og:title" content="How to Scan a QR Code from a Screenshot (iPhone &amp; Android, 2025)">
+    <meta property="og:description" content="Modern phones can scan QR codes from any image in your photo library. No app, no printer, no second device. 10 seconds.">
+    <meta property="og:url" content="https://toolbox168.xyz/ko/blog/how-to-scan-qr-from-screenshot">
+    <meta property="og:locale" content="ko">
+    <meta property="og:image" content="https://toolbox168.xyz/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-hero.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="QR Tool Studio — Free Online QR Code Generator">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Scan a QR Code from a Screenshot (iPhone &amp; Android, 2025)">
+    <meta name="twitter:description" content="Modern phones can scan QR codes from any image in your photo library. No app, no printer, no second device. 10 seconds.">
+    <meta name="twitter:image" content="https://toolbox168.xyz/og-image.png">
+
+    <!-- Performance: preconnect & dns-prefetch -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- Performance: theme pre-paint (避免主题切换闪烁) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('qr-theme') || 'system';
+          var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!--
+      旧 hash 路由兼容：本站已由 /#blog/xxx 迁移到 /blog/xxx/。
+      已在外部传播或已被搜索引擎记录的旧链接会自动 301 到新地址。
+    -->
+    <script>
+      (function () {
+        try {
+          var h = (location.hash || '').replace(/^#\/?/, '');
+          if (!h) return;
+          var path;
+          if (h === 'blog' || h === 'blog/') path = '/blog/';
+          else if (h.indexOf('blog/') === 0) path = '/blog/' + h.slice(5).split('?')[0] + '/';
+          else if (h === 'generator') path = '/#generator';
+          else if (h === 'batch') path = '/#batch';
+          else if (h === 'faq') path = '/#faq';
+          else return;
+          if (path.charAt(0) === '/') location.replace(path);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD: Organization（全站通用；页面级 schema 由各路由注入） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "QR Tool Studio",
+      "url": "https://toolbox168.xyz/",
+      "logo": "https://toolbox168.xyz/favicon.svg",
+      "description": "Free, privacy-first QR code generator that runs entirely in your browser. No account, no upload, no tracking.",
+      "email": "andynaonao@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "andynaonao@gmail.com",
+        "contactType": "customer support",
+        "availableLanguage": ["English", "Chinese", "Japanese", "Korean", "French", "German", "Spanish"]
+      },
+      "sameAs": [
+        "https://github.com/102896351/QR-Tool"
+      ],
+      "knowsAbout": [
+        "QR code generation",
+        "ISO/IEC 18004",
+        "URL encoding",
+        "vCard format",
+        "WiFi network configuration"
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6CQYKSQD3X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6CQYKSQD3X');
+    </script>
+    <script type="module" crossorigin="" src="/assets/app-BiRq_R9n.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/app-DDf4j3lc.css">
+  <meta property="article:published_time" content="2026-07-15"><link rel="alternate" hreflang="zh" href="https://toolbox168.xyz/zh/blog/how-to-scan-qr-from-screenshot"><link rel="alternate" hreflang="ja" href="https://toolbox168.xyz/ja/blog/how-to-scan-qr-from-screenshot"><link rel="alternate" hreflang="ko" href="https://toolbox168.xyz/ko/blog/how-to-scan-qr-from-screenshot"><link rel="alternate" hreflang="fr" href="https://toolbox168.xyz/fr/blog/how-to-scan-qr-from-screenshot"><link rel="alternate" hreflang="de" href="https://toolbox168.xyz/de/blog/how-to-scan-qr-from-screenshot"><link rel="alternate" hreflang="es" href="https://toolbox168.xyz/es/blog/how-to-scan-qr-from-screenshot"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Scan a QR Code from a Screenshot (iPhone & Android, 2025)","description":"Modern phones can scan QR codes from any image in your photo library. No app, no printer, no second device. 10 seconds.","image":"https://toolbox168.xyz/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-hero.png","datePublished":"2026-07-15","dateModified":"2026-07-15","inLanguage":"ko","author":{"@type":"Organization","name":"QR Tool Studio","url":"https://toolbox168.xyz/about/"},"publisher":{"@type":"Organization","name":"QR Tool Studio","url":"https://toolbox168.xyz/","logo":{"@type":"ImageObject","url":"https://toolbox168.xyz/favicon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://toolbox168.xyz/ko/blog/how-to-scan-qr-from-screenshot"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolbox168.xyz/ko/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolbox168.xyz/ko/blog/"},{"@type":"ListItem","position":3,"name":"How to Scan a QR Code from a Screenshot (iPhone & Android, 2025)","item":"https://toolbox168.xyz/ko/blog/how-to-scan-qr-from-screenshot"}]}</script></head>
+  <body>
+    <div id="app" data-server-rendered="true"><!--[--><div class="mesh-bg"></div><div class="min-h-screen flex flex-col"><header class="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8"><div class="flex items-center justify-between gap-3"><a href="/ko/" class="flex items-center gap-3 group"><div class="relative h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300"><svg viewBox="0 0 64 64" width="26" height="26" class="text-white"><rect x="6" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="12" y="12" width="8" height="8" rx="1" fill="#fff"></rect><rect x="38" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="44" y="12" width="8" height="8" rx="1" fill="#fff"></rect><rect x="6" y="38" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="12" y="44" width="8" height="8" rx="1" fill="#fff"></rect><rect x="36" y="36" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="46" y="36" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="36" y="46" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="46" y="46" width="6" height="6" rx="1" fill="currentColor"></rect></svg></div><div class="leading-tight"><div class="text-base sm:text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">QR Tool Studio <span class="text-brand-600 dark:text-brand-300">Studio</span></div><div class="text-[11px] text-gray-500 dark:text-gray-400 font-medium">무료 온라인 도구 · 8가지 유형 지원</div></div></a><div class="flex items-center gap-2 sm:gap-3"><!----><a href="/ko/blog/" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm font-semibold transition-all border bg-gradient-to-r from-brand-500 to-purple-500 text-white border-transparent shadow-md shadow-brand-500/30"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>Blog</span><!----></a><button title="当前:跟随系统" aria-label="切换主题" class="theme-toggle-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><span class="sr-only">当前:跟随系统</span></button><div class="relative"><button class="theme-toggle-btn gap-2 !w-auto px-3" aria-label="한국어" aria-haspopup="listbox" aria-expanded="false"><span class="text-base leading-none">🇰🇷</span><span class="text-xs font-semibold uppercase tracking-wider hidden sm:inline">ko</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 transition-transform"><polyline points="6 9 12 15 18 9"></polyline></svg></button><!----></div></div></div><!----></header><div class="w-full max-w-4xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8 pb-16" data-v-4042dde3=""><button class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-300 transition-colors mb-6" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="19" y1="12" x2="5" y2="12" data-v-4042dde3=""></line><polyline points="12 19 5 12 12 5" data-v-4042dde3=""></polyline></svg> 글 목록으로</button><div class="mb-6 p-4 rounded-xl border border-amber-200/70 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/[0.08] text-amber-900 dark:text-amber-100 text-sm flex items-start gap-3" role="status" data-v-4042dde3=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-none text-amber-500" data-v-4042dde3=""><circle cx="12" cy="12" r="10" data-v-4042dde3=""></circle><line x1="12" y1="8" x2="12" y2="12" data-v-4042dde3=""></line><line x1="12" y1="16" x2="12.01" y2="16" data-v-4042dde3=""></line></svg><div data-v-4042dde3=""><div class="font-semibold" data-v-4042dde3="">영어만 제공</div><div class="mt-1 text-amber-900/80 dark:text-amber-100/80" data-v-4042dde3="">이 기사는 현재 영어로만 제공됩니다. 원문을 읽어주세요. <a href="/blog/how-to-scan-qr-from-screenshot/" class="font-semibold underline underline-offset-2 ml-1" data-v-4042dde3="">영어로 읽기 →</a></div></div></div><header class="mb-8" data-v-4042dde3=""><div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3" data-v-4042dde3=""><span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" data-v-4042dde3="">How-To</span><span data-v-4042dde3="">·</span><time datetime="2026-07-15" data-v-4042dde3="">July 15, 2026</time><span data-v-4042dde3="">·</span><span data-v-4042dde3="">5 분 소요</span></div><h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight" data-v-4042dde3="">How to Scan a QR Code from a Screenshot (iPhone &amp; Android, 2025)</h1><p class="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed" data-v-4042dde3="">Modern phones can scan QR codes from any image in your photo library. No app, no printer, no second device. 10 seconds.</p><div class="mt-5 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400" data-v-4042dde3=""><div class="h-8 w-8 rounded-full bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center text-white text-xs font-bold" data-v-4042dde3="">Q</div><span data-v-4042dde3="">QR Tool Studio</span></div></header><figure class="mb-10 rounded-2xl overflow-hidden glass-panel dark:glass-panel-dark" data-v-4042dde3=""><img src="/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-hero.png" alt="How to Scan a QR Code from a Screenshot (iPhone &amp; Android, 2025)" class="w-full h-auto" data-v-4042dde3=""></figure><aside class="my-8" aria-label="Sponsored content" data-v-4042dde3=""><div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center" data-v-4042dde3="">Advertisement</div><ins class="adsbygoogle block w-full" style="display:block;text-align:center;" data-ad-client="ca-pub-1606763409380030" data-ad-slot="0000000001" data-ad-layout="in-article" data-ad-format="fluid" data-v-4042dde3=""></ins><script data-v-4042dde3="">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></aside><article class="blog-content" data-v-4042dde3=""><p class="lead">Scanning a QR code from a screenshot is a surprisingly common need. Someone sent you a QR code in a text or email. You saw one in a tweet or a chat. You saved one to your photos. Can you scan it without printing it first? The answer is yes, on most modern phones, with no extra app required.</p>
+
+<p>This guide shows you how to scan a QR code from a screenshot on iPhone and Android. The process takes about 10 seconds and works on any QR code image you have access to.</p>
+
+<figure>
+  <img src="/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-hero.png" alt="How to scan QR code from screenshot">
+  <figcaption>You don\u2019t need a printer or a second phone. Modern phone cameras can read QR codes straight from your photo library.</figcaption>
+</figure>
+
+<h2 id="why">Why Scan a QR Code from a Screenshot?</h2>
+
+<p>You\u2019d think this would be a rare need, but it comes up more often than people expect:</p>
+
+<ul>
+<li>Someone sent you a QR code in a text, email, or chat</li>
+<li>You took a screenshot of a QR code on a website or document</li>
+<li>You saw a QR code in a video and screenshotted it</li>
+<li>You saved a QR code to your photo library to scan later</li>
+<li>You\u2019re testing a QR code you generated and want to verify it works</li>
+</ul>
+
+<p>In all these cases, the QR code lives in a digital image, not a physical object. The question is whether you can scan a QR code without first printing it.</p>
+
+<h2 id="answer">The Short Answer</h2>
+
+<p>Yes. Every modern phone (iPhone 11+ and Android 9+) can scan a QR code from a screenshot or photo in the camera roll, no app required. The camera app on these phones includes a \u201cscan from photo\u201d feature that recognizes QR codes in images you already have.</p>
+
+<h2 id="iphone">How to Scan a QR Code from a Screenshot on iPhone</h2>
+
+<p>On iPhone, the process is built into the Photos app:</p>
+
+<ol>
+<li><strong>Save the QR code to your Photos.</strong> Long-press the QR code image, then tap \u201cAdd to Photos\u201d (or it saves automatically if it was sent to you).</li>
+<li><strong>Open the Photos app</strong> and find the image.</li>
+<li><strong>Tap the QR code image</strong> to open it full screen.</li>
+<li><strong>Look for the QR code recognition indicator.</strong> A small yellow QR code icon appears in the bottom-right corner of the image. Tap it.</li>
+<li><strong>The action runs.</strong> A browser opens the URL, the mail app opens a draft, the WiFi settings open, etc. \u2014 depending on what the QR code contains.</li>
+</ol>
+
+<p>Note: the indicator sometimes takes a second or two to appear. If you don\u2019t see it, swipe down on the image to refresh the view.</p>
+
+<h2 id="android">How to Scan a QR Code from a Screenshot on Android</h2>
+
+<p>On Android, the process depends on the manufacturer (Samsung, Pixel, OnePlus, etc.) and the camera app version. Most modern Android phones support one of two methods:</p>
+
+<h3>Method 1: Google Lens (Pixel, most Android phones)</h3>
+
+<ol>
+<li>Open the Google Photos app</li>
+<li>Tap the QR code image</li>
+<li>Tap the Google Lens icon at the bottom</li>
+<li>Lens recognizes the QR code and shows the action</li>
+<li>Tap to open the URL, save the contact, join the WiFi, etc.</li>
+</ol>
+
+<h3>Method 2: Samsung Gallery (Samsung phones)</h3>
+
+<ol>
+<li>Open the Gallery app</li>
+<li>Tap the QR code image</li>
+<li>Tap the \u201cBixby Vision\u201d or \u201cScan QR code\u201d button</li>
+<li>Samsung recognizes the QR code and shows the action</li>
+</ol>
+
+<h3>Method 3: Camera app (some Android versions)</h3>
+
+<ol>
+<li>Open the Camera app</li>
+<li>Switch to the photo library view (usually by swiping right or tapping a thumbnail)</li>
+<li>Tap the QR code image to bring it up in the camera view</li>
+<li>The camera recognizes the QR code in the image</li>
+</ol>
+
+<p>If you\u2019re not sure which method works on your phone, try the Google Photos method first \u2014 it works on most Android devices.</p>
+
+<figure>
+  <img src="/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-comparison.png" alt="How to scan from screenshot on iPhone vs Android">
+  <figcaption>iPhone uses the Photos app\u2019s built-in QR scanner. Android uses Google Lens or the Gallery app.</figcaption>
+</figure>
+
+<h2 id="issues">What If It Doesn\u2019t Work?</h2>
+
+<p>If the QR code image won\u2019t scan, here are the most common reasons and fixes:</p>
+
+<h3>1. The image is too small or low resolution</h3>
+<p>If the QR code in the image is less than 200x200 pixels, the phone may have trouble reading it. Try to get a higher-resolution version of the image.</p>
+
+<h3>2. The image is rotated</h3>
+<p>QR codes can be read at any angle, but if the image is captured upside down or sideways in a way that crops part of the code, it won\u2019t scan. Rotate the image and try again.</p>
+
+<h3>3. The image has visual effects or compression</h3>
+<p>If the QR code was screenshotted through a service that applies filters, compression, or visual effects (some social media do this), the QR code may be unreadable. Get a clean copy of the image.</p>
+
+<h3>4. The image is a photo of a screen, not a screenshot</h3>
+<p>If you took a photo of a screen showing a QR code, the screen refresh (flicker) and lighting may have introduced noise. Take a screenshot instead, or take the photo with better lighting and a steady hand.</p>
+
+<h3>5. The image is from a video frame</h3>
+<p>Video compression can damage QR codes. If you captured the QR code from a video, try to find a still version (the creator may have a download link).</p>
+
+<h2 id="generator">What If You Generated the QR Code?</h2>
+
+<p>If you generated a QR code and want to test it, the easiest way is to scan it from a screenshot. The process:</p>
+
+<figure>
+  <img src="/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-scan-demo.png" alt="Test your QR code workflow">
+  <figcaption>After generating a QR code, take a screenshot, then scan it from your photos. Fastest way to test before printing.</figcaption>
+</figure>
+
+<ol>
+<li>Generate the QR code in your browser</li>
+<li>Take a screenshot of the rendered code (Windows: Win+Shift+S, Mac: Cmd+Shift+4, or just the Print Screen key)</li>
+<li>Transfer the screenshot to your phone (email, AirDrop, cloud sync, etc.)</li>
+<li>Scan from your phone\u2019s photo library</li>
+<li>Verify the destination URL is correct</li>
+</ol>
+
+<p>This is faster than printing and scanning, and works for any QR code.</p>
+
+<h2 id="send">How to Send a QR Code to Someone</h2>
+
+<p>If you want to send a QR code to someone, just send the image. The most common methods:</p>
+
+<ul>
+<li>Text/iMessage: most phones recognize QR codes in image messages and offer to scan them</li>
+<li>Email: attach the QR code image; the recipient opens it and scans from their email</li>
+<li>AirDrop (iPhone): send the image; the recipient gets it in their Photos</li>
+<li>Cloud storage: share a link to a QR code image file</li>
+<li>Direct link: if the QR code is hosted online, share the URL</li>
+</ul>
+
+<p>For maximum compatibility, send the QR code as a PNG image. JPGs and compressed images may not scan reliably.</p>
+
+<h2 id="security">A Note on Security</h2>
+
+<p>QR codes can be malicious. The pattern itself is just data; what it points to could be a phishing site, a malicious download, or an unwanted subscription. This is true whether you scan from a physical surface or from a screenshot.</p>
+
+<p>When scanning any QR code, follow the same precautions you would for any URL:</p>
+
+<ul>
+<li>Check the URL preview before opening (both iOS and Android show the destination before opening)</li>
+<li>Don\u2019t scan QR codes from untrusted sources (random flyers, suspicious emails)</li>
+<li>If the destination looks wrong, don\u2019t open it</li>
+<li>Don\u2019t enter personal information on a site you reached by scanning a QR code unless you trust the source</li>
+</ul>
+
+<p>Scanning a QR code from a screenshot is no more or less safe than scanning from a physical surface. The risk is in the URL, not the scanning method.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Can I scan a QR code from a photo someone sent me on Instagram?</h3>
+<p>Yes, but Instagram compresses images aggressively. The QR code may be damaged in the compression. If it doesn\u2019t scan, ask the sender for the original file.</p>
+
+<h3>Can I scan a QR code from a PDF?</h3>
+<p>Yes. Take a screenshot of the QR code in the PDF, then scan the screenshot. Most PDF viewers on phones support screenshots.</p>
+
+<h3>Can I scan a QR code from a video?</h3>
+<p>Sometimes. Video compression can damage QR codes. Pause the video at a clear frame, take a screenshot, then try to scan. If it doesn\u2019t work, you may need to find a still version.</p>
+
+<h3>Does the image need to be a screenshot or can it be a photo of a screen?</h3>
+<p>Screenshots work best because they\u2019re exact pixel copies. Photos of screens (using your phone\u2019s camera) often have moiré patterns, glare, or other artifacts that confuse QR readers. If you must use a photo, take it with good lighting and a steady hand.</p>
+
+<h3>What if the image is on my computer, not my phone?</h3>
+<p>AirDrop the image to your iPhone, or email it to yourself, or upload it to a cloud service. Then scan from your phone\u2019s photo library.</p>
+
+<figure>
+  <img src="/blog/how-to-scan-qr-from-screenshot/how-to-scan-qr-from-screenshot-faq-banner.png" alt="Make a QR code">
+  <figcaption>Generate a QR code, screenshot it, scan it from your phone. QRCode Studio is free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: 10 Seconds from Image to Action</h2>
+
+<p>Scanning a QR code from a screenshot is one of those features that sounds niche until you need it. Then you realize it\u2019s been there the whole time. Modern phones can read QR codes from any image in your photo library \u2014 no app, no printer, no second device.</p>
+
+<p>Use it to test QR codes before printing, to share QR codes with friends, and to access QR codes that arrive digitally. The process takes 10 seconds, and once you\u2019ve done it once, you\u2019ll wonder how you ever lived without it.</p></article><aside class="my-8" aria-label="Sponsored content" data-v-4042dde3=""><div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center" data-v-4042dde3="">Advertisement</div><ins class="adsbygoogle block w-full" style="display:block;text-align:center;" data-ad-client="ca-pub-1606763409380030" data-ad-slot="0000000002" data-ad-layout="in-article" data-ad-format="fluid" data-v-4042dde3=""></ins><script data-v-4042dde3="">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></aside><div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 text-white text-center" data-v-4042dde3=""><h3 class="text-xl sm:text-2xl font-extrabold" data-v-4042dde3="">당신만의 QR을 만들어 보세요</h3><p class="mt-2 text-sm sm:text-base text-white/90" data-v-4042dde3="">무료, 가입 불필요, 브라우저에서 바로. 1분 이내에 WiFi QR 코드를 생성하세요.</p><button class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-brand-600 font-bold text-sm hover:shadow-lg transition-shadow" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="12" y1="5" x2="12" y2="19" data-v-4042dde3=""></line><line x1="5" y1="12" x2="19" y2="12" data-v-4042dde3=""></line></svg> WiFi QR 코드 생성</button></div><div class="mt-12 pt-8 border-t border-gray-200/60 dark:border-white/10" data-v-4042dde3=""><h2 class="text-lg font-extrabold text-gray-900 dark:text-white mb-4" data-v-4042dde3="">Related guides</h2><ul class="grid grid-cols-1 sm:grid-cols-3 gap-4" data-v-4042dde3=""><!--[--><li data-v-4042dde3=""><a href="/ko/blog/wifi-qr-code-guide/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">WiFi QR Code: The Complete Guide for Small Businesses (2025)</div></a></li><li data-v-4042dde3=""><a href="/ko/blog/vcard-qr-code-guide/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">vCard QR Code: Share Your Contact Instantly (2025 Guide)</div></a></li><li data-v-4042dde3=""><a href="/ko/blog/restaurant-qr-code-guide/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">Restaurant Menu QR Code: The Complete Setup Guide (2025)</div></a></li><!--]--></ul></div><div class="mt-8" data-v-4042dde3=""><button class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 hover:underline" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="19" y1="12" x2="5" y2="12" data-v-4042dde3=""></line><polyline points="12 19 5 12 12 5" data-v-4042dde3=""></polyline></svg> 모든 글 보기</button></div></div><footer class="mt-auto border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.02] backdrop-blur"><div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 sm:grid-cols-5 gap-8 text-sm"><div class="col-span-2 sm:col-span-2"><a href="/ko/" class="flex items-center gap-2 mb-3 group"><div class="h-9 w-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center text-white font-bold shadow-md shadow-brand-500/30">Q</div><div class="leading-tight"><div class="font-bold text-gray-900 dark:text-white">QR Tool Studio</div><div class="text-[10px] text-gray-500 dark:text-gray-400">무료 온라인 도구 · 8가지 유형 지원</div></div></a><p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">QR Tool Studio는 무료·경량·전문가용 온라인 QR 코드 생성기입니다. URL, vCard, WiFi, 텍스트, 이메일, 전화, SMS, 위치 좌표 등 8가지 유형을 지원합니다. 그라데이션 색상, 중앙 로고, 6가지 매트릭스 스타일을 사용자 지정할 수 있으며, PNG / SVG / JPEG를 원클릭으로 내보내고 일괄 생성 후 ZIP으로 패키지할 수 있습니다.</p></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">제품</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/ko/#generator" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">단일 생성</a></li><li><a href="/ko/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">일괄 생성</a></li><li><a href="/ko/#how" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">사용 가이드</a></li><li><a href="/ko/#types" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">유형 전체보기</a></li><li><a href="/ko/#use-cases" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">활용 사례</a></li><li><a href="/ko/#faq" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">자주 묻는 질문</a></li><li><a href="/ko/blog/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1.5"><span>블로그</span><span class="inline-block px-1.5 py-0.5 text-[8px] font-bold rounded bg-gradient-to-r from-brand-500 to-purple-500 text-white">NEW</span></a></li></ul></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">법적 고지</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/ko/privacy/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">개인정보 처리방침</a></li><li><a href="/ko/terms/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">이용 약관</a></li><li><button class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">면책 조항</button></li><li><a href="/ko/privacy/#cookies" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">쿠키 정책</a></li></ul></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">소개</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/ko/about/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">회사 소개</a></li><li><a href="/ko/contact/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">문의하기</a></li><li><a href="mailto:andynaonao@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">비즈니스</a></li><li><span class="inline-flex items-center gap-1.5 text-gray-500 dark:text-gray-400">테마: <strong class="text-gray-700 dark:text-gray-200">라이트</strong></span></li></ul></div></div><div class="border-t border-gray-200/60 dark:border-white/10"><div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col gap-3 text-[11px] text-gray-500 dark:text-gray-400"><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><span>© 2026 QR Tool Studio. All rights reserved.</span></div><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><button class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">면책 조항</button><span>·</span><a href="/ko/privacy/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">개인정보 처리방침</a><span>·</span><a href="/ko/terms/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">이용 약관</a><span>·</span><a href="/ko/about/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">회사 소개</a><span>·</span><a href="/ko/contact/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">문의하기</a></div></div></div></div></footer><!----></div><!--]--></div>
+
+  
+
+</body></html>

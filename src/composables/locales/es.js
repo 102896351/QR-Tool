@@ -223,7 +223,8 @@ export default {
   'footer.about.biz': 'Negocios',
   'footer.about.theme': 'Tema',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
-,
+
+,
   // blog.es
   'blog.notFoundDesc': 'El artículo que buscas no existe.',
   'blog.badge': 'Blog',
@@ -241,4 +242,7 @@ export default {
   'blog.hero.desc': 'Guías prácticas para aprovechar al máximo los códigos QR. Desde casos de pequeños negocios hasta buenas prácticas de diseño.',
   'blog.empty': '¡Aún no hay artículos. Vuelve pronto!',
   'blog.backToList': 'Volver a todos los artículos',
+  'blog.langNotice.title': 'Solo en inglés',
+  'blog.langNotice.desc': 'Este artículo está disponible actualmente solo en inglés.',
+  'blog.langNotice.cta': 'Leer en inglés →',
 }

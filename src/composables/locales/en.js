@@ -274,7 +274,8 @@ export default {
   'footer.about.biz': 'Business',
   'footer.about.theme': 'Theme',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
-,
+
+,
   // blog.en
   'blog.notFoundDesc': 'The article you\u2019re looking for doesn\u2019t exist.',
   'blog.badge': 'Blog',
@@ -292,4 +293,7 @@ export default {
   'blog.hero.desc': 'Practical, no-fluff guides to help you get the most out of QR codes. From small business use cases to design best practices.',
   'blog.empty': 'No articles yet. Check back soon!',
   'blog.backToList': 'Back to all articles',
+  'blog.langNotice.title': 'English only',
+  'blog.langNotice.desc': 'This article is currently available in English.',
+  'blog.langNotice.cta': 'Read in English →',
 }

@@ -223,7 +223,8 @@ export default {
   'footer.about.biz': '비즈니스',
   'footer.about.theme': '테마',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
-,
+
+,
   // blog.ko
   'blog.notFoundDesc': '찾고 계신 글이 존재하지 않습니다.',
   'blog.badge': '블로그',
@@ -241,4 +242,7 @@ export default {
   'blog.hero.desc': 'QR 코드 활용을 위한 실용적인 가이드. 소상공인 사례부터 디자인 모범 사례까지.',
   'blog.empty': '아직 글이 없습니다. 나중에 다시 확인해 주세요!',
   'blog.backToList': '글 목록으로',
+  'blog.langNotice.title': '영어만 제공',
+  'blog.langNotice.desc': '이 기사는 현재 영어로만 제공됩니다. 원문을 읽어주세요.',
+  'blog.langNotice.cta': '영어로 읽기 →',
 }

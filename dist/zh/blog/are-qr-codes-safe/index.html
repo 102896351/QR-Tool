@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b15" media="(prefers-color-scheme: dark)">
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="zOTaNzeXJI3rJeU7OaOfx53VfgePqHJN6X9knR99SdY">
+
+    <!-- Google AdSense -->
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1606763409380030" crossorigin="anonymous"></script>
+
+    <!--
+      Primary Meta 仅为兜底值：真实 title / description / canonical / og / JSON-LD
+      由各路由组件通过 @unhead/vue 在构建期写入，每个页面各不相同。
+    -->
+    <title>Are QR Codes Safe? A Security Guide (2025) | QR Tool Studio Blog</title>
+    <meta name="description" content="QR codes can’t be hacked. The risk is in the URL. The 4 scam types, 6 defenses, and what to do if you scan a bad code.">
+    <meta name="author" content="QR Tool Studio">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="googlebot" content="index,follow">
+    <link rel="canonical" href="https://toolbox168.xyz/zh/blog/are-qr-codes-safe">
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="x-default" href="https://toolbox168.xyz/blog/are-qr-codes-safe">
+    <link rel="alternate" hreflang="en" href="https://toolbox168.xyz/blog/are-qr-codes-safe">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="QR Tool Studio">
+    <meta property="og:title" content="Are QR Codes Safe? A Security Guide (2025)">
+    <meta property="og:description" content="QR codes can’t be hacked. The risk is in the URL. The 4 scam types, 6 defenses, and what to do if you scan a bad code.">
+    <meta property="og:url" content="https://toolbox168.xyz/zh/blog/are-qr-codes-safe">
+    <meta property="og:locale" content="zh">
+    <meta property="og:image" content="https://toolbox168.xyz/blog/are-qr-codes-safe/are-qr-codes-safe-hero.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="QR Tool Studio — Free Online QR Code Generator">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Are QR Codes Safe? A Security Guide (2025)">
+    <meta name="twitter:description" content="QR codes can’t be hacked. The risk is in the URL. The 4 scam types, 6 defenses, and what to do if you scan a bad code.">
+    <meta name="twitter:image" content="https://toolbox168.xyz/og-image.png">
+
+    <!-- Performance: preconnect & dns-prefetch -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- Performance: theme pre-paint (避免主题切换闪烁) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('qr-theme') || 'system';
+          var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!--
+      旧 hash 路由兼容：本站已由 /#blog/xxx 迁移到 /blog/xxx/。
+      已在外部传播或已被搜索引擎记录的旧链接会自动 301 到新地址。
+    -->
+    <script>
+      (function () {
+        try {
+          var h = (location.hash || '').replace(/^#\/?/, '');
+          if (!h) return;
+          var path;
+          if (h === 'blog' || h === 'blog/') path = '/blog/';
+          else if (h.indexOf('blog/') === 0) path = '/blog/' + h.slice(5).split('?')[0] + '/';
+          else if (h === 'generator') path = '/#generator';
+          else if (h === 'batch') path = '/#batch';
+          else if (h === 'faq') path = '/#faq';
+          else return;
+          if (path.charAt(0) === '/') location.replace(path);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD: Organization（全站通用；页面级 schema 由各路由注入） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "QR Tool Studio",
+      "url": "https://toolbox168.xyz/",
+      "logo": "https://toolbox168.xyz/favicon.svg",
+      "description": "Free, privacy-first QR code generator that runs entirely in your browser. No account, no upload, no tracking.",
+      "email": "andynaonao@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "andynaonao@gmail.com",
+        "contactType": "customer support",
+        "availableLanguage": ["English", "Chinese", "Japanese", "Korean", "French", "German", "Spanish"]
+      },
+      "sameAs": [
+        "https://github.com/102896351/QR-Tool"
+      ],
+      "knowsAbout": [
+        "QR code generation",
+        "ISO/IEC 18004",
+        "URL encoding",
+        "vCard format",
+        "WiFi network configuration"
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6CQYKSQD3X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6CQYKSQD3X');
+    </script>
+    <script type="module" crossorigin="" src="/assets/app-BiRq_R9n.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/app-DDf4j3lc.css">
+  <meta property="article:published_time" content="2026-07-15"><link rel="alternate" hreflang="zh" href="https://toolbox168.xyz/zh/blog/are-qr-codes-safe"><link rel="alternate" hreflang="ja" href="https://toolbox168.xyz/ja/blog/are-qr-codes-safe"><link rel="alternate" hreflang="ko" href="https://toolbox168.xyz/ko/blog/are-qr-codes-safe"><link rel="alternate" hreflang="fr" href="https://toolbox168.xyz/fr/blog/are-qr-codes-safe"><link rel="alternate" hreflang="de" href="https://toolbox168.xyz/de/blog/are-qr-codes-safe"><link rel="alternate" hreflang="es" href="https://toolbox168.xyz/es/blog/are-qr-codes-safe"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Are QR Codes Safe? A Security Guide (2025)","description":"QR codes can’t be hacked. The risk is in the URL. The 4 scam types, 6 defenses, and what to do if you scan a bad code.","image":"https://toolbox168.xyz/blog/are-qr-codes-safe/are-qr-codes-safe-hero.png","datePublished":"2026-07-15","dateModified":"2026-07-15","inLanguage":"zh","author":{"@type":"Organization","name":"QR Tool Studio","url":"https://toolbox168.xyz/about/"},"publisher":{"@type":"Organization","name":"QR Tool Studio","url":"https://toolbox168.xyz/","logo":{"@type":"ImageObject","url":"https://toolbox168.xyz/favicon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://toolbox168.xyz/zh/blog/are-qr-codes-safe"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolbox168.xyz/zh/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolbox168.xyz/zh/blog/"},{"@type":"ListItem","position":3,"name":"Are QR Codes Safe? A Security Guide (2025)","item":"https://toolbox168.xyz/zh/blog/are-qr-codes-safe"}]}</script></head>
+  <body>
+    <div id="app" data-server-rendered="true"><!--[--><div class="mesh-bg"></div><div class="min-h-screen flex flex-col"><header class="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8"><div class="flex items-center justify-between gap-3"><a href="/zh/" class="flex items-center gap-3 group"><div class="relative h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300"><svg viewBox="0 0 64 64" width="26" height="26" class="text-white"><rect x="6" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="12" y="12" width="8" height="8" rx="1" fill="#fff"></rect><rect x="38" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="44" y="12" width="8" height="8" rx="1" fill="#fff"></rect><rect x="6" y="38" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="12" y="44" width="8" height="8" rx="1" fill="#fff"></rect><rect x="36" y="36" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="46" y="36" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="36" y="46" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="46" y="46" width="6" height="6" rx="1" fill="currentColor"></rect></svg></div><div class="leading-tight"><div class="text-base sm:text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">QR Tool Studio <span class="text-brand-600 dark:text-brand-300">Studio</span></div><div class="text-[11px] text-gray-500 dark:text-gray-400 font-medium">免费在线工具 · 支持 8 种类型</div></div></a><div class="flex items-center gap-2 sm:gap-3"><!----><a href="/zh/blog/" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm font-semibold transition-all border bg-gradient-to-r from-brand-500 to-purple-500 text-white border-transparent shadow-md shadow-brand-500/30"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>Blog</span><!----></a><button title="当前:跟随系统" aria-label="切换主题" class="theme-toggle-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><span class="sr-only">当前:跟随系统</span></button><div class="relative"><button class="theme-toggle-btn gap-2 !w-auto px-3" aria-label="中文" aria-haspopup="listbox" aria-expanded="false"><span class="text-base leading-none">🇨🇳</span><span class="text-xs font-semibold uppercase tracking-wider hidden sm:inline">zh</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 transition-transform"><polyline points="6 9 12 15 18 9"></polyline></svg></button><!----></div></div></div><!----></header><div class="w-full max-w-4xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8 pb-16" data-v-4042dde3=""><button class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-300 transition-colors mb-6" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="19" y1="12" x2="5" y2="12" data-v-4042dde3=""></line><polyline points="12 19 5 12 12 5" data-v-4042dde3=""></polyline></svg> 返回文章列表</button><div class="mb-6 p-4 rounded-xl border border-amber-200/70 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/[0.08] text-amber-900 dark:text-amber-100 text-sm flex items-start gap-3" role="status" data-v-4042dde3=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-none text-amber-500" data-v-4042dde3=""><circle cx="12" cy="12" r="10" data-v-4042dde3=""></circle><line x1="12" y1="8" x2="12" y2="12" data-v-4042dde3=""></line><line x1="12" y1="16" x2="12.01" y2="16" data-v-4042dde3=""></line></svg><div data-v-4042dde3=""><div class="font-semibold" data-v-4042dde3="">仅英文版本</div><div class="mt-1 text-amber-900/80 dark:text-amber-100/80" data-v-4042dde3="">本文目前仅有英文版本，欢迎阅读原文。 <a href="/blog/are-qr-codes-safe/" class="font-semibold underline underline-offset-2 ml-1" data-v-4042dde3="">阅读英文原文 →</a></div></div></div><header class="mb-8" data-v-4042dde3=""><div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3" data-v-4042dde3=""><span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" data-v-4042dde3="">Security</span><span data-v-4042dde3="">·</span><time datetime="2026-07-15" data-v-4042dde3="">July 15, 2026</time><span data-v-4042dde3="">·</span><span data-v-4042dde3="">7 分钟阅读</span></div><h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight" data-v-4042dde3="">Are QR Codes Safe? A Security Guide (2025)</h1><p class="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed" data-v-4042dde3="">QR codes can’t be hacked. The risk is in the URL. The 4 scam types, 6 defenses, and what to do if you scan a bad code.</p><div class="mt-5 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400" data-v-4042dde3=""><div class="h-8 w-8 rounded-full bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center text-white text-xs font-bold" data-v-4042dde3="">Q</div><span data-v-4042dde3="">QR Tool Studio</span></div></header><figure class="mb-10 rounded-2xl overflow-hidden glass-panel dark:glass-panel-dark" data-v-4042dde3=""><img src="/blog/are-qr-codes-safe/are-qr-codes-safe-hero.png" alt="Are QR Codes Safe? A Security Guide (2025)" class="w-full h-auto" data-v-4042dde3=""></figure><aside class="my-8" aria-label="Sponsored content" data-v-4042dde3=""><div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center" data-v-4042dde3="">Advertisement</div><ins class="adsbygoogle block w-full" style="display:block;text-align:center;" data-ad-client="ca-pub-1606763409380030" data-ad-slot="0000000001" data-ad-layout="in-article" data-ad-format="fluid" data-v-4042dde3=""></ins><script data-v-4042dde3="">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></aside><article class="blog-content" data-v-4042dde3=""><p class="lead">QR codes can\u2019t be hacked. The pattern itself is just data. The risk is in where the data points. This guide explains the real security threats around QR codes, the 4 scam types you need to know about, and 6 practical defenses that take 30 seconds to apply.</p>
+
+<p>If you scan QR codes, you need to know this. If you deploy QR codes for your business, you need to know this even more \u2014 because compromised QR codes undermine the trust you\u2019ve built with your customers.</p>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-hero.png" alt="Are QR codes safe">
+  <figcaption>QR codes can\u2019t be hacked. But the URLs they point to can. Here\u2019s what to watch for and how to protect yourself.</figcaption>
+</figure>
+
+<h2 id="the-truth">The Truth: QR Codes Are Just Data</h2>
+
+<p>Let\u2019s start with the most important fact: <strong>the QR code itself cannot be hacked</strong>. The pattern of black and white squares is a passive data carrier. It contains a URL, a text string, a contact card, or some other payload. There\u2019s no executable code, no script, no malware. A QR code is exactly as dangerous as the URL it points to.</p>
+
+<p>This means the security question is really: how dangerous is the URL? And the answer is: it depends on the URL. A QR code pointing to <code>google.com</code> is as safe as typing <code>google.com</code> into a browser. A QR code pointing to a phishing site is exactly as dangerous as clicking a phishing link in an email.</p>
+
+<p>The unique risk of QR codes is the <strong>lack of preview</strong>. When you click a link in an email or see one in a search result, you can read the URL before opening it. With a QR code, the phone opens the URL automatically (or with one tap on a preview). You don\u2019t get the same chance to evaluate the destination.</p>
+
+<p>This preview gap is what scammers exploit. Not the QR code itself.</p>
+
+<h2 id="threats">The 4 Real QR Code Threats</h2>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-comparison.png" alt="QR code security threats">
+  <figcaption>The 4 scam types: quishing, fake parking meters, sticker overlays, and crypto drainers. All exploit the lack of URL preview.</figcaption>
+</figure>
+
+<h3>1. Quishing (QR + phishing)</h3>
+<p>Quishing is the QR-code equivalent of email phishing. The scammer places a malicious QR code somewhere a user trusts \u2014 on a poster, in an email, in a flyer. The user scans, expecting to go to a legitimate site, and lands on a phishing page that steals their credentials.</p>
+
+<p>Common targets: banking credentials, email logins, social media accounts, cryptocurrency wallets. The phishing page looks identical to the real thing; the URL is the only give-away, and most users don\u2019t check URLs after scanning.</p>
+
+<h3>2. Fake parking meters</h3>
+<p>The classic street-level scam. The scammer places a sticker with a malicious QR code over the legitimate QR code on a parking meter. The user thinks they\u2019re paying the city for parking; they\u2019re actually paying the scammer. The city never receives the money, and the user\u2019s payment information is stolen.</p>
+
+<p>Common in: US cities, Europe, anywhere with paid street parking. The scam is hard to spot because the original QR code is hidden under the sticker.</p>
+
+<h3>3. Sticker overlays on restaurant menus</h3>
+<p>The scammer places a sticker QR code on a restaurant menu, often next to a \u201cscan to see our specials\u201d prompt. The user scans, expecting a menu, and lands on a phishing page or malware download.</p>
+
+<p>Common in: tourist areas, business districts, anywhere with high-volume foot traffic. The scam is hard to spot because the sticker looks like a legitimate menu QR.</p>
+
+<h3>4. Crypto drainers</h3>
+<p>The scammer convinces a user to scan a QR code that connects their cryptocurrency wallet to a malicious site. The site then drains the wallet. The user thinks they\u2019re connecting to a legitimate dApp; they\u2019re actually giving a scammer access to their funds.</p>
+
+<p>Common in: crypto Twitter, Discord channels, NFT communities. The scam is sophisticated because the QR code is just a wallet-connection URL, and the malicious site looks like a real dApp.</p>
+
+<h2 id="defenses">6 Defenses That Take 30 Seconds</h2>
+
+<p>You don\u2019t need to be a security expert to protect yourself from QR code scams. These six habits take 30 seconds to apply and cover 95% of the risks:</p>
+
+<h3>1. Check the URL preview before opening</h3>
+<p>Both iOS and Android show a preview of the URL before opening it. Look at the preview. If the URL looks suspicious (typos, weird domain, unexpected TLD), don\u2019t tap to open.</p>
+
+<h3>2. Don\u2019t scan QR codes from untrusted sources</h3>
+<p>Random flyers in tourist areas, QR codes stuck on top of legitimate QR codes, QR codes in spam emails. The risk of scanning from these sources is much higher than scanning from a trusted source (a restaurant you chose, a poster from a brand you trust, a business card from a person you met).</p>
+
+<h3>3. Use a QR scanner that shows the full URL</h3>
+<p>The default phone camera sometimes shows a truncated URL. Third-party QR scanner apps (like Trend Micro\u2019s QR scanner) show the full URL before opening. Install one if you scan QR codes often.</p>
+
+<h3>4. Look for physical tampering</h3>
+<p>If a QR code is on a sticker placed over another code, or if it looks like it was added after the original, don\u2019t scan it. Most legitimate QR codes are printed directly on the surface, not on stickers.</p>
+
+<h3>5. Verify before paying</h3>
+<p>For any QR code that asks you to pay (parking meter, donation box, retail checkout), verify by other means first. Look for a phone number or website on the sign. If the QR code is the only way to pay, look closely for tampering before scanning.</p>
+
+<h3>6. Use a password manager</h3>
+<p>If you scan a QR code that takes you to a login page, the password manager will auto-fill only the correct domain. If the password manager doesn\u2019t auto-fill, the URL is probably wrong.</p>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-scan-demo.png" alt="QR code safety checklist">
+  <figcaption>30-second safety checklist: preview, trust, look for tampering, verify before paying, use password manager.</figcaption>
+</figure>
+
+<h2 id="for-business">For Businesses: How to Deploy Safe QR Codes</h2>
+
+<p>If you deploy QR codes for your business, you have additional responsibilities. Customers scanning your codes are trusting that the destination is safe. Here\u2019s how to maintain that trust:</p>
+
+<h3>1. Use HTTPS for all QR code destinations</h3>
+<p>Every URL behind a QR code should be HTTPS. Modern phones warn or block downloads from non-HTTPS URLs. HTTPS also gives you basic protection against tampering.</p>
+
+<h3>2. Sign your QR codes</h3>
+<p>Some QR code generators (like ours) can sign the URL cryptographically. The phone can verify the signature before opening the URL. This protects against sticker overlays and other tampering.</p>
+
+<h3>3. Use a recognizable domain</h3>
+<p>URLs from <code>yourbusiness.com/menu</code> are obviously safe. URLs from <code>bit.ly/x7y2p9</code> are not. The more recognizable the domain, the more users will trust the scan.</p>
+
+<h3>4. Print the destination near the QR code</h3>
+<p>Add a line of text near the QR code that says where it goes: \u201cScan to view our menu at yourbusiness.com/menu.\u201d This makes the destination obvious and reduces confusion.</p>
+
+<h3>5. Test before printing</h3>
+<p>Scan your printed QR codes with multiple phones before publishing them. Make sure the URL is correct, the page loads, and the page looks right.</p>
+
+<h2 id="phone-protection">What Phones Do to Protect You</h2>
+
+<p>Modern phones (iOS 11+ and Android 10+) include some built-in protections against QR code scams:</p>
+
+<h3>URL preview</h3>
+<p>Both iOS and Android show the URL before opening the link. This is the single biggest protection \u2014 it gives you a chance to see where you\u2019re going before you get there.</p>
+
+<h3>Safari Safe Browsing / Chrome Safe Browsing</h3>
+<p>Both iOS Safari and Android Chrome use Google Safe Browsing to block known phishing and malware sites. If the QR code URL points to a known bad site, the browser shows a warning before loading.</p>
+
+<h3>App sandboxing</h3>
+<p>QR code scanners run in the app sandbox. They can\u2019t read your other apps, files, or system settings. A malicious QR code can\u2019t install malware or steal your data directly through the camera.</p>
+
+<h3>Updates</h3>
+<p>Apple and Google push regular security updates that include new QR code scam patterns. Keep your phone updated.</p>
+
+<h2 id="what-to-do">What to Do If You Scanned a Bad QR Code</h2>
+
+<p>If you scanned a QR code and something feels wrong, here\u2019s what to do:</p>
+
+<ol>
+<li><strong>Don\u2019t enter any information.</strong> Close the page immediately if it asks for login credentials, payment information, or personal data.</li>
+<li><strong>Don\u2019t download anything.</strong> Close the page if it offers a file download.</li>
+<li><strong>Don\u2019t call any numbers.</strong> Some scam QR codes show a phone number to call. Don\u2019t call.</li>
+<li><strong>Check your accounts.</strong> If you entered credentials on the suspicious site, change those passwords immediately.</li>
+<li><strong>Watch for follow-up scams.</strong> Scammers sometimes target recent victims. Be wary of \u201crecovery\u201d services or unsolicited help offers.</li>
+<li><strong>Report the QR code.</strong> If the QR code was in a public place, report it to the business or property owner. If it was in an email, report it as phishing.</li>
+</ol>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>Can a QR code give my phone a virus?</h3>
+<p>Not directly. The QR code itself is just data. A malicious URL could try to download a malicious file, but your phone\u2019s security settings would block it. The bigger risk is phishing: a fake login page that steals your credentials.</p>
+
+<h3>Can a QR code track my location?</h3>
+<p>Only if the destination URL is designed to. A QR code pointing to <code>maps.google.com</code> will ask for location permission. A QR code pointing to a normal webpage can\u2019t track you without your consent.</p>
+
+<h3>Is it safe to scan QR codes in restaurants?</h3>
+<p>Generally yes. Restaurants have been using QR codes for menus since 2020 and most have legitimate deployments. The risk is from sticker overlays placed on top of legitimate codes. If the QR code looks like it was added after the menu was printed, or if it looks like a sticker, don\u2019t scan it.</p>
+
+<h3>Can I scan QR codes offline?</h3>
+<p>Yes, the scan itself works offline. But the destination URL needs internet to load. Some QR codes encode text or contact info that works offline.</p>
+
+<h3>What\u2019s the safest QR code generator?</h3>
+<p>Any generator that creates a clean URL pointing to a known, trusted destination. Avoid generators that require you to scan their QR code to use their service. Use a simple browser-based tool like QRCode Studio.</p>
+
+<figure>
+  <img src="/blog/are-qr-codes-safe/are-qr-codes-safe-faq-banner.png" alt="Generate a safe QR code">
+  <figcaption>Generate a QR code with HTTPS URL, recognizable domain, and printable destination. QRCode Studio is free.</figcaption>
+</figure>
+
+<h2 id="conclusion">Conclusion: Use Your Head, Not Just Your Phone</h2>
+
+<p>QR codes can\u2019t be hacked. The risk is in the URL, and the URL is just a link. The same precautions that keep you safe from email phishing apply to QR codes: check the URL, verify the source, don\u2019t enter credentials on suspicious sites, use a password manager.</p>
+
+<p>The unique risk of QR codes is the lack of preview. Your phone makes scanning effortless, which means it\u2019s also effortless to land on a malicious site. The defenses are simple: take 30 seconds to look at the preview, don\u2019t scan from untrusted sources, and treat any unexpected credential prompt as a red flag.</p></article><aside class="my-8" aria-label="Sponsored content" data-v-4042dde3=""><div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center" data-v-4042dde3="">Advertisement</div><ins class="adsbygoogle block w-full" style="display:block;text-align:center;" data-ad-client="ca-pub-1606763409380030" data-ad-slot="0000000002" data-ad-layout="in-article" data-ad-format="fluid" data-v-4042dde3=""></ins><script data-v-4042dde3="">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></aside><div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 text-white text-center" data-v-4042dde3=""><h3 class="text-xl sm:text-2xl font-extrabold" data-v-4042dde3="">准备好制作你自己的二维码了吗？</h3><p class="mt-2 text-sm sm:text-base text-white/90" data-v-4042dde3="">免费、无需注册、浏览器直接使用。不到一分钟即可生成你的 WiFi 二维码。</p><button class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-brand-600 font-bold text-sm hover:shadow-lg transition-shadow" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="12" y1="5" x2="12" y2="19" data-v-4042dde3=""></line><line x1="5" y1="12" x2="19" y2="12" data-v-4042dde3=""></line></svg> 立即生成 WiFi 二维码</button></div><div class="mt-12 pt-8 border-t border-gray-200/60 dark:border-white/10" data-v-4042dde3=""><h2 class="text-lg font-extrabold text-gray-900 dark:text-white mb-4" data-v-4042dde3="">Related guides</h2><ul class="grid grid-cols-1 sm:grid-cols-3 gap-4" data-v-4042dde3=""><!--[--><li data-v-4042dde3=""><a href="/zh/blog/qr-code-for-healthcare/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">QR Code for Healthcare: 7 Clinic Use Cases (2025)</div></a></li><li data-v-4042dde3=""><a href="/zh/blog/qr-code-for-education/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">QR Code for Education: 7 Classroom Use Cases (2025)</div></a></li><li data-v-4042dde3=""><a href="/zh/blog/qr-code-printing-guide/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">QR Code Printing Guide: 10 Rules for Codes That Scan (2025)</div></a></li><!--]--></ul></div><div class="mt-8" data-v-4042dde3=""><button class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 hover:underline" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="19" y1="12" x2="5" y2="12" data-v-4042dde3=""></line><polyline points="12 19 5 12 12 5" data-v-4042dde3=""></polyline></svg> 浏览所有文章</button></div></div><footer class="mt-auto border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.02] backdrop-blur"><div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 sm:grid-cols-5 gap-8 text-sm"><div class="col-span-2 sm:col-span-2"><a href="/zh/" class="flex items-center gap-2 mb-3 group"><div class="h-9 w-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center text-white font-bold shadow-md shadow-brand-500/30">Q</div><div class="leading-tight"><div class="font-bold text-gray-900 dark:text-white">QR Tool Studio</div><div class="text-[10px] text-gray-500 dark:text-gray-400">免费在线工具 · 支持 8 种类型</div></div></a><p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">QR Tool Studio 是一款免费、轻量、专业的在线二维码生成工具。支持网址、名片、WiFi、文本、邮箱、电话、短信、地理坐标等 8 种类型,自定义渐变颜色、中心 Logo、6 种矩阵样式,一键导出 PNG / SVG / JPEG,批量生成并打包 ZIP。</p></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">产品</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/zh/#generator" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">单个生成</a></li><li><a href="/zh/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">批量生成</a></li><li><a href="/zh/#how" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">使用指南</a></li><li><a href="/zh/#types" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">类型大全</a></li><li><a href="/zh/#use-cases" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">应用场景</a></li><li><a href="/zh/#faq" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">常见问题</a></li><li><a href="/zh/blog/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1.5"><span>博客</span><span class="inline-block px-1.5 py-0.5 text-[8px] font-bold rounded bg-gradient-to-r from-brand-500 to-purple-500 text-white">NEW</span></a></li></ul></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">法律</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/zh/privacy/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">隐私政策</a></li><li><a href="/zh/terms/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">使用条款</a></li><li><button class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">免责声明</button></li><li><a href="/zh/privacy/#cookies" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Cookie 政策</a></li></ul></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">关于</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/zh/about/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">关于我们</a></li><li><a href="/zh/contact/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">联系我们</a></li><li><a href="mailto:andynaonao@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">商务合作</a></li><li><span class="inline-flex items-center gap-1.5 text-gray-500 dark:text-gray-400">主题: <strong class="text-gray-700 dark:text-gray-200">亮色</strong></span></li></ul></div></div><div class="border-t border-gray-200/60 dark:border-white/10"><div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col gap-3 text-[11px] text-gray-500 dark:text-gray-400"><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><span>© 2026 QR Tool Studio. All rights reserved.</span></div><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><button class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">免责声明</button><span>·</span><a href="/zh/privacy/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">隐私政策</a><span>·</span><a href="/zh/terms/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">使用条款</a><span>·</span><a href="/zh/about/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">关于我们</a><span>·</span><a href="/zh/contact/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">联系我们</a></div></div></div></div></footer><!----></div><!--]--></div>
+
+  
+
+</body></html>

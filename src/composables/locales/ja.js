@@ -223,7 +223,8 @@ export default {
   'footer.about.biz': 'ビジネス',
   'footer.about.theme': 'テーマ',
   'footer.copy': '© {year} QR Tool Studio. All rights reserved.'
-,
+
+,
   // blog.ja
   'blog.notFoundDesc': 'お探しの記事は存在しません。',
   'blog.badge': 'ブログ',
@@ -241,4 +242,7 @@ export default {
   'blog.hero.desc': 'QRコード活用のための実践的ガイド。中小企業の事例からデザインのベストプラクティスまで。',
   'blog.empty': '記事がありません。後ほどご確認ください。',
   'blog.backToList': '記事一覧に戻る',
+  'blog.langNotice.title': '英語のみ',
+  'blog.langNotice.desc': '本記事は現在英語でのみ提供されています。原文をお読みください。',
+  'blog.langNotice.cta': '英語で読む →',
 }

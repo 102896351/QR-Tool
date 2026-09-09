@@ -1,15 +1,25 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useI18n, SUPPORTED } from '../composables/useI18n'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n, pathForLang, SUPPORTED } from '../composables/useI18n'
 
-const { lang, currentMeta, setLang } = useI18n()
+const { lang, currentMeta } = useI18n()
+const route = useRoute()
+const router = useRouter()
 const open = ref(false)
 const root = ref(null)
 
 const list = SUPPORTED
 
 function pick(code) {
-  setLang(code)
+  // 切换语言 = 跳转到对应的本地化 URL，不是仅改 JS 状态
+  if (code === lang.value) {
+    open.value = false
+    return
+  }
+  const target = pathForLang(route.path, code)
+  // 用 push 而不是 location.assign，避免整页刷新导致 SSR 字典回退
+  router.push(target)
   open.value = false
 }
 

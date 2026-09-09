@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b15" media="(prefers-color-scheme: dark)">
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="zOTaNzeXJI3rJeU7OaOfx53VfgePqHJN6X9knR99SdY">
+
+    <!-- Google AdSense -->
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1606763409380030" crossorigin="anonymous"></script>
+
+    <!--
+      Primary Meta 仅为兜底值：真实 title / description / canonical / og / JSON-LD
+      由各路由组件通过 @unhead/vue 在构建期写入，每个页面各不相同。
+    -->
+    <title>QR Code Data Capacity: How Much Can a QR Code Actually Store? | QR Tool Studio Blog</title>
+    <meta name="description" content="Max 7,089 digits, 4,296 alphanumeric characters, 2,953 bytes, or 1,468 Chinese characters. Here is the real QR code storage limit per version, per error correction, per character set.">
+    <meta name="author" content="QR Tool Studio">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="googlebot" content="index,follow">
+    <link rel="canonical" href="https://toolbox168.xyz/es/blog/qr-code-data-capacity">
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="x-default" href="https://toolbox168.xyz/blog/qr-code-data-capacity">
+    <link rel="alternate" hreflang="en" href="https://toolbox168.xyz/blog/qr-code-data-capacity">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="QR Tool Studio">
+    <meta property="og:title" content="QR Code Data Capacity: How Much Can a QR Code Actually Store?">
+    <meta property="og:description" content="Max 7,089 digits, 4,296 alphanumeric characters, 2,953 bytes, or 1,468 Chinese characters. Here is the real QR code storage limit per version, per error correction, per character set.">
+    <meta property="og:url" content="https://toolbox168.xyz/es/blog/qr-code-data-capacity">
+    <meta property="og:locale" content="es">
+    <meta property="og:image" content="https://toolbox168.xyz/blog/qr-code-data-capacity/qr-code-data-capacity-hero.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="QR Tool Studio — Free Online QR Code Generator">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Data Capacity: How Much Can a QR Code Actually Store?">
+    <meta name="twitter:description" content="Max 7,089 digits, 4,296 alphanumeric characters, 2,953 bytes, or 1,468 Chinese characters. Here is the real QR code storage limit per version, per error correction, per character set.">
+    <meta name="twitter:image" content="https://toolbox168.xyz/og-image.png">
+
+    <!-- Performance: preconnect & dns-prefetch -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- Performance: theme pre-paint (避免主题切换闪烁) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('qr-theme') || 'system';
+          var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!--
+      旧 hash 路由兼容：本站已由 /#blog/xxx 迁移到 /blog/xxx/。
+      已在外部传播或已被搜索引擎记录的旧链接会自动 301 到新地址。
+    -->
+    <script>
+      (function () {
+        try {
+          var h = (location.hash || '').replace(/^#\/?/, '');
+          if (!h) return;
+          var path;
+          if (h === 'blog' || h === 'blog/') path = '/blog/';
+          else if (h.indexOf('blog/') === 0) path = '/blog/' + h.slice(5).split('?')[0] + '/';
+          else if (h === 'generator') path = '/#generator';
+          else if (h === 'batch') path = '/#batch';
+          else if (h === 'faq') path = '/#faq';
+          else return;
+          if (path.charAt(0) === '/') location.replace(path);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD: Organization（全站通用；页面级 schema 由各路由注入） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "QR Tool Studio",
+      "url": "https://toolbox168.xyz/",
+      "logo": "https://toolbox168.xyz/favicon.svg",
+      "description": "Free, privacy-first QR code generator that runs entirely in your browser. No account, no upload, no tracking.",
+      "email": "andynaonao@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "andynaonao@gmail.com",
+        "contactType": "customer support",
+        "availableLanguage": ["English", "Chinese", "Japanese", "Korean", "French", "German", "Spanish"]
+      },
+      "sameAs": [
+        "https://github.com/102896351/QR-Tool"
+      ],
+      "knowsAbout": [
+        "QR code generation",
+        "ISO/IEC 18004",
+        "URL encoding",
+        "vCard format",
+        "WiFi network configuration"
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6CQYKSQD3X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6CQYKSQD3X');
+    </script>
+    <script type="module" crossorigin="" src="/assets/app-BiRq_R9n.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/app-DDf4j3lc.css">
+  <meta property="article:published_time" content="2026-07-28"><link rel="alternate" hreflang="zh" href="https://toolbox168.xyz/zh/blog/qr-code-data-capacity"><link rel="alternate" hreflang="ja" href="https://toolbox168.xyz/ja/blog/qr-code-data-capacity"><link rel="alternate" hreflang="ko" href="https://toolbox168.xyz/ko/blog/qr-code-data-capacity"><link rel="alternate" hreflang="fr" href="https://toolbox168.xyz/fr/blog/qr-code-data-capacity"><link rel="alternate" hreflang="de" href="https://toolbox168.xyz/de/blog/qr-code-data-capacity"><link rel="alternate" hreflang="es" href="https://toolbox168.xyz/es/blog/qr-code-data-capacity"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"QR Code Data Capacity: How Much Can a QR Code Actually Store?","description":"Max 7,089 digits, 4,296 alphanumeric characters, 2,953 bytes, or 1,468 Chinese characters. Here is the real QR code storage limit per version, per error correction, per character set.","image":"https://toolbox168.xyz/blog/qr-code-data-capacity/qr-code-data-capacity-hero.png","datePublished":"2026-07-28","dateModified":"2026-07-28","inLanguage":"es","author":{"@type":"Organization","name":"QR Tool Studio","url":"https://toolbox168.xyz/about/"},"publisher":{"@type":"Organization","name":"QR Tool Studio","url":"https://toolbox168.xyz/","logo":{"@type":"ImageObject","url":"https://toolbox168.xyz/favicon.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://toolbox168.xyz/es/blog/qr-code-data-capacity"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://toolbox168.xyz/es/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://toolbox168.xyz/es/blog/"},{"@type":"ListItem","position":3,"name":"QR Code Data Capacity: How Much Can a QR Code Actually Store?","item":"https://toolbox168.xyz/es/blog/qr-code-data-capacity"}]}</script></head>
+  <body>
+    <div id="app" data-server-rendered="true"><!--[--><div class="mesh-bg"></div><div class="min-h-screen flex flex-col"><header class="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8"><div class="flex items-center justify-between gap-3"><a href="/es/" class="flex items-center gap-3 group"><div class="relative h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300"><svg viewBox="0 0 64 64" width="26" height="26" class="text-white"><rect x="6" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="12" y="12" width="8" height="8" rx="1" fill="#fff"></rect><rect x="38" y="6" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="44" y="12" width="8" height="8" rx="1" fill="#fff"></rect><rect x="6" y="38" width="20" height="20" rx="3" fill="currentColor" opacity="0.95"></rect><rect x="12" y="44" width="8" height="8" rx="1" fill="#fff"></rect><rect x="36" y="36" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="46" y="36" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="36" y="46" width="6" height="6" rx="1" fill="currentColor"></rect><rect x="46" y="46" width="6" height="6" rx="1" fill="currentColor"></rect></svg></div><div class="leading-tight"><div class="text-base sm:text-lg font-extrabold tracking-tight text-gray-900 dark:text-white">QR Tool Studio <span class="text-brand-600 dark:text-brand-300">Studio</span></div><div class="text-[11px] text-gray-500 dark:text-gray-400 font-medium">Herramienta gratuita en línea · 8 tipos compatibles</div></div></a><div class="flex items-center gap-2 sm:gap-3"><!----><a href="/es/blog/" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-sm font-semibold transition-all border bg-gradient-to-r from-brand-500 to-purple-500 text-white border-transparent shadow-md shadow-brand-500/30"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>Blog</span><!----></a><button title="当前:跟随系统" aria-label="切换主题" class="theme-toggle-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><span class="sr-only">当前:跟随系统</span></button><div class="relative"><button class="theme-toggle-btn gap-2 !w-auto px-3" aria-label="Español" aria-haspopup="listbox" aria-expanded="false"><span class="text-base leading-none">🇪🇸</span><span class="text-xs font-semibold uppercase tracking-wider hidden sm:inline">es</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 transition-transform"><polyline points="6 9 12 15 18 9"></polyline></svg></button><!----></div></div></div><!----></header><div class="w-full max-w-4xl mx-auto px-4 sm:px-6 mt-6 sm:mt-8 pb-16" data-v-4042dde3=""><button class="inline-flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-300 transition-colors mb-6" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="19" y1="12" x2="5" y2="12" data-v-4042dde3=""></line><polyline points="12 19 5 12 12 5" data-v-4042dde3=""></polyline></svg> Volver a todos los artículos</button><div class="mb-6 p-4 rounded-xl border border-amber-200/70 dark:border-amber-500/30 bg-amber-50/60 dark:bg-amber-500/[0.08] text-amber-900 dark:text-amber-100 text-sm flex items-start gap-3" role="status" data-v-4042dde3=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-none text-amber-500" data-v-4042dde3=""><circle cx="12" cy="12" r="10" data-v-4042dde3=""></circle><line x1="12" y1="8" x2="12" y2="12" data-v-4042dde3=""></line><line x1="12" y1="16" x2="12.01" y2="16" data-v-4042dde3=""></line></svg><div data-v-4042dde3=""><div class="font-semibold" data-v-4042dde3="">Solo en inglés</div><div class="mt-1 text-amber-900/80 dark:text-amber-100/80" data-v-4042dde3="">Este artículo está disponible actualmente solo en inglés. <a href="/blog/qr-code-data-capacity/" class="font-semibold underline underline-offset-2 ml-1" data-v-4042dde3="">Leer en inglés →</a></div></div></div><header class="mb-8" data-v-4042dde3=""><div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-3" data-v-4042dde3=""><span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300" data-v-4042dde3="">Data</span><span data-v-4042dde3="">·</span><time datetime="2026-07-28" data-v-4042dde3="">July 28, 2026</time><span data-v-4042dde3="">·</span><span data-v-4042dde3="">9 min de lectura</span></div><h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight" data-v-4042dde3="">QR Code Data Capacity: How Much Can a QR Code Actually Store?</h1><p class="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed" data-v-4042dde3="">Max 7,089 digits, 4,296 alphanumeric characters, 2,953 bytes, or 1,468 Chinese characters. Here is the real QR code storage limit per version, per error correction, per character set.</p><div class="mt-5 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400" data-v-4042dde3=""><div class="h-8 w-8 rounded-full bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center text-white text-xs font-bold" data-v-4042dde3="">Q</div><span data-v-4042dde3="">QR Tool Studio</span></div></header><figure class="mb-10 rounded-2xl overflow-hidden glass-panel dark:glass-panel-dark" data-v-4042dde3=""><img src="/blog/qr-code-data-capacity/qr-code-data-capacity-hero.png" alt="QR Code Data Capacity: How Much Can a QR Code Actually Store?" class="w-full h-auto" data-v-4042dde3=""></figure><aside class="my-8" aria-label="Sponsored content" data-v-4042dde3=""><div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center" data-v-4042dde3="">Advertisement</div><ins class="adsbygoogle block w-full" style="display:block;text-align:center;" data-ad-client="ca-pub-1606763409380030" data-ad-slot="0000000001" data-ad-layout="in-article" data-ad-format="fluid" data-v-4042dde3=""></ins><script data-v-4042dde3="">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></aside><article class="blog-content" data-v-4042dde3=""><p class="lead">A QR code is a 2D barcode. It\u2019s made of black and white squares, and those squares encode a string of text. The question is: how long can that string be? <strong>The honest answer is "it depends," and the range is wider than most people think.</strong> The smallest QR codes hold 17 characters. The largest hold nearly 3,000 alphanumeric characters or about 7,000 digits. A Chinese character uses 2 bytes, so the practical limit for Chinese text drops to around 1,800 characters. Emoji? Forget it — one emoji can use 4 bytes and the visible limit for emoji-only QR codes is about 1,500.</p>
+
+<p>By the end, you will know the real upper bound for any QR code, why your scanner says "data too large" sometimes, and what to do when you actually need to encode that much data.</p>
+
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-hero.png" alt="QR code data capacity chart: version vs storage across L, M, Q, H error correction">
+  <figcaption>QR code storage grows with version. The catch is that bigger storage also means a denser code, which is harder to scan at small sizes.</figcaption>
+</figure>
+
+<h2 id="quick-answer">The Quick Answer</h2>
+
+<p>If you need the number right now, here it is. The biggest practical QR code, version 40 with low error correction, can hold:</p>
+
+<ul>
+  <li><strong>Numeric only (0–9):</strong> 7,089 characters</li>
+  <li><strong>Alphanumeric (0–9, A–Z, space, $%*+-./:):</strong> 4,296 characters</li>
+  <li><strong>Byte mode (any byte 0–255):</strong> 2,953 characters (or 1,468 Chinese/CJK characters in UTF-8)</li>
+</ul>
+
+<p>Real-world QR codes stop well short of these limits. Scanning distance, lighting, and print size all make a dense, maxed-out QR code impractical. The codes you see on packaging, posters, and menus are usually versions 3 through 7, holding between 20 and 200 characters.</p>
+
+<h2 id="the-three-modes">The Three Encoding Modes</h2>
+
+<p>QR codes aren\u2019t one-size-fits-all. They have three primary encoding modes, and choosing the right one is the difference between fitting 100 characters and fitting 1,000.</p>
+
+<h3>1. Numeric mode (most efficient)</h3>
+<p>Each digit is encoded in 3.33 bits — the most efficient mode by far. Use it for phone numbers, IDs, dates, prices, and any data that\u2019s all digits. This is why a phone number (10 digits) fits in a tiny QR code that scans from 10 feet away.</p>
+
+<h3>2. Alphanumeric mode</h3>
+<p>Each character takes 5.5 bits. The character set is the 45 characters supported: 0–9, A–Z (uppercase only), space, and $%*+-./:. Use it for URLs, codes, and most English text. Note: no lowercase, no accents. If you need "café," use byte mode.</p>
+
+<h3>3. Byte mode (binary)</h3>
+<p>Each byte is 8 bits. This is the only mode that handles arbitrary text, including lowercase, accented characters, emoji, and binary data like images or audio clips. UTF-8 text goes here. The trade-off: 8 bits per character is the least efficient of the three modes, so the code needs more modules to hold the same logical content.</p>
+
+<p>There is also a fourth mode, Kanji, optimized for Japanese characters, that encodes 13 bits per character. It\u2019s rarely used outside Japan.</p>
+
+<h2 id="version-and-capacity">Version and Capacity, Side by Side</h2>
+
+<p>QR codes come in 40 versions. Version 1 is a 21x21 module grid. Each version adds 4 modules per side, so version 40 is 177x177. The bigger the grid, the more data it can hold. The actual capacity depends on the version and the error correction level.</p>
+
+<p>Here is the real table. The numbers come straight from the QR Code spec (ISO/IEC 18004). Error correction levels are L (7%), M (15%), Q (25%), and H (30%) — higher correction means more redundancy and less capacity.</p>
+
+<h3>Numeric mode (digits 0-9)</h3>
+<ul>
+  <li><strong>Version 1, L:</strong> 41 characters</li>
+  <li><strong>Version 5, M:</strong> 290 characters</li>
+  <li><strong>Version 10, H:</strong> 213 characters</li>
+  <li><strong>Version 20, L:</strong> 2,224 characters</li>
+  <li><strong>Version 40, L:</strong> 7,089 characters (max)</li>
+</ul>
+
+<h3>Alphanumeric mode (uppercase, digits, few symbols)</h3>
+<ul>
+  <li><strong>Version 1, L:</strong> 25 characters</li>
+  <li><strong>Version 5, M:</strong> 178 characters</li>
+  <li><strong>Version 10, H:</strong> 131 characters</li>
+  <li><strong>Version 20, L:</strong> 1,367 characters</li>
+  <li><strong>Version 40, L:</strong> 4,296 characters (max)</li>
+</ul>
+
+<h3>Byte mode (any binary data)</h3>
+<ul>
+  <li><strong>Version 1, L:</strong> 17 characters</li>
+  <li><strong>Version 5, M:</strong> 114 characters</li>
+  <li><strong>Version 10, H:</strong> 86 characters</li>
+  <li><strong>Version 20, L:</strong> 858 characters</li>
+  <li><strong>Version 40, L:</strong> 2,953 characters (max)</li>
+</ul>
+
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-comparison.png" alt="QR code version comparison: small code (v3, ~50 chars) vs medium (v10, ~200 chars) vs large (v25, ~1000 chars) vs max (v40)">
+  <figcaption>Same data, different versions. The leftmost code is version 3 (29x29 modules), the rightmost is version 25 (117x117). Same 100-character payload.</figcaption>
+</figure>
+
+<h2 id="how-to-choose">How to Choose the Right Version</h2>
+
+<p>You almost never pick a version manually. The QR generator picks it for you based on your data and your error correction level. What you pick is:</p>
+
+<h3>Step 1: Decide on error correction</h3>
+<p>Higher correction lets the code survive damage (a smudged code on a coffee cup, a partially obscured code on a billboard) but takes more space.</p>
+<ul>
+  <li><strong>L (7%):</strong> Clean indoor use, no logo. Maximum capacity.</li>
+  <li><strong>M (15%):</strong> Default. Good for most printed materials. A small logo fits in the margin.</li>
+  <li><strong>Q (25%):</strong> Outdoor or industrial use. Smudges, scratches, weathering.</li>
+  <li><strong>H (30%):</strong> Center logo, harsh environments, low-light scanning. The code is recoverable even with 30% damaged.</li>
+</ul>
+
+<h3>Step 2: Estimate your data size</h3>
+<p>Count your characters. If your text is 30 alphanumeric characters and 1 URL, you are in version 3 territory. If you are encoding a 500-character WiFi password, version 15. If you are encoding 2,000 bytes of Chinese text, version 30+.</p>
+
+<h3>Step 3: Let the generator pick</h3>
+<p>Any modern QR generator — including the one in this tool — picks the smallest version that fits your data with your chosen correction level. You do not need to do this math by hand.</p>
+
+<h2 id="real-limits">The Real Limits Most People Hit</h2>
+
+<p>The spec\u2019s 7,089-character max is real but practically meaningless. Here are the limits that actually matter for everyday use.</p>
+
+<h3>URLs are the bottleneck</h3>
+<p>The vast majority of QR codes encode a URL. Modern URLs are 50 to 200 characters, especially with UTM parameters, deep links, and tracking. A URL-heavy QR code lands in version 4–8 territory — small, scannable, fits anywhere.</p>
+
+<p>If you are encoding a 1,000-character URL (some analytics setups, some deep links), you are in version 20+, which is a 97x97 module grid. That is a large code that needs a print area of at least 4 cm x 4 cm to scan reliably. Most people solve this by using a short URL or a redirect service.</p>
+
+<h3>Chinese and emoji: a real cost</h3>
+<p>Chinese text in UTF-8 takes 3 bytes per character (most CJK). One Chinese character is the same as 3 English characters in byte mode. So 100 Chinese characters uses the same code space as 300 English characters, which means a larger QR code for the same logical content.</p>
+
+<p>Emoji are worse: a single emoji can be 4 bytes. The visible "red heart" ❤️ is U+2764 U+FE0F, which is 6 bytes in UTF-8. A QR code that just says "I ❤️ QR codes" is encoding 16 characters in 26 bytes of data. The capacity math still works, but you are using byte mode for the whole string.</p>
+
+<h3>Binary payloads (images, audio, business cards)</h3>
+<p>People sometimes ask "can I put an image or audio clip in a QR code?" The honest answer: yes, but the practical limit is small. A 200x200 pixel image is roughly 12 KB compressed. That is way more than the 2,953-byte byte mode limit. Stick to vCard business cards, which are 200–500 bytes — that fits comfortably in a small code.</p>
+
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-scan-demo.png" alt="Side-by-side: small QR code for a short URL vs large QR code for a 1,000-character payload">
+  <figcaption>The smaller code (left) is for a 60-character URL. The larger code (right) is for a 1,000-character text block. Same error correction, very different physical size.</figcaption>
+</figure>
+
+<h2 id="when-you-actually-need-it">When You Actually Need Maximum Capacity</h2>
+
+<p>There are real reasons to max out a QR code. They are rare but they exist.</p>
+
+<h3>1. Long WiFi credentials</h3>
+<p>WPA2 passwords can be up to 63 characters. Combined with SSID and security type, a WiFi QR code is 40–80 characters — well within easy capacity.</p>
+
+<h3>2. vCard business cards</h3>
+<p>A full vCard with name, title, company, multiple phones, emails, and a website can hit 300–500 characters. v3–v5 codes handle this easily. The vCard format is verbose; using vCard 3.0 instead of 4.0 saves characters.</p>
+
+<h3>3. SMS or email with pre-filled body</h3>
+<p>An SMS with a long pre-filled body (e.g., "Hi, I would like to order...") can hit 200+ characters. Email bodies get long fast. Both fit in v5–v10 codes.</p>
+
+<h3>4. Digital tickets and boarding passes</h3>
+<p>PDF417 and Aztec codes handle this better than QR, but QR can encode a record locator plus passenger name plus a few fields. Real-world boarding passes are 100–200 characters.</p>
+
+<h2 id="micro-qr">Micro QR: For Really Small Codes</h2>
+
+<p>There is a variant called Micro QR, designed for cases where a tiny physical size matters more than capacity. Micro QR only has versions M1 through M4, with module sizes from 11x11 to 17x17. The capacity is correspondingly tiny:</p>
+
+<ul>
+  <li><strong>M1:</strong> 5 numeric, 3 alphanumeric, 2 byte</li>
+  <li><strong>M4:</strong> 35 numeric, 21 alphanumeric, 15 byte</li>
+</ul>
+
+<p>Micro QR is used for things like part labels on electronics or single-character codes. The standard scanner on your phone will read it, but most consumer apps do not generate it.</p>
+
+<h2 id="how-to-read">How to Read the Capacity of a Code You Already Have</h2>
+
+<p>If you generated a QR code and want to know how much room you have left, the easiest way is to decode it and look at the version number in the metadata. Most QR decoder libraries expose this. In the browser, libraries like jsQR or qrcode-reader return the version. The capacity tables are then just lookup.</p>
+
+<p>Or, simpler: just try to add more characters and re-generate. The generator will tell you if it cannot fit your data. If you see "data too large" with a v40 code and byte mode, you have hit the absolute ceiling of 2,953 bytes. The fix is to compress, shorten, or move to a different code type (Data Matrix, PDF417) that handles more.</p>
+
+<h2 id="mistakes">Common Mistakes When You Approach the Limit</h2>
+
+<h3>Mistake 1: Using byte mode when numeric or alphanumeric would do</h3>
+<p>If your data is a phone number or a code like "ABC-1234," numeric or alphanumeric mode cuts the size by 2-3x. Always pick the most restrictive mode that fits your data.</p>
+
+<h3>Mistake 2: Choosing H correction when M would do</h3>
+<p>Adding a small center logo only needs M correction. H correction is for codes that will be physically damaged. If your code is going on a phone screen, you do not need H.</p>
+
+<h3>Mistake 3: Ignoring scan distance</h3>
+<p>A 100x100 module code looks great on a 10 cm x 10 cm poster, but it will not scan from across the room. If you are encoding more than 200 characters, you need a larger code physically, or you need a smaller code with a short URL redirect.</p>
+<figure>
+  <img src="/blog/qr-code-data-capacity/qr-code-data-capacity-faq-banner.png" alt="A flat " max="" size"="" view="" of="" qr="" code="" capacity:="" 7,089="" digits="" 4,296="" alpha="" 2,953="" bytes="" at="" v40-l,="" with="" real-world="" safe="" limi"="">
+  <figcaption>A flat "max size" view of QR code capacity: 7,089 digits / 4,296 alpha / 2,953 bytes at v40-L, with real-world safe limits of 200-500 chars. Pick the version, not the size.</figcaption>
+</figure>
+
+
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>What is the maximum size of a QR code?</h3>
+<p>Version 40 is the largest standard QR code, at 177x177 modules. It holds 7,089 numeric characters, 4,296 alphanumeric, or 2,953 bytes. The physical size depends on the print resolution; typically 30 cm x 30 cm or more for high-density codes.</p>
+
+<h3>Can a QR code hold an image?</h3>
+<p>Technically yes, but practically no. A small thumbnail (say, 100x100 pixels at low quality) is 5–15 KB compressed, which is 5x the maximum byte capacity. Stick to vCards and short URLs.</p>
+
+<h3>How much data can a QR code hold in Chinese?</h3>
+<p>In UTF-8 byte mode, a QR code holds about 1,468 Chinese characters at the maximum version 40. The reason: each CJK character is 3 bytes in UTF-8, and you have 2,953 bytes total. The Kanji encoding mode (if your generator supports it) is more efficient: about 1,817 characters at version 40.</p>
+
+<h3>Why is my QR code not generating?</h3>
+<p>You have hit the capacity limit. The generator cannot fit your data into a version 40 code, even with the lowest correction. The fix is to compress, shorten, or use a different code format (Data Matrix, PDF417, Aztec) that handles larger payloads.</p>
+
+<h3>How do I know what version my QR code is?</h3>
+<p>Decode it with any QR library. The library returns the version number (1-40) along with the data. The version is also embedded in the alignment patterns of the code itself, but reading it visually is not easy.</p>
+
+<h3>What is the difference between L, M, Q, and H error correction?</h3>
+<p>The four levels indicate how much of the code can be damaged and still scan. L recovers from 7% data loss, M from 15%, Q from 25%, H from 30%. H gives the most resilience but reduces capacity. For most print use, M is the default and right choice.</p>
+
+<h2 id="next">What to Read Next</h2>
+<p>If you are encoding a lot of data, the next thing you want is a code that scans well at small physical sizes. These guides cover that:</p>
+<ul>
+<li><a href="#blog/qr-code-size-guide">QR Code Size Guide</a> — How big to print, scan distance math</li>
+<li><a href="#blog/qr-code-error-correction-guide">QR Code Error Correction Guide</a> — When to use L, M, Q, H</li>
+<li><a href="#blog/qr-code-design-best-practices">QR Code Design Best Practices</a> — Make codes that look good and still scan</li>
+<li><a href="#blog/qr-code-for-wedding">QR Code for Wedding</a> — A real-world example with vCard-sized payloads</li>
+</ul>
+
+<p>Pick a correction level that matches your environment, and let the generator pick the version. If you are hitting v40 and still not fitting, the answer is not a bigger QR code — it is a smaller payload.</p></article><aside class="my-8" aria-label="Sponsored content" data-v-4042dde3=""><div class="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5 text-center" data-v-4042dde3="">Advertisement</div><ins class="adsbygoogle block w-full" style="display:block;text-align:center;" data-ad-client="ca-pub-1606763409380030" data-ad-slot="0000000002" data-ad-layout="in-article" data-ad-format="fluid" data-v-4042dde3=""></ins><script data-v-4042dde3="">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></aside><div class="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-brand-500 to-purple-500 text-white text-center" data-v-4042dde3=""><h3 class="text-xl sm:text-2xl font-extrabold" data-v-4042dde3="">¿Listo para crear el tuyo?</h3><p class="mt-2 text-sm sm:text-base text-white/90" data-v-4042dde3="">Gratis, sin registro, en tu navegador. Genera tu código QR WiFi en menos de un minuto.</p><button class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-brand-600 font-bold text-sm hover:shadow-lg transition-shadow" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="12" y1="5" x2="12" y2="19" data-v-4042dde3=""></line><line x1="5" y1="12" x2="19" y2="12" data-v-4042dde3=""></line></svg> Generar QR WiFi</button></div><div class="mt-12 pt-8 border-t border-gray-200/60 dark:border-white/10" data-v-4042dde3=""><h2 class="text-lg font-extrabold text-gray-900 dark:text-white mb-4" data-v-4042dde3="">Related guides</h2><ul class="grid grid-cols-1 sm:grid-cols-3 gap-4" data-v-4042dde3=""><!--[--><li data-v-4042dde3=""><a href="/es/blog/qr-code-statistics-2025/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">Data</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">QR Code Statistics 2025: Usage, Growth &amp; Market Size</div></a></li><li data-v-4042dde3=""><a href="/es/blog/qr-code-trends-2026/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">Data</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">QR Code Trends 2026: 5 Predictions from 5.3B Scans and $3T in Payments</div></a></li><li data-v-4042dde3=""><a href="/es/blog/qr-code-for-healthcare/" class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow" data-v-4042dde3=""><div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5" data-v-4042dde3="">How-To</div><div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2" data-v-4042dde3="">QR Code for Healthcare: 7 Clinic Use Cases (2025)</div></a></li><!--]--></ul></div><div class="mt-8" data-v-4042dde3=""><button class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 hover:underline" data-v-4042dde3=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" data-v-4042dde3=""><line x1="19" y1="12" x2="5" y2="12" data-v-4042dde3=""></line><polyline points="12 19 5 12 12 5" data-v-4042dde3=""></polyline></svg> Ver todos los artículos</button></div></div><footer class="mt-auto border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.02] backdrop-blur"><div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 sm:grid-cols-5 gap-8 text-sm"><div class="col-span-2 sm:col-span-2"><a href="/es/" class="flex items-center gap-2 mb-3 group"><div class="h-9 w-9 rounded-xl bg-gradient-to-br from-brand-500 to-purple-500 grid place-items-center text-white font-bold shadow-md shadow-brand-500/30">Q</div><div class="leading-tight"><div class="font-bold text-gray-900 dark:text-white">QR Tool Studio</div><div class="text-[10px] text-gray-500 dark:text-gray-400">Herramienta online gratuita · 8 tipos</div></div></a><p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">QR Tool Studio es un generador de códigos QR en línea gratuito, ligero y profesional. Compatible con 8 tipos: URL, vCard, WiFi, texto, correo electrónico, teléfono, SMS y ubicación. Personalice colores degradados, logotipo central, 6 estilos de matriz. Exportación con un clic a PNG / SVG / JPEG, generación por lotes en ZIP.</p></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">Producto</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/es/#generator" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Generador único</a></li><li><a href="/es/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Generación por lotes</a></li><li><a href="/es/#how" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Cómo usar</a></li><li><a href="/es/#types" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Todos los tipos</a></li><li><a href="/es/#use-cases" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Casos de uso</a></li><li><a href="/es/#faq" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Preguntas frecuentes</a></li><li><a href="/es/blog/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors inline-flex items-center gap-1.5"><span>Blog</span><span class="inline-block px-1.5 py-0.5 text-[8px] font-bold rounded bg-gradient-to-r from-brand-500 to-purple-500 text-white">NEW</span></a></li></ul></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">Legal</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/es/privacy/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Política de privacidad</a></li><li><a href="/es/terms/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Términos de uso</a></li><li><button class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">Aviso legal</button></li><li><a href="/es/privacy/#cookies" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Política de cookies</a></li></ul></div><div><h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">Acerca de</h3><ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400"><li><a href="/es/about/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Sobre nosotros</a></li><li><a href="/es/contact/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Contacto</a></li><li><a href="mailto:andynaonao@gmail.com" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Negocios</a></li><li><span class="inline-flex items-center gap-1.5 text-gray-500 dark:text-gray-400">Tema: <strong class="text-gray-700 dark:text-gray-200">Claro</strong></span></li></ul></div></div><div class="border-t border-gray-200/60 dark:border-white/10"><div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col gap-3 text-[11px] text-gray-500 dark:text-gray-400"><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><span>© 2026 QR Tool Studio. All rights reserved.</span></div><div class="flex flex-wrap items-center gap-x-3 gap-y-1"><button class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Aviso legal</button><span>·</span><a href="/es/privacy/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Política de privacidad</a><span>·</span><a href="/es/terms/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Términos de uso</a><span>·</span><a href="/es/about/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Sobre nosotros</a><span>·</span><a href="/es/contact/" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">Contacto</a></div></div></div></div></footer><!----></div><!--]--></div>
+
+  
+
+</body></html>

@@ -84,19 +84,30 @@ for (const r of rows) {
 }
 console.log('-'.repeat(100))
 
-// 唯一性检查
-const titles = new Set(rows.map((r) => r.title))
+// 唯一性检查：canonical 必须全站唯一（这才是 Google 判重页面依据）。
+// 注意：多语言站点里 /blog/foo/ 与 /zh/blog/foo/ 的 title 会相同（正文未翻译），
+// 这是正常的 hreflang 备选页，不能用 title 唯一性来判错。
 const canons = new Set(rows.map((r) => r.canonical))
 console.log(`\n页面总数        : ${rows.length}`)
 console.log(`通过            : ${pass}`)
 console.log(`未通过          : ${fail}`)
-console.log(`唯一 title 数   : ${titles.size}`)
 console.log(`唯一 canonical 数: ${canons.size}`)
 
-if (fail > 0 || titles.size !== rows.length) {
+if (fail > 0 || canons.size !== rows.length) {
   console.log('\n未达标的页面明细：')
   for (const r of rows.filter((x) => !x.ok)) {
     console.log(`  ${r.file} → 正文 ${r.text} / 内链 ${r.links} / LD ${r.ld}`)
+  }
+  if (canons.size !== rows.length) {
+    // 找出重复 canonical
+    const seen = new Map()
+    for (const r of rows) {
+      if (seen.has(r.canonical)) {
+        console.log(`  重复 canonical: ${r.canonical} → ${seen.get(r.canonical)} 与 ${r.file}`)
+      } else {
+        seen.set(r.canonical, r.file)
+      }
+    }
   }
   process.exitCode = 1
 } else {
