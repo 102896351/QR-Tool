@@ -1,7 +1,15 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from '../../composables/useI18n'
+import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+
+usePageHead({
+  title: 'Contact QR Tool Studio — Support, Bugs & Partnerships',
+  description:
+    'Contact the QR Tool Studio team for bug reports, feature requests, privacy questions or partnership inquiries. Email or GitHub — we reply within 1-3 business days.',
+  path: '/contact/'
+})
 
 const form = ref({ name: '', email: '', subject: 'general', message: '' })
 const submitted = ref(false)
@@ -149,6 +157,54 @@ function submit() {
           </p>
         </form>
       </div>
+    </div>
+
+    <!-- 自助帮助区：既是内容，也是站内链接入口 -->
+    <div class="mt-14 pt-8 border-t border-slate-200 dark:border-slate-700">
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+        Before you write to us
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-5">
+        Most questions we receive are already answered somewhere on the site. These three pages solve the majority of them, and they are available instantly:
+      </p>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <RouterLink
+          to="/#faq"
+          class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition"
+        >
+          <div class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Frequently asked questions</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Pricing, expiry, error correction levels, export formats and why a code will not scan.
+          </p>
+        </RouterLink>
+        <RouterLink
+          to="/blog/"
+          class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition"
+        >
+          <div class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Step-by-step guides</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            WiFi, vCard, restaurant menu and event QR codes, plus printing and sizing advice.
+          </p>
+        </RouterLink>
+        <RouterLink
+          to="/privacy/"
+          class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500/50 transition"
+        >
+          <div class="text-sm font-semibold text-slate-900 dark:text-white mb-1">Privacy questions</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            What stays on your device, what we never see, and how to clear your local history.
+          </p>
+        </RouterLink>
+      </div>
+
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white mt-10 mb-4">
+        Reporting a security issue
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400">
+        If you believe you have found a vulnerability that could expose another person's data, please email
+        <a href="mailto:contact@toolbox168.xyz" class="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">contact@toolbox168.xyz</a>
+        with the subject line "Security" before disclosing it publicly. Because QR Tool Studio performs every operation locally in your browser, the attack surface is limited to the static assets we serve — but we take reports seriously and will respond within one business day.
+      </p>
     </div>
   </div>
 </template>

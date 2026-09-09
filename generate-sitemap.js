@@ -34,6 +34,7 @@ const RULES = {
   tool:      { priority: '0.9', changefreq: 'monthly'  },
   batch:     { priority: '0.8', changefreq: 'monthly'  },
   faq:       { priority: '0.6', changefreq: 'monthly'  },
+  static:    { priority: '0.5', changefreq: 'yearly'   },
   // blog posts - by category
   'How-To':       { priority: '0.9', changefreq: 'monthly' },
   Guide:          { priority: '0.8', changefreq: 'monthly' },
@@ -78,18 +79,19 @@ function main() {
   // Home page
   blocks.push(urlBlock(`${SITE}/`, lastmod, RULES.home.priority, RULES.home.changefreq));
 
-  // History-mode routes (real URLs, not hash fragments)
-  blocks.push(urlBlock(`${SITE}/blog`,         lastmod, RULES.blogIndex.priority, RULES.blogIndex.changefreq));
-  blocks.push(urlBlock(`${SITE}/privacy`,      lastmod, RULES.tool.priority,      RULES.tool.changefreq));
-  blocks.push(urlBlock(`${SITE}/terms`,        lastmod, RULES.batch.priority,     RULES.batch.changefreq));
-  blocks.push(urlBlock(`${SITE}/contact`,      lastmod, RULES.faq.priority,       RULES.faq.changefreq));
-  blocks.push(urlBlock(`${SITE}/about`,        lastmod, RULES.faq.priority,       RULES.faq.changefreq));
+  // Blog index + static pages
+  // 注意：全部使用 path 路由并带尾斜杠，与应用 history 模式保持一致。
+  // 旧的 hash 写法（/#blog/xxx）Google 不会索引，会导致所有页面指向同一首页。
+  blocks.push(urlBlock(`${SITE}/blog/`, lastmod, RULES.blogIndex.priority, RULES.blogIndex.changefreq));
+  for (const p of ['privacy', 'terms', 'contact', 'about']) {
+    blocks.push(urlBlock(`${SITE}/${p}/`, lastmod, RULES.static.priority, RULES.static.changefreq));
+  }
 
-  // Blog posts (each as independent URL)
+  // Blog posts
   for (const post of posts) {
     const rule = RULES[post.category] || RULES.Guide;
     blocks.push(urlBlock(
-      `${SITE}/blog/${post.slug}`,
+      `${SITE}/blog/${post.slug}/`,
       post.date || lastmod,
       rule.priority,
       rule.changefreq,

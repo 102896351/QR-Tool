@@ -1,9 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import { useI18n } from '../../composables/useI18n'
 import postsData from '../../blog/posts.json'
+import { SITE, BRAND } from '../../config.js'
 
 const { t } = useI18n()
+const router = useRouter()
 const posts = ref(postsData)
 
 const sortedPosts = computed(() => {
@@ -11,10 +15,40 @@ const sortedPosts = computed(() => {
 })
 
 function goToPost(slug) {
-  history.pushState(null, '', `/blog/${slug}`)
-  window.dispatchEvent(new PopStateEvent('popstate'))
-  window.scrollTo({ top: 0, behavior: 'instant' })
+  router.push(`/blog/${slug}/`)
 }
+
+useHead(() => ({
+  title: `QR Code Guides & Tutorials | ${BRAND} Blog`,
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Practical guides on QR codes: how they work, sizing and error correction, WiFi and vCard QR codes, design best practices, and how to fix codes that will not scan.'
+    },
+    { property: 'og:title', content: `QR Code Guides & Tutorials | ${BRAND} Blog` },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${SITE}/blog/` }
+  ],
+  link: [{ rel: 'canonical', href: `${SITE}/blog/` }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'QR Code Guides',
+        url: `${SITE}/blog/`,
+        hasPart: sortedPosts.value.map((p) => ({
+          '@type': 'BlogPosting',
+          headline: p.title,
+          url: `${SITE}/blog/${p.slug}/`,
+          datePublished: p.date
+        }))
+      })
+    }
+  ]
+}))
 
 function formatDate(dateStr) {
   const d = new Date(dateStr)
@@ -45,9 +79,10 @@ function formatDate(dateStr) {
       <article
         v-for="post in sortedPosts"
         :key="post.slug"
-        @click="goToPost(post.slug)"
-        class="group cursor-pointer glass-panel dark:glass-panel-dark overflow-hidden noise-bg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        class="group glass-panel dark:glass-panel-dark overflow-hidden noise-bg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       >
+        <!-- 封面 + 标题做成真实 <a>，保证 Google 能从列表页抓到文章 URL -->
+        <RouterLink :to="`/blog/${post.slug}/`" class="block">
         <!-- Cover image -->
         <div class="relative aspect-[1200/630] overflow-hidden bg-gradient-to-br from-brand-500/10 to-purple-500/10">
           <img
@@ -63,6 +98,7 @@ function formatDate(dateStr) {
             </span>
           </div>
         </div>
+        </RouterLink>
 
         <!-- Content -->
         <div class="p-5">
@@ -71,9 +107,11 @@ function formatDate(dateStr) {
             <span>·</span>
             <span>{{ post.readTime }} {{ t('blog.minRead') }}</span>
           </div>
-          <h2 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-300 transition-colors line-clamp-2">
-            {{ post.title }}
-          </h2>
+          <RouterLink :to="`/blog/${post.slug}/`">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-300 transition-colors line-clamp-2">
+              {{ post.title }}
+            </h2>
+          </RouterLink>
           <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
             {{ post.description }}
           </p>

@@ -1,6 +1,14 @@
 <script setup>
 import { useI18n } from '../../composables/useI18n'
+import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+
+usePageHead({
+  title: 'Terms of Service — QR Tool Studio',
+  description:
+    'The terms for using QR Tool Studio: a free, browser-based QR code generator with no account, no upload and no usage limits. Plain language, no legalese.',
+  path: '/terms/'
+})
 </script>
 
 <template>
@@ -74,7 +82,7 @@ const { t } = useI18n()
       <p>These terms are governed by the laws of the jurisdiction in which the operator is based, without regard to conflict of law principles. Disputes will be resolved in the courts of that jurisdiction.</p>
 
       <h2>11. Contact</h2>
-      <p>For questions about these terms, see our <a href="/contact">Contact</a> page.</p>
+      <p>For questions about these terms, see our <a href="#contact">Contact</a> page.</p>
     </div>
   </div>
 </template>

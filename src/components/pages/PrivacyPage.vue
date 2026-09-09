@@ -1,6 +1,14 @@
 <script setup>
 import { useI18n } from '../../composables/useI18n'
+import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+
+usePageHead({
+  title: 'Privacy Policy — QR Tool Studio',
+  description:
+    'How QR Tool Studio handles your data: nothing you type is uploaded, nothing is stored on a server, and there are no tracking cookies. Read the full privacy policy in plain language.',
+  path: '/privacy/'
+})
 </script>
 
 <template>
@@ -65,7 +73,7 @@ const { t } = useI18n()
         <li>Know what data is collected about you (see Section 2 above)</li>
         <li>Request deletion of any data we hold (we hold no personal data, but third-party services may; see their policies)</li>
         <li>Opt out of personalized advertising (Google Ad Settings: <a href="https://adssettings.google.com/" target="_blank" rel="noopener">adssettings.google.com</a>)</li>
-        <li>Object to processing (contact us via the <a href="/contact">Contact</a> page)</li>
+        <li>Object to processing (contact us via the <a href="#contact">Contact</a> page)</li>
       </ul>
 
       <h2>7. Third-party policies</h2>
@@ -79,7 +87,7 @@ const { t } = useI18n()
       <p>We may update this policy as the tool evolves. Significant changes will be announced on the homepage. The "Last updated" date at the top of this page reflects the current version.</p>
 
       <h2>9. Contact</h2>
-      <p>For privacy-related questions or data requests, see our <a href="/contact">Contact</a> page.</p>
+      <p>For privacy-related questions or data requests, see our <a href="#contact">Contact</a> page.</p>
     </div>
   </div>
 </template>
