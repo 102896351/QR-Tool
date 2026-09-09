@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n, DEFAULT_LOCALE } from '../composables/useI18n'
 import { openLegal } from '../composables/useLegal'
-import { tab } from '../composables/useTab'
 
 defineProps({
   isDark: { type: Boolean, default: false }
@@ -23,15 +22,6 @@ const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
 function lp(p) {
   if (lang.value === DEFAULT_LOCALE) return p
   return `/${lang.value}${p === '/' ? '/' : p}`
-}
-
-/**
- * 「批量生成」是首页的一个 Tab，不是独立路由。
- * 在其它页面点击时先回首页再切 Tab，避免为它单独造一个 URL
- * （会造成与首页内容高度重复的 thin page）。
- */
-function goBatch() {
-  tab.value = 'batch'
 }
 </script>
 
@@ -57,7 +47,7 @@ function goBatch() {
         <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.product') }}</h3>
         <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
           <li><RouterLink :to="lp('/#generator')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.generator') }}</RouterLink></li>
-          <li><RouterLink :to="lp('/')" @click="goBatch" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.batch') }}</RouterLink></li>
+          <li><RouterLink :to="lp('/batch/')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.batch') }}</RouterLink></li>
           <li><RouterLink :to="lp('/#how')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.how') }}</RouterLink></li>
           <li><RouterLink :to="lp('/#types')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.types') }}</RouterLink></li>
           <li><RouterLink :to="lp('/#use-cases')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.link.usecases') }}</RouterLink></li>

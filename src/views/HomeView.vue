@@ -3,7 +3,6 @@ import { ref, computed, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useRoute, useRouter } from 'vue-router'
 import SingleGenerator from '../components/SingleGenerator.vue'
-import BatchGenerator from '../components/BatchGenerator.vue'
 import HistoryView from '../components/HistoryView.vue'
 import MarketingSections from '../components/MarketingSections.vue'
 import BlogTeaser from '../components/BlogTeaser.vue'
@@ -170,7 +169,6 @@ useHead(() => ({
   <!-- 主内容区 -->
   <main id="generator" class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-12 mt-6 sm:mt-8 scroll-mt-24">
     <SingleGenerator v-if="tab === 'single'" :initial-text="seedText" :key="seedText" @saved="() => {}" />
-    <BatchGenerator v-else-if="tab === 'batch'" />
     <HistoryView v-else @apply="applyHistoryItem" />
   </main>
 

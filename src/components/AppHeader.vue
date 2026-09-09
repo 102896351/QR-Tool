@@ -13,16 +13,17 @@ function lp(p) {
   return `/${lang.value}${p === '/' ? '/' : p}`
 }
 
-const tabs = [
-  { id: 'single', labelKey: 'header.nav.single' },
-  { id: 'batch',  labelKey: 'header.nav.batch' },
-  { id: 'history',labelKey: 'header.nav.history' }
-]
 const props = defineProps({
   active: { type: String, required: true },
   view:   { type: String, default: 'home' }
 })
 const emit = defineEmits(['change', 'goto-blog', 'goto-home'])
+
+// Batch 是独立页面（/batch/），Single / History 仍是首页内 Tab
+const tabClass = (isActive) =>
+  isActive
+    ? 'tab-btn tab-btn-active'
+    : 'tab-btn'
 </script>
 
 <template>
@@ -56,13 +57,24 @@ const emit = defineEmits(['change', 'goto-blog', 'goto-home'])
 
       <!-- 主题切换 + 导航 -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <nav v-if="view === 'home'" class="hidden sm:flex items-center gap-1 p-1 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-gray-200/60 dark:border-white/10 backdrop-blur">
+        <nav v-if="view === 'home' || view === 'batch'" class="hidden sm:flex items-center gap-1 p-1 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-gray-200/60 dark:border-white/10 backdrop-blur">
+          <!-- Single：首页内 Tab -->
           <button
-            v-for="tb in tabs"
-            :key="tb.id"
-            @click="emit('change', tb.id)"
-            :class="['tab-btn', active === tb.id && 'tab-btn-active']"
-          >{{ t(tb.labelKey) }}</button>
+            v-if="view === 'home'"
+            @click="emit('change', 'single')"
+            :class="tabClass(active === 'single')"
+          >{{ t('header.nav.single') }}</button>
+          <!-- Batch：独立页面入口 -->
+          <RouterLink
+            :to="lp('/batch/')"
+            :class="tabClass(view === 'batch')"
+          >{{ t('header.nav.batch') }}</RouterLink>
+          <!-- History：首页内 Tab（本地功能，无独立 URL） -->
+          <button
+            v-if="view === 'home'"
+            @click="emit('change', 'history')"
+            :class="tabClass(active === 'history')"
+          >{{ t('header.nav.history') }}</button>
         </nav>
         <!-- Blog 入口 -->
         <RouterLink
@@ -83,14 +95,22 @@ const emit = defineEmits(['change', 'goto-blog', 'goto-home'])
       </div>
     </div>
 
-    <!-- 移动端 Tab 切换 -->
-    <nav v-if="view === 'home'" class="sm:hidden mt-4 flex items-center gap-1 p-1 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-gray-200/60 dark:border-white/10 backdrop-blur overflow-x-auto no-scrollbar">
+    <!-- 移动端导航 -->
+    <nav v-if="view === 'home' || view === 'batch'" class="sm:hidden mt-4 flex items-center gap-1 p-1 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-gray-200/60 dark:border-white/10 backdrop-blur overflow-x-auto no-scrollbar">
       <button
-        v-for="tb in tabs"
-        :key="tb.id"
-        @click="emit('change', tb.id)"
-        :class="['tab-btn whitespace-nowrap flex-1 text-center', active === tb.id && 'tab-btn-active']"
-      >{{ t(tb.labelKey) }}</button>
+        v-if="view === 'home'"
+        @click="emit('change', 'single')"
+        :class="['tab-btn whitespace-nowrap flex-1 text-center', active === 'single' && 'tab-btn-active']"
+      >{{ t('header.nav.single') }}</button>
+      <RouterLink
+        :to="lp('/batch/')"
+        :class="['tab-btn whitespace-nowrap flex-1 text-center', view === 'batch' && 'tab-btn-active']"
+      >{{ t('header.nav.batch') }}</RouterLink>
+      <button
+        v-if="view === 'home'"
+        @click="emit('change', 'history')"
+        :class="['tab-btn whitespace-nowrap flex-1 text-center', active === 'history' && 'tab-btn-active']"
+      >{{ t('header.nav.history') }}</button>
     </nav>
   </header>
 </template>

@@ -1,4 +1,5 @@
 import HomeView from './views/HomeView.vue'
+import BatchView from './views/BatchView.vue'
 import BlogIndex from './components/blog/BlogIndex.vue'
 import BlogPost from './components/blog/BlogPost.vue'
 import PrivacyPage from './components/pages/PrivacyPage.vue'
@@ -27,6 +28,7 @@ export const scrollBehavior = (to, from, savedPosition) => {
 
 const baseStaticRoutes = [
   { path: '/',        name: 'home',    component: HomeView,    meta: { view: 'home' } },
+  { path: '/batch',   name: 'batch',   component: BatchView,   meta: { view: 'batch' } },
   { path: '/blog',    name: 'blog',    component: BlogIndex,   meta: { view: 'blog-list' } },
   { path: '/privacy', name: 'privacy', component: PrivacyPage, meta: { view: 'privacy' } },
   { path: '/terms',   name: 'terms',   component: TermsPage,   meta: { view: 'terms' } },

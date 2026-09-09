@@ -16,6 +16,20 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://toolbox168.xyz/es/"/>
   </url>
   <url>
+    <loc>https://toolbox168.xyz/de/batch/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolbox168.xyz/batch/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolbox168.xyz/batch/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://toolbox168.xyz/zh/batch/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://toolbox168.xyz/ja/batch/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://toolbox168.xyz/ko/batch/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolbox168.xyz/fr/batch/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolbox168.xyz/de/batch/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolbox168.xyz/es/batch/"/>
+  </url>
+  <url>
     <loc>https://toolbox168.xyz/de/blog/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
