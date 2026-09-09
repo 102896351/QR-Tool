@@ -1,6 +1,14 @@
 <script setup>
 import { useI18n } from '../../composables/useI18n'
+import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+
+usePageHead({
+  title: 'About QR Tool Studio — Free, Private QR Code Generator',
+  description:
+    'QR Tool Studio is a free, privacy-first QR code generator that runs entirely in your browser. Learn why we built it, how your data stays on your device, and what you can create with it.',
+  path: '/about/'
+})
 </script>
 
 <template>

@@ -3,6 +3,9 @@
  * 支持 7 种语言,默认英文,LocalStorage 持久化
  */
 import { ref, computed, watch } from 'vue'
+// 英文是默认语言，静态引入 —— 保证 SSR / 预渲染阶段就能拿到真实文案，
+// 否则构建出的 HTML 里会是一堆 i18n key 字面量（等于没有正文）。
+import enMessages from './locales/en.js'
 
 export const SUPPORTED = [
   { code: 'en', label: 'English',  flag: '🇺🇸' },
@@ -21,9 +24,10 @@ const current = ref(typeof localStorage !== 'undefined'
   ? (localStorage.getItem(KEY) || 'en')
   : 'en')
 
-const dicts = {}
-// i18n 就绪状态(字典加载完成后为 true)
-const ready = ref(false)
+const dicts = { en: enMessages }
+// i18n 就绪状态：英文同步就绪，其它语言异步补齐
+const ready = ref(true)
+const messages = ref(enMessages)
 
 async function loadDict(code) {
   if (dicts[code]) return dicts[code]
@@ -37,13 +41,13 @@ async function loadDict(code) {
   }
 }
 
-// 立即加载当前语言(同步顶层 import,避免 onMounted 拿到字面量)
-const messages = ref({})
-;(async () => {
-  const d = await loadDict(current.value)
-  if (d) messages.value = d
-  ready.value = true
-})()
+// 浏览器端若用户存的是非英文语言，异步补齐（服务端渲染时 current 恒为 'en'）
+if (typeof window !== 'undefined' && current.value !== 'en') {
+  loadDict(current.value).then((d) => {
+    if (d) messages.value = d
+    ready.value = true
+  })
+}
 
 // 监听语言变化
 watch(current, async (code) => {

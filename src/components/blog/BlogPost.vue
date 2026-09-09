@@ -1,109 +1,108 @@
 <script setup>
-import { computed, onMounted, watch, nextTick } from 'vue'
+import { computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import { useI18n } from '../../composables/useI18n'
 import postsData from '../../blog/posts.json'
+import { SITE, BRAND } from '../../config.js'
 
 const props = defineProps({
   slug: { type: String, required: true }
 })
 
 const { t, isReady } = useI18n()
+const router = useRouter()
 const posts = postsData
 
 const post = computed(() => posts.find(p => p.slug === props.slug))
-
-function goBack() {
-  window.location.hash = 'blog'
-  window.scrollTo({ top: 0, behavior: 'instant' })
-}
-
-function goToGenerator() {
-  window.location.hash = ''
-  setTimeout(() => {
-    document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' })
-  }, 100)
-}
+const canonical = computed(() => `${SITE}/blog/${post.value?.slug}/`)
 
 function formatDate(dateStr) {
   const d = new Date(dateStr)
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-// 同步 head meta（SEO 友好）
-function syncHead() {
-  if (typeof document === 'undefined' || !post.value) return
-  const p = post.value
-  document.title = `${p.title} | QR Tool Studio Blog`
-
-  function setMeta(selector, attr, value) {
-    let el = document.querySelector(selector)
-    if (!el) {
-      el = document.createElement('meta')
-      const [k, v] = attr
-      el.setAttribute(k, v)
-      document.head.appendChild(el)
-    }
-    el.setAttribute('content', value)
-  }
-
-  setMeta('meta[name="description"]', ['name', 'description'], p.description)
-  setMeta('meta[property="og:title"]', ['property', 'og:title'], p.title)
-  setMeta('meta[property="og:description"]', ['property', 'og:description'], p.description)
-  setMeta('meta[property="og:image"]', ['property', 'og:image'], `https://toolbox168.xyz${p.cover}`)
-  setMeta('meta[property="og:type"]', ['property', 'og:type'], 'article')
-  setMeta('meta[name="twitter:title"]', ['name', 'twitter:title'], p.title)
-  setMeta('meta[name="twitter:description"]', ['name', 'twitter:description'], p.description)
-
-  // JSON-LD Article schema
-  let ld = document.querySelector('script[type="application/ld+json"][data-blog]')
-  if (!ld) {
-    ld = document.createElement('script')
-    ld.type = 'application/ld+json'
-    ld.setAttribute('data-blog', 'true')
-    document.head.appendChild(ld)
-  }
-  ld.textContent = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: p.title,
-    description: p.description,
-    image: `https://toolbox168.xyz${p.cover}`,
-    datePublished: p.date,
-    author: {
-      '@type': 'Organization',
-      name: p.author,
-      url: 'https://toolbox168.xyz/#about',
-      email: 'mailto:andynaonao@gmail.com'
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'QR Tool Studio',
-      url: 'https://toolbox168.xyz/',
-      logo: { '@type': 'ImageObject', url: 'https://toolbox168.xyz/favicon.svg' }
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://toolbox168.xyz/#blog/${p.slug}`
-    }
-  })
+function goBack() {
+  router.push('/blog/')
 }
 
-function cleanupHead() {
-  if (typeof document === 'undefined') return
-  // 恢复默认 meta
-  document.title = t('meta.title') || 'QR Tool Studio'
-  const ld = document.querySelector('script[type="application/ld+json"][data-blog]')
-  if (ld) ld.remove()
+function goToGenerator() {
+  router.push('/#generator')
 }
 
-onMounted(() => {
-  if (isReady.value) syncHead()
-  window.scrollTo({ top: 0, behavior: 'instant' })
+/**
+ * 相关文章：同分类优先，不足则用最新的补齐，最多 3 篇。
+ * 目的是给 Google 更多站内爬取路径（原站所有页面零内链，是收录失败的主因之一）。
+ */
+const related = computed(() => {
+  if (!post.value) return []
+  const sameCat = posts.filter(p => p.slug !== post.value.slug && p.category === post.value.category)
+  const others = posts
+    .filter(p => p.slug !== post.value.slug && p.category !== post.value.category)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+  return [...sameCat, ...others].slice(0, 3)
 })
 
-watch([() => props.slug, isReady], () => {
-  syncHead()
-  window.scrollTo({ top: 0, behavior: 'instant' })
+useHead(() => {
+  const p = post.value
+  if (!p) return { title: `Not found | ${BRAND}` }
+  return {
+    title: `${p.title} | ${BRAND} Blog`,
+    meta: [
+      { name: 'description', content: p.description },
+      { property: 'og:title', content: p.title },
+      { property: 'og:description', content: p.description },
+      { property: 'og:image', content: `${SITE}${p.cover}` },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:url', content: canonical.value },
+      { property: 'article:published_time', content: p.date },
+      { name: 'twitter:title', content: p.title },
+      { name: 'twitter:description', content: p.description },
+      { name: 'twitter:card', content: 'summary_large_image' }
+    ],
+    link: [{ rel: 'canonical', href: canonical.value }],
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: p.title,
+          description: p.description,
+          image: `${SITE}${p.cover}`,
+          datePublished: p.date,
+          dateModified: p.date,
+          author: { '@type': 'Organization', name: p.author, url: `${SITE}/about/` },
+          publisher: {
+            '@type': 'Organization',
+            name: BRAND,
+            url: `${SITE}/`,
+            logo: { '@type': 'ImageObject', url: `${SITE}/favicon.svg` }
+          },
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonical.value }
+        })
+      },
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+            { '@type': 'ListItem', position: 3, name: p.title, item: canonical.value }
+          ]
+        })
+      }
+    ]
+  }
+})
+
+// AdSense 文内广告填充（原先是模板内联 <script>，SSR 下不可靠）
+onMounted(() => {
+  if (typeof window !== 'undefined' && window.adsbygoogle) {
+    window.adsbygoogle.push({})
+  }
 })
 </script>
 
@@ -221,6 +220,23 @@ watch([() => props.slug, isReady], () => {
 
     <!-- Related -->
     <div class="mt-12 pt-8 border-t border-gray-200/60 dark:border-white/10">
+      <h2 class="text-lg font-extrabold text-gray-900 dark:text-white mb-4">Related guides</h2>
+      <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <li v-for="rp in related" :key="rp.slug">
+          <RouterLink
+            :to="`/blog/${rp.slug}/`"
+            class="block p-4 rounded-xl glass-panel dark:glass-panel-dark hover:shadow-lg transition-shadow"
+          >
+            <div class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-1.5">
+              {{ rp.category }}
+            </div>
+            <div class="text-sm font-bold text-gray-900 dark:text-white line-clamp-2">{{ rp.title }}</div>
+          </RouterLink>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mt-8">
       <button
         @click="goBack"
         class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-300 hover:underline"
@@ -242,6 +258,12 @@ watch([() => props.slug, isReady], () => {
 </template>
 
 <style scoped>
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .blog-content :deep(p) {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;

@@ -1,6 +1,14 @@
 <script setup>
 import { useI18n } from '../../composables/useI18n'
+import { usePageHead } from '../../composables/usePageHead'
 const { t } = useI18n()
+
+usePageHead({
+  title: 'Privacy Policy — QR Tool Studio',
+  description:
+    'How QR Tool Studio handles your data: nothing you type is uploaded, nothing is stored on a server, and there are no tracking cookies. Read the full privacy policy in plain language.',
+  path: '/privacy/'
+})
 </script>
 
 <template>
