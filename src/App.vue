@@ -16,11 +16,14 @@ const { lang, isReady } = useI18n()
 /** 当前视图标识（供 Header 决定高亮 / 是否显示生成器 Tab） */
 const view = computed(() => route.meta?.view || 'home')
 
-// 从其它页面回到首页时，重置为单张生成 Tab（与原 hash 路由行为一致）
+// 从其它页面回到首页时，重置为单张生成 Tab（与原 hash 路由行为一致）。
+// 例外：?tab=history 表示用户明确想看历史记录，保留 HomeView 的处理结果。
 watch(
   () => route.name,
   (name) => {
-    if (name && name.endsWith('-home')) tab.value = 'single'
+    if (name && name.endsWith('-home') && route.query.tab !== 'history') {
+      tab.value = 'single'
+    }
   }
 )
 
