@@ -296,4 +296,61 @@ export default {
   'blog.langNotice.title': 'English only',
   'blog.langNotice.desc': 'This article is currently available in English.',
   'blog.langNotice.cta': 'Read in English →',
+
+  // === Batch generator (BatchGenerator.vue) ===
+  "batch.label.list": "Content List",
+  "batch.count.pre": "",
+  "batch.count.post": "items to generate",
+  "batch.action.sample": "Fill sample",
+  "batch.action.clear": "Clear",
+  "batch.label.logo": "Shared Logo (optional)",
+  "batch.label.logoScope": "All QR codes will use the same logo",
+  "batch.label.logoSize": "Logo size",
+  "batch.summary": "Summary",
+  "batch.summary.total": "Total items",
+  "batch.summary.resolution": "Resolution per image",
+  "batch.summary.format": "Output format",
+  "batch.summary.hasLogo": "With logo",
+  "batch.yes": "Yes",
+  "batch.no": "No",
+  "batch.note": "Keep a single batch under <strong>200 items</strong> to avoid browser lag. Everything is generated locally.",
+  "batch.err.logoSize": "Logo must be ≤ 2MB",
+  "batch.err.failed": "Generation failed: ",
+
+  // === 主题切换按钮 ===
+  "theme.current": "Current: {mode}",
+  "theme.system": "System",
+  "theme.aria": "Toggle theme",
+
+  // === 法务弹窗 UI ===
+  "legal.updated": "Last updated: {date}",
+  "legal.agree": "By continuing to browse, you agree to our terms",
+  "legal.close": "Got it",
+  "legal.closeAria": "Close",
+
+  // === 历史记录页 ===
+  "history.clearAll": "Clear all",
+  "history.confirmClear": "Clear all history?",
+  "history.empty": "No history yet",
+  "history.emptyHint": "Configurations are saved here automatically after you generate a QR code",
+  "history.tips": "Tips",
+  "history.tip1": "Click <strong>Apply</strong> to load a configuration back into the generator",
+  "history.tip2": "History is stored locally and can be cleared at any time",
+  "history.tip3": "Keeps the 10 most recent records, newest first",
+  "history.apply": "Apply",
+  "history.delete": "Delete",
+  "history.ec": "EC {level}",
+  "history.hasLogo": "With logo",
+  "time.justNow": "Just now",
+  "time.minutesAgo": "{n} min ago",
+  "time.hoursAgo": "{n} h ago",
+  "time.daysAgo": "{n} d ago",
+
+  // === 单个生成器补齐 ===
+  "gen.label.logoSize": "Logo size",
+  "gen.label.uploaded": "Uploaded",
+  "gen.err.export": "Export failed: ",
+  "gen.err.clipboard": "This browser does not support copying images to the clipboard",
+  "gen.sample.name": "John Doe",
+  "gen.sample.text": "Hello, this is a plain text sample.",
 }

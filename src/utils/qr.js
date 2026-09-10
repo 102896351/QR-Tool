@@ -84,16 +84,20 @@ export async function batchGenerate(opts) {
 }
 
 /**
- * 推断内容类型,给出占位符
+ * 推断内容类型。
+ * 只返回 type，不返回文案 —— 文案由调用方走 i18n（gen.preview.*）。
+ * type 的取值必须与 SingleGenerator 的 detectedLabel 映射表一致，
+ * 否则会回退成 type 字面量（早期这里返回过中文 label，导致所有语言都显示中文）。
  */
 export function detectContentType(text) {
-  if (!text) return { type: 'empty', label: '空' }
-  const t = text.trim()
-  if (/^https?:\/\//i.test(t)) return { type: 'url', label: '网址' }
-  if (/^mailto:/i.test(t)) return { type: 'email', label: '邮箱' }
-  if (/^tel:/i.test(t)) return { type: 'phone', label: '电话' }
-  if (/^wifi:/i.test(t)) return { type: 'wifi', label: 'Wi-Fi' }
-  if (/^BEGIN:VCARD/i.test(t)) return { type: 'vcard', label: '名片' }
-  if (/^[0-9+\-\s()]{6,}$/.test(t)) return { type: 'phone', label: '电话' }
-  return { type: 'text', label: '文本' }
+  if (!text) return { type: 'empty' }
+  const v = text.trim()
+  if (/^https?:\/\//i.test(v)) return { type: 'url' }
+  if (/^mailto:/i.test(v)) return { type: 'email' }
+  if (/^sms:/i.test(v)) return { type: 'sms' }
+  if (/^tel:/i.test(v)) return { type: 'tel' }
+  if (/^wifi:/i.test(v)) return { type: 'wifi' }
+  if (/^BEGIN:VCARD/i.test(v)) return { type: 'vcard' }
+  if (/^[0-9+\-\s()]{6,}$/.test(v)) return { type: 'tel' }
+  return { type: 'text' }
 }

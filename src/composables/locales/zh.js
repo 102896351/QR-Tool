@@ -286,4 +286,61 @@ export default {
   'blog.langNotice.title': '仅英文版本',
   'blog.langNotice.desc': '本文目前仅有英文版本，欢迎阅读原文。',
   'blog.langNotice.cta': '阅读英文原文 →',
+
+  // === Batch generator (BatchGenerator.vue) ===
+  "batch.label.list": "内容列表",
+  "batch.count.pre": "共",
+  "batch.count.post": "个待生成",
+  "batch.action.sample": "填入示例",
+  "batch.action.clear": "清空",
+  "batch.label.logo": "统一 Logo（可选）",
+  "batch.label.logoScope": "所有二维码将使用同一个 Logo",
+  "batch.label.logoSize": "Logo 大小",
+  "batch.summary": "摘要",
+  "batch.summary.total": "总条数",
+  "batch.summary.resolution": "单图分辨率",
+  "batch.summary.format": "输出格式",
+  "batch.summary.hasLogo": "含 Logo",
+  "batch.yes": "是",
+  "batch.no": "否",
+  "batch.note": "建议单个批次不超过 <strong>200 条</strong>，以免浏览器卡顿。所有内容仅在本地生成。",
+  "batch.err.logoSize": "Logo 需 ≤ 2MB",
+  "batch.err.failed": "生成失败：",
+
+  // === 主题切换按钮 ===
+  "theme.current": "当前：{mode}",
+  "theme.system": "跟随系统",
+  "theme.aria": "切换主题",
+
+  // === 法务弹窗 UI ===
+  "legal.updated": "最后更新：{date}",
+  "legal.agree": "继续浏览即表示您同意本站条款",
+  "legal.close": "我知道了",
+  "legal.closeAria": "关闭",
+
+  // === 历史记录页 ===
+  "history.clearAll": "清空全部",
+  "history.confirmClear": "确认清空所有历史记录?",
+  "history.empty": "暂无历史记录",
+  "history.emptyHint": "生成二维码后会自动保存到这里",
+  "history.tips": "使用提示",
+  "history.tip1": "点击 <strong>应用</strong> 可将该配置快速载入生成器",
+  "history.tip2": "历史仅保存在本地，可随时一键清空",
+  "history.tip3": "最多保存最近 10 条记录，按时间倒序",
+  "history.apply": "应用",
+  "history.delete": "删除",
+  "history.ec": "纠错 {level}",
+  "history.hasLogo": "含 Logo",
+  "time.justNow": "刚刚",
+  "time.minutesAgo": "{n} 分钟前",
+  "time.hoursAgo": "{n} 小时前",
+  "time.daysAgo": "{n} 天前",
+
+  // === 单个生成器补齐 ===
+  "gen.label.logoSize": "Logo 大小",
+  "gen.label.uploaded": "已上传",
+  "gen.err.export": "导出失败：",
+  "gen.err.clipboard": "浏览器不支持剪贴板图片",
+  "gen.sample.name": "张三",
+  "gen.sample.text": "Hello，这是一段纯文本示例。",
 }

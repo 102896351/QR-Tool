@@ -7,7 +7,7 @@ import LegalModal from './components/LegalModal.vue'
 import { useTheme } from './composables/useTheme'
 import { useI18n, applyLocale, langFromPath } from './composables/useI18n'
 import { tab } from './composables/useTab'
-import { legalOpen, legalType, closeLegal } from './composables/useLegal'
+import { legalOpen, closeLegal } from './composables/useLegal'
 
 const route = useRoute()
 const { isDark } = useTheme()
@@ -65,6 +65,6 @@ watch([lang, isReady], () => applyI18nToHead())
     <!-- Footer 全站常驻：为 Google 提供稳定的站内链接发现路径 -->
     <AppFooter :is-dark="isDark" />
 
-    <LegalModal :open="legalOpen" :type="legalType" @close="closeLegal" />
+    <LegalModal :open="legalOpen" @close="closeLegal" />
   </div>
 </template>
