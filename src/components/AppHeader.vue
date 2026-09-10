@@ -58,12 +58,14 @@ const tabClass = (isActive) =>
       <!-- 主题切换 + 导航 -->
       <div class="flex items-center gap-2 sm:gap-3">
         <nav v-if="view === 'home' || view === 'batch'" class="hidden sm:flex items-center gap-1 p-1 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-gray-200/60 dark:border-white/10 backdrop-blur">
-          <!-- Single：首页内 Tab -->
-          <button
-            v-if="view === 'home'"
-            @click="emit('change', 'single')"
-            :class="tabClass(active === 'single')"
-          >{{ t('header.nav.single') }}</button>
+          <!--
+            Single 在首页是「内 Tab」，在其它页面（batch / blog / ...）变成跳回首页的入口。
+            这样用户无论在哪都能一键切回单个生成。首页默认就停在 single tab。
+          -->
+          <RouterLink
+            :to="lp('/')"
+            :class="tabClass(view === 'home' && active === 'single')"
+          >{{ t('header.nav.single') }}</RouterLink>
           <!-- Batch：独立页面入口 -->
           <RouterLink
             :to="lp('/batch/')"
@@ -97,11 +99,10 @@ const tabClass = (isActive) =>
 
     <!-- 移动端导航 -->
     <nav v-if="view === 'home' || view === 'batch'" class="sm:hidden mt-4 flex items-center gap-1 p-1 rounded-2xl bg-white/60 dark:bg-white/[0.04] border border-gray-200/60 dark:border-white/10 backdrop-blur overflow-x-auto no-scrollbar">
-      <button
-        v-if="view === 'home'"
-        @click="emit('change', 'single')"
-        :class="['tab-btn whitespace-nowrap flex-1 text-center', active === 'single' && 'tab-btn-active']"
-      >{{ t('header.nav.single') }}</button>
+      <RouterLink
+        :to="lp('/')"
+        :class="['tab-btn whitespace-nowrap flex-1 text-center', view === 'home' && active === 'single' && 'tab-btn-active']"
+      >{{ t('header.nav.single') }}</RouterLink>
       <RouterLink
         :to="lp('/batch/')"
         :class="['tab-btn whitespace-nowrap flex-1 text-center', view === 'batch' && 'tab-btn-active']"
