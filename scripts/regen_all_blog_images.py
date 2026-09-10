@@ -28,6 +28,7 @@ from regen_blog_image_agnes import (
     API_KEY_FILE, API_BASE,
     get_font, gradient_overlay, solid_overlay, rounded_rect,
     draw_check, make_qr_sample, draw_chip,
+    _default_meta,
     make_hero as _make_hero,
     make_comparison as _make_comparison,
     make_scan_demo as _make_scan_demo,
@@ -205,15 +206,20 @@ def process_post(post, kinds, tmp_dir, dry_run=False, force=False):
             tmp_path = f"{tmp_dir}/{slug}-{kind}.jpg"
             base_img = download(url, tmp_path)
 
-            # 调合成函数
+            # 调合成函数（必须传 meta：每个合成函数都靠 meta 里的 slug/title/sub
+            # 决定写什么文字 + 生成对应二维码 URL；不传就会用 healthcare 默认，
+            # 整批图都会变成「QR Codes in Healthcare + 药签」）
+            # kind 名要转成 _default_meta 里的 key（hero/scan-demo → scan_demo/faq）
+            meta_kind = {"scan-demo": "scan_demo", "faq-banner": "faq"}.get(kind, kind)
+            meta = _default_meta(slug, title, meta_kind)
             if kind == "hero":
-                _make_hero(base_img)
+                _make_hero(base_img, meta, out_path)
             elif kind == "comparison":
-                _make_comparison(base_img)
+                _make_comparison(base_img, meta, out_path)
             elif kind == "scan-demo":
-                _make_scan_demo(base_img)
+                _make_scan_demo(base_img, meta, out_path)
             elif kind == "faq-banner":
-                _make_faq_banner(base_img)
+                _make_faq_banner(base_img, meta, out_path)
 
             sz_kb = os.path.getsize(out_path) // 1024
             # 打标记：区分 Agnes 产物与早期 Picsum 图，便于中断后断点续跑。

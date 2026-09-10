@@ -200,33 +200,108 @@ def draw_chip(draw, xy, text, font, bg=BRAND_LIGHT_RGB, fg=BRAND_DARK_RGB):
     return x + w
 
 
-# =============== 4 张图合成 ===============
-def make_hero(base):
+# =============== 4 张图合成（参数化：meta dict 决定文字） ===============
+def _split_title(title, max_chars=18):
+    """把标题拆成两行（找空格），两行都不超过 max_chars。"""
+    words = title.split()
+    if len(words) <= 1:
+        return title[:max_chars], ""
+    # 1) 如果整句 ≤ max_chars，直接返回单行
+    if len(title) <= max_chars:
+        return title, ""
+    # 2) 累计词长，找到第一个能让前 i 词 ≤ max_chars 且剩余词能放下（≤ max_chars）的拆分
+    best = None
+    for i, w in enumerate(words):
+        left = " ".join(words[:i])
+        right = " ".join(words[i:])
+        if len(left) <= max_chars and len(right) <= max_chars:
+            best = (left, right)
+            break
+    if best:
+        return best
+    # 3) 兜底：单行截断
+    return title[:max_chars], ""
+
+
+def _default_meta(slug, post_title, kind):
+    """根据 slug/title 推导合理的 meta，默认值尽量通用。"""
+    title = post_title or slug.replace("-", " ").title()
+    t1, t2 = _split_title(title)
+    # 类别（slug 第一段大写）
+    first = slug.split("-")[0]
+    category = first.replace("qr", "QR").upper() + "  ·  GUIDE"
+    return {
+        "hero": {
+            "slug": slug,
+            "category": category,
+            "title_line1": t1,
+            "title_line2": t2,
+            "sub_line1": "Practical guide for 2026",
+            "sub_line2": "Real examples, no fluff",
+            "chips": ["Guide", "How-To", "Examples", "Tips"],
+        },
+        "comparison": {
+            "slug": slug,
+            "title": "Old Way  vs  New Way",
+            "sub": title[:60],
+            "before_label": "Manual",
+            "before_metric": "Slow",
+            "before_sub": "error-prone",
+            "after_label": "QR Code",
+            "after_metric": "Fast",
+            "after_sub": "tracked",
+            "kicker": "Save time  ·  Cut errors  ·  Track results",
+        },
+        "scan_demo": {
+            "slug": slug,
+            "title": "Scan to verify and act",
+            "sub": "No app, no signup — just point and scan",
+            "item_name": "Sample Item",
+            "item_meta": "Standard · Verified",
+            "item_id": "ID #000000",
+        },
+        "faq": {
+            "slug": slug,
+            "title": "6 Questions About " + t1,
+            "sub": "Quick answers to what readers ask most",
+            "questions": [
+                "Is it secure?",
+                "What size?",
+                "Static or dynamic?",
+                "Privacy safe?",
+                "Easy to set up?",
+                "Can I track scans?",
+            ],
+        },
+    }[kind]
+
+
+def make_hero(base, meta, out_path=None):
     img = gradient_overlay(base.resize((W, H)), BRAND_RGB, direction="left",
                            alpha_start=235, alpha_end=50)
     draw = ImageDraw.Draw(img)
 
     f_label = get_font(18, bold=True)
-    draw.text((60, 70), "HEALTHCARE  ·  GUIDE", font=f_label, fill=BRAND_LIGHT_RGB)
+    draw.text((60, 70), meta["category"], font=f_label, fill=BRAND_LIGHT_RGB)
 
     f_title = get_font(58, bold=True)
-    draw.text((60, 110), "QR Codes in", font=f_title, fill=WHITE)
-    draw.text((60, 175), "Healthcare", font=f_title, fill=WHITE)
+    draw.text((60, 110), meta["title_line1"], font=f_title, fill=WHITE)
+    if meta.get("title_line2"):
+        draw.text((60, 175), meta["title_line2"], font=f_title, fill=WHITE)
 
     f_sub = get_font(22)
-    draw.text((60, 260), "7 ways clinics & hospitals", font=f_sub, fill=(224, 231, 255))
-    draw.text((60, 290), "use them in 2025", font=f_sub, fill=(224, 231, 255))
+    draw.text((60, 260), meta["sub_line1"], font=f_sub, fill=(224, 231, 255))
+    draw.text((60, 290), meta["sub_line2"], font=f_sub, fill=(224, 231, 255))
 
     f_chip = get_font(16, bold=True)
     chip_x, chip_y = 60, 360
-    for tag in ["Patient Intake", "Wayfinding", "Lab Results", "Medication"]:
+    for tag in meta["chips"]:
         chip_x = draw_chip(draw, (chip_x, chip_y), tag, f_chip) + 10
 
     f_brand = get_font(15)
     draw.text((60, H - 45), f"{BRAND}  ·  {SITE}", font=f_brand, fill=(199, 210, 254))
 
-    # 真实二维码示例
-    qr_img = make_qr_sample(f"https://{SITE}/blog/{SLUG}/", size=170)
+    qr_img = make_qr_sample(f"https://{SITE}/blog/{meta['slug']}/", size=170)
     qr_bg = Image.new("RGBA", (qr_img.size[0] + 24, qr_img.size[1] + 24), (255, 255, 255, 255))
     qr_bg.paste(qr_img, (12, 12))
     shadow = Image.new("RGBA", qr_bg.size, (0, 0, 0, 0))
@@ -237,10 +312,12 @@ def make_hero(base):
     img.paste(shadow, (W - qr_bg.size[0] - 60 + 4, H - qr_bg.size[1] - 50 + 6), shadow)
     img.paste(qr_bg, (W - qr_bg.size[0] - 60, H - qr_bg.size[1] - 50))
 
-    img.convert("RGB").save(os.path.join(OUTPUT_DIR, f"{SLUG}-hero.png"), "PNG", optimize=True)
+    out_path = out_path or os.path.join(OUTPUT_DIR, f"{meta['slug']}-hero.png")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    img.convert("RGB").save(out_path, "PNG", optimize=True)
 
 
-def make_comparison(base):
+def make_comparison(base, meta, out_path=None):
     img = solid_overlay(base.resize((W, H)), BG_LIGHT, alpha=210)
     draw = ImageDraw.Draw(img)
 
@@ -248,15 +325,14 @@ def make_comparison(base):
 
     f_title = get_font(36, bold=True)
     f_sub = get_font(18)
-    draw.text((60, 50), "Paper Intake vs QR Intake", font=f_title, fill=TEXT_DARK)
-    draw.text((60, 100), "Same clinic. Same patient. Different result.",
-              font=f_sub, fill=TEXT_MED)
+    draw.text((60, 50), meta["title"], font=f_title, fill=TEXT_DARK)
+    draw.text((60, 100), meta["sub"], font=f_sub, fill=TEXT_MED)
 
     # 左边：Before
     card1 = (60, 170, 580, 540)
     rounded_rect(draw, card1, radius=20, fill=WHITE, outline=(226, 232, 240), width=2)
     draw.text((90, 195), "BEFORE", font=get_font(20, bold=True), fill=(220, 38, 38))
-    draw.text((90, 235), "Paper Clipboard", font=get_font(24, bold=True), fill=TEXT_DARK)
+    draw.text((90, 235), meta["before_label"], font=get_font(24, bold=True), fill=TEXT_DARK)
     px, py = 90, 290
     for i in range(5):
         rounded_rect(draw, (px + i * 4, py + i * 4,
@@ -265,48 +341,47 @@ def make_comparison(base):
     for line_i in range(4):
         y = py + 40 + line_i * 28
         draw.line([(px + 20, y), (px + 360, y)], fill=(202, 138, 4), width=3)
-    draw.text((px, py + 220), "10 min", font=get_font(36, bold=True), fill=(220, 38, 38))
-    draw.text((px + 130, py + 232), "per patient", font=get_font(16), fill=TEXT_MED)
+    draw.text((px, py + 220), meta["before_metric"], font=get_font(36, bold=True), fill=(220, 38, 38))
+    draw.text((px + 130, py + 232), meta["before_sub"], font=get_font(16), fill=TEXT_MED)
 
     # 右边：After
     card2 = (620, 170, W - 60, 540)
     rounded_rect(draw, card2, radius=20, fill=(220, 252, 231), outline=(34, 197, 94), width=2)
     draw.text((650, 195), "AFTER", font=get_font(20, bold=True), fill=(22, 163, 74))
-    draw.text((650, 235), "QR Code Check-in", font=get_font(24, bold=True), fill=TEXT_DARK)
+    draw.text((650, 235), meta["after_label"], font=get_font(24, bold=True), fill=TEXT_DARK)
 
     ph_x, ph_y = 700, 290
     ph_w, ph_h = 200, 240
     rounded_rect(draw, (ph_x, ph_y, ph_x + ph_w, ph_y + ph_h), radius=24, fill=(30, 41, 59))
     rounded_rect(draw, (ph_x + 10, ph_y + 20, ph_x + ph_w - 10, ph_y + ph_h - 30),
                  radius=8, fill=(248, 250, 252))
-    inner_qr = make_qr_sample(f"https://{SITE}/blog/{SLUG}/", size=150)
+    inner_qr = make_qr_sample(f"https://{SITE}/blog/{meta['slug']}/", size=150)
     img.paste(inner_qr, (ph_x + 25, ph_y + 35))
-    # 绿色 check 标识（用 polygon 画）
     check_x, check_y = ph_x + ph_w - 50, ph_y + ph_h - 70
     rounded_rect(draw, (check_x, check_y, check_x + 36, check_y + 36), radius=18, fill=(22, 163, 74))
     draw_check(draw, (check_x + 3, check_y + 3), 30, WHITE)
-    draw.text((650, ph_y + ph_h + 10), "90 sec", font=get_font(36, bold=True), fill=(22, 163, 74))
-    draw.text((780, ph_y + ph_h + 22), "per patient", font=get_font(16), fill=TEXT_MED)
+    draw.text((650, ph_y + ph_h + 10), meta["after_metric"], font=get_font(36, bold=True), fill=(22, 163, 74))
+    draw.text((780, ph_y + ph_h + 22), meta["after_sub"], font=get_font(16), fill=TEXT_MED)
 
     f_kicker = get_font(15, bold=True)
-    draw.text((W // 2, H - 50),
-              "Saves 8 min per patient  ·  2.5 kg less paper per day  ·  88% patient open rate",
+    draw.text((W // 2, H - 50), meta["kicker"],
               font=f_kicker, fill=BRAND_DARK_RGB, anchor="mm")
 
-    img.convert("RGB").save(os.path.join(OUTPUT_DIR, f"{SLUG}-comparison.png"), "PNG", optimize=True)
+    out_path = out_path or os.path.join(OUTPUT_DIR, f"{meta['slug']}-comparison.png")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    img.convert("RGB").save(out_path, "PNG", optimize=True)
 
 
-def make_scan_demo(base):
+def make_scan_demo(base, meta, out_path=None):
     img = solid_overlay(base.resize((W, H)), (240, 249, 255), alpha=215)
     draw = ImageDraw.Draw(img)
 
     f_title = get_font(32, bold=True)
     f_sub = get_font(17)
-    draw.text((60, 50), "Patient scans QR on prescription label", font=f_title, fill=TEXT_DARK)
-    draw.text((60, 95), "Verified medication, dose, and refill status — no app, no signup.",
-              font=f_sub, fill=TEXT_MED)
+    draw.text((60, 50), meta["title"], font=f_title, fill=TEXT_DARK)
+    draw.text((60, 95), meta["sub"], font=f_sub, fill=TEXT_MED)
 
-    # 左：药签
+    # 左：物件
     rx_x, rx_y = 100, 170
     rx_w, rx_h = 280, 380
     rounded_rect(draw, (rx_x, rx_y, rx_x + rx_w, rx_y + rx_h), radius=16,
@@ -315,13 +390,12 @@ def make_scan_demo(base):
                  radius=8, fill=(59, 130, 246))
     rounded_rect(draw, (rx_x + 20, rx_y + 100, rx_x + rx_w - 20, rx_y + 220),
                  radius=8, fill=(254, 240, 138))
-    draw.text((rx_x + 35, rx_y + 115), "Amoxicillin 500mg", font=get_font(16, bold=True), fill=TEXT_DARK)
-    draw.text((rx_x + 35, rx_y + 145), "Take 1 cap, 3x daily", font=get_font(13), fill=TEXT_DARK)
-    draw.text((rx_x + 35, rx_y + 168), "Rx #847291", font=get_font(12), fill=TEXT_MED)
-    rx_qr = make_qr_sample(f"https://{SITE}/blog/{SLUG}/", size=120)
+    draw.text((rx_x + 35, rx_y + 115), meta["item_name"], font=get_font(16, bold=True), fill=TEXT_DARK)
+    draw.text((rx_x + 35, rx_y + 145), meta["item_meta"], font=get_font(13), fill=TEXT_DARK)
+    draw.text((rx_x + 35, rx_y + 168), meta["item_id"], font=get_font(12), fill=TEXT_MED)
+    rx_qr = make_qr_sample(f"https://{SITE}/blog/{meta['slug']}/", size=120)
     img.paste(rx_qr, (rx_x + 80, rx_y + 230))
 
-    # 中：箭头
     arrow_y = rx_y + 180
     draw.line([(rx_x + rx_w + 30, arrow_y), (rx_x + rx_w + 130, arrow_y)],
               fill=BRAND_RGB, width=6)
@@ -329,7 +403,6 @@ def make_scan_demo(base):
                   (rx_x + rx_w + 160, arrow_y),
                   (rx_x + rx_w + 130, arrow_y + 12)], fill=BRAND_RGB)
 
-    # 右：手机
     ph_x, ph_y = 580, 160
     ph_w, ph_h = 220, 400
     rounded_rect(draw, (ph_x, ph_y, ph_x + ph_w, ph_y + ph_h), radius=28, fill=(15, 23, 42))
@@ -337,7 +410,7 @@ def make_scan_demo(base):
                  radius=10, fill=(241, 245, 249))
     fx, fy = ph_x + 50, ph_y + 80
     rounded_rect(draw, (fx, fy, fx + 120, fy + 120), radius=6, outline=(34, 197, 94), width=4)
-    phone_qr = make_qr_sample(f"https://{SITE}/blog/{SLUG}/", size=90)
+    phone_qr = make_qr_sample(f"https://{SITE}/blog/{meta['slug']}/", size=90)
     img.paste(phone_qr, (fx + 15, fy + 15))
     vb_x, vb_y = ph_x + 75, ph_y + 230
     rounded_rect(draw, (vb_x, vb_y, vb_x + 70, vb_y + 70), radius=35, fill=(22, 163, 74))
@@ -345,46 +418,45 @@ def make_scan_demo(base):
     draw.text((ph_x + ph_w // 2, vb_y + 80), "Verified", font=get_font(16, bold=True),
               fill=(22, 163, 74), anchor="mm")
 
-    # 右下角：成功结果盒
     right_x, right_y = ph_x + ph_w + 50, arrow_y - 60
     rounded_rect(draw, (right_x, right_y, right_x + 100, right_y + 120),
                  radius=12, outline=BRAND_RGB, width=3, fill=WHITE)
-    # 盒内简笔画表示记录条目
     draw.line([(right_x + 12, right_y + 28), (right_x + 88, right_y + 28)],
               fill=TEXT_DARK, width=3)
     draw.line([(right_x + 12, right_y + 48), (right_x + 78, right_y + 48)],
               fill=TEXT_DARK, width=3)
     draw.line([(right_x + 12, right_y + 68), (right_x + 70, right_y + 68)],
               fill=TEXT_DARK, width=3)
-    # ✓
     rounded_rect(draw, (right_x + 25, right_y + 80, right_x + 75, right_y + 110),
                  radius=8, fill=(22, 163, 74))
     draw_check(draw, (right_x + 35, right_y + 86), 28, WHITE)
 
-    img.convert("RGB").save(os.path.join(OUTPUT_DIR, f"{SLUG}-scan-demo.png"), "PNG", optimize=True)
+    out_path = out_path or os.path.join(OUTPUT_DIR, f"{meta['slug']}-scan-demo.png")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    img.convert("RGB").save(out_path, "PNG", optimize=True)
 
 
-def make_faq_banner(base):
+def make_faq_banner(base, meta, out_path=None):
     img = gradient_overlay(base.resize((W_FAQ, H_FAQ)), BRAND_RGB, direction="left",
                            alpha_start=210, alpha_end=120)
     draw = ImageDraw.Draw(img)
 
     f_title = get_font(30, bold=True)
     f_sub = get_font(16)
-    draw.text((60, 40), "6 Questions About QR Codes in Healthcare", font=f_title, fill=WHITE)
-    draw.text((60, 80), "The answers patients and clinic staff ask most", font=f_sub, fill=BRAND_LIGHT_RGB)
+    draw.text((60, 40), meta["title"], font=f_title, fill=WHITE)
+    draw.text((60, 80), meta["sub"], font=f_sub, fill=BRAND_LIGHT_RGB)
 
-    qs = ["HIPAA compliant?", "What size?", "Static or dynamic?",
-          "Infection risk?", "No smartphone?", "Tracking scans?"]
     f_q = get_font(15)
-    for i, q in enumerate(qs):
+    for i, q in enumerate(meta["questions"]):
         col, row = i % 3, i // 3
         x, y = 60 + col * 380, 160 + row * 90
         rounded_rect(draw, (x, y, x + 36, y + 36), radius=18, fill=WHITE)
         draw.text((x + 10, y + 5), str(i + 1), font=get_font(18, bold=True), fill=BRAND_RGB)
         draw.text((x + 56, y + 8), q, font=f_q, fill=WHITE)
 
-    img.convert("RGB").save(os.path.join(OUTPUT_DIR, f"{SLUG}-faq-banner.png"), "PNG", optimize=True)
+    out_path = out_path or os.path.join(OUTPUT_DIR, f"{meta['slug']}-faq-banner.png")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    img.convert("RGB").save(out_path, "PNG", optimize=True)
 
 
 # =============== 主流程 ===============
@@ -402,10 +474,9 @@ def main():
         print(f"  → {path}")
 
     print(f"\n[合成] 4 张配图...")
-    make_hero(bases["hero"])
-    make_comparison(bases["comparison"])
-    make_scan_demo(bases["scan-demo"])
-    make_faq_banner(bases["faq-banner"])
+    for kind in ("hero", "comparison", "scan-demo", "faq-banner"):
+        meta = _default_meta(SLUG, "QR Codes in Healthcare", kind)
+        globals()[f"make_{kind.replace('-', '_')}"](bases[kind], meta)
 
     print(f"\n[完成] {OUTPUT_DIR}/")
     for f in os.listdir(OUTPUT_DIR):
