@@ -38,5 +38,9 @@ pnpm-debug.log*
 .vite-ssg-temp/
 *.tsbuildinfo
 
+# 配图批量重生成的临时文件与断点标记
+scripts/_tmp_agnes/
+scripts/_agnes_done/
+
 # Misc
 Thumbs.db

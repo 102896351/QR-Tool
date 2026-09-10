@@ -1,0 +1,58 @@
+{
+  "en": {
+    "gen.label.logoSize": "Logo size",
+    "gen.label.uploaded": "Uploaded",
+    "gen.err.export": "Export failed: ",
+    "gen.err.clipboard": "This browser does not support copying images to the clipboard",
+    "gen.sample.name": "John Doe",
+    "gen.sample.text": "Hello, this is a plain text sample."
+  },
+  "zh": {
+    "gen.label.logoSize": "Logo 大小",
+    "gen.label.uploaded": "已上传",
+    "gen.err.export": "导出失败：",
+    "gen.err.clipboard": "浏览器不支持剪贴板图片",
+    "gen.sample.name": "张三",
+    "gen.sample.text": "Hello，这是一段纯文本示例。"
+  },
+  "ja": {
+    "gen.label.logoSize": "ロゴサイズ",
+    "gen.label.uploaded": "アップロード済み",
+    "gen.err.export": "書き出しに失敗しました：",
+    "gen.err.clipboard": "このブラウザは画像のクリップボードコピーに対応していません",
+    "gen.sample.name": "山田 太郎",
+    "gen.sample.text": "Hello、これはプレーンテキストのサンプルです。"
+  },
+  "ko": {
+    "gen.label.logoSize": "로고 크기",
+    "gen.label.uploaded": "업로드됨",
+    "gen.err.export": "내보내기 실패: ",
+    "gen.err.clipboard": "이 브라우저는 이미지 클립보드 복사를 지원하지 않습니다",
+    "gen.sample.name": "홍길동",
+    "gen.sample.text": "Hello, 이것은 일반 텍스트 예시입니다."
+  },
+  "fr": {
+    "gen.label.logoSize": "Taille du logo",
+    "gen.label.uploaded": "Importé",
+    "gen.err.export": "Échec de l'export : ",
+    "gen.err.clipboard": "Ce navigateur ne permet pas de copier des images dans le presse-papiers",
+    "gen.sample.name": "Jean Dupont",
+    "gen.sample.text": "Hello, ceci est un exemple de texte brut."
+  },
+  "de": {
+    "gen.label.logoSize": "Logogröße",
+    "gen.label.uploaded": "Hochgeladen",
+    "gen.err.export": "Export fehlgeschlagen: ",
+    "gen.err.clipboard": "Dieser Browser unterstützt das Kopieren von Bildern in die Zwischenablage nicht",
+    "gen.sample.name": "Max Mustermann",
+    "gen.sample.text": "Hello, dies ist ein Beispiel für Klartext."
+  },
+  "es": {
+    "gen.label.logoSize": "Tamaño del logotipo",
+    "gen.label.uploaded": "Subido",
+    "gen.err.export": "Error al exportar: ",
+    "gen.err.clipboard": "Este navegador no admite copiar imágenes al portapapeles",
+    "gen.sample.name": "Juan Pérez",
+    "gen.sample.text": "Hello, este es un ejemplo de texto plano."
+  }
+}

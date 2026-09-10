@@ -1,0 +1,37 @@
+{
+  "en": {
+    "theme.current": "Current: {mode}",
+    "theme.system": "System",
+    "theme.aria": "Toggle theme"
+  },
+  "zh": {
+    "theme.current": "当前：{mode}",
+    "theme.system": "跟随系统",
+    "theme.aria": "切换主题"
+  },
+  "ja": {
+    "theme.current": "現在：{mode}",
+    "theme.system": "システム",
+    "theme.aria": "テーマを切り替え"
+  },
+  "ko": {
+    "theme.current": "현재: {mode}",
+    "theme.system": "시스템",
+    "theme.aria": "테마 전환"
+  },
+  "fr": {
+    "theme.current": "Actuel : {mode}",
+    "theme.system": "Système",
+    "theme.aria": "Changer de thème"
+  },
+  "de": {
+    "theme.current": "Aktuell: {mode}",
+    "theme.system": "System",
+    "theme.aria": "Design umschalten"
+  },
+  "es": {
+    "theme.current": "Actual: {mode}",
+    "theme.system": "Sistema",
+    "theme.aria": "Cambiar tema"
+  }
+}

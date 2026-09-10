@@ -50,7 +50,7 @@ const detectedLabel = computed(() => {
     wifi: t('gen.preview.wifi'),
     vcard: t('gen.preview.vcard')
   }
-  return map[detected.value.type] || detected.value.label
+  return map[detected.value.type] || detected.value.type
 })
 
 // 实时状态(节流)
@@ -208,7 +208,7 @@ async function exportAs(format) {
       height: 1024
     })
     const blob = await HiQR.getRawData(format === 'jpeg' ? 'jpeg' : format)
-    if (!blob) throw new Error('导出失败')
+    if (!blob) throw new Error('empty blob')
     const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)
     const safeName = (cfg.text.trim() || 'qrcode').replace(/[\\/:*?"<>|\s]/g, '_').slice(0, 24)
     downloadBlob(blob, `qr-${safeName}-${ts}.${format}`)
@@ -226,7 +226,7 @@ async function exportAs(format) {
     emit('saved', list)
   } catch (e) {
     console.error(e)
-    alert('Export failed: ' + (e.message || e))
+    alert(t('gen.err.export') + (e.message || e))
   } finally {
     exporting.value[format] = false
   }
@@ -243,7 +243,7 @@ async function copyImage() {
       height: 1024
     })
     const blob = await HiQR.getRawData('png')
-    if (!navigator.clipboard || !window.ClipboardItem) throw new Error('浏览器不支持剪贴板图片')
+    if (!navigator.clipboard || !window.ClipboardItem) throw new Error(t('gen.err.clipboard'))
     await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
     copyState.value = 'ok'
     setTimeout(() => (copyState.value = 'idle'), 1500)
@@ -262,8 +262,8 @@ function fillTemplate(kind) {
   if (kind === 'tel') cfg.text = 'tel:+8613800000000'
   if (kind === 'sms') cfg.text = 'sms:+8613800000000?body=Hello'
   if (kind === 'wifi') cfg.text = 'WIFI:T:WPA;S:YourWiFi;P:password;;'
-  if (kind === 'vcard') cfg.text = 'BEGIN:VCARD\nVERSION:3.0\nFN:张三\nTEL:+8613800000000\nEMAIL:zhangsan@example.com\nORG:Example Co.\nEND:VCARD'
-  if (kind === 'text') cfg.text = 'Hello, 这是一段纯文本内容。'
+  if (kind === 'vcard') cfg.text = `BEGIN:VCARD\nVERSION:3.0\nFN:${t('gen.sample.name')}\nTEL:+8613800000000\nEMAIL:john.doe@example.com\nORG:Example Co.\nEND:VCARD`
+  if (kind === 'text') cfg.text = t('gen.sample.text')
   // 模板面板常驻展开,不再自动收起
 }
 
@@ -480,7 +480,7 @@ onBeforeUnmount(() => {
       <div class="p-4 rounded-2xl bg-gray-50/70 dark:bg-white/[0.03] border border-gray-200/60 dark:border-white/10">
         <div class="flex items-center justify-between mb-3">
           <span class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ t('gen.label.logo') }}</span>
-          <span v-if="cfg.logoDataUrl" class="text-xs text-gray-500">{{ t('gen.action.upload') }}ed</span>
+          <span v-if="cfg.logoDataUrl" class="text-xs text-gray-500">{{ t('gen.label.uploaded') }}</span>
         </div>
         <div v-if="!cfg.logoDataUrl" class="flex items-center gap-3">
           <label class="btn-ghost cursor-pointer text-sm">
@@ -493,10 +493,10 @@ onBeforeUnmount(() => {
         <div v-else class="flex items-center gap-4">
           <img :src="cfg.logoDataUrl" class="h-14 w-14 rounded-xl object-contain bg-white border border-gray-200 dark:border-white/10" alt="logo">
           <div class="flex-1">
-            <label class="text-[11px] text-gray-500 dark:text-gray-400 mb-1 block">Logo 大小 {{ Math.round(cfg.logoSize * 100) }}%</label>
+            <label class="text-[11px] text-gray-500 dark:text-gray-400 mb-1 block">{{ t('gen.label.logoSize') }} {{ Math.round(cfg.logoSize * 100) }}%</label>
             <input type="range" v-model.number="cfg.logoSize" min="0.1" max="0.5" step="0.05" @input="syncRange($event.target)">
           </div>
-          <button @click="removeLogo" class="btn-ghost text-rose-500 hover:!text-rose-500 hover:!border-rose-300">移除</button>
+          <button @click="removeLogo" class="btn-ghost text-rose-500 hover:!text-rose-500 hover:!border-rose-300">{{ t('gen.action.remove') }}</button>
         </div>
       </div>
     </section>

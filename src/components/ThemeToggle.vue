@@ -1,13 +1,16 @@
 <script setup>
 import { computed } from 'vue'
 import { useTheme } from '../composables/useTheme'
+import { useI18n } from '../composables/useI18n'
 
 const { theme, isDark, cycleTheme } = useTheme()
+const { t } = useI18n()
 
+// 主题按钮的 tooltip / 无障碍文案走字典，避免非中文页面出现中文字符
 const label = computed(() => {
-  if (theme.value === 'light') return '当前:亮色'
-  if (theme.value === 'dark') return '当前:暗色'
-  return '当前:跟随系统'
+  if (theme.value === 'light') return t('theme.current', { mode: t('theme.light') })
+  if (theme.value === 'dark') return t('theme.current', { mode: t('theme.dark') })
+  return t('theme.current', { mode: t('theme.system') })
 })
 </script>
 
@@ -15,7 +18,7 @@ const label = computed(() => {
   <button
     @click="cycleTheme"
     :title="label"
-    aria-label="切换主题"
+    :aria-label="t('theme.aria')"
     class="theme-toggle-btn"
   >
     <!-- 太阳 -->

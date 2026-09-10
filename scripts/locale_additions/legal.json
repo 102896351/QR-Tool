@@ -1,0 +1,44 @@
+{
+  "en": {
+    "legal.updated": "Last updated: {date}",
+    "legal.agree": "By continuing to browse, you agree to our terms",
+    "legal.close": "Got it",
+    "legal.closeAria": "Close"
+  },
+  "zh": {
+    "legal.updated": "最后更新：{date}",
+    "legal.agree": "继续浏览即表示您同意本站条款",
+    "legal.close": "我知道了",
+    "legal.closeAria": "关闭"
+  },
+  "ja": {
+    "legal.updated": "最終更新：{date}",
+    "legal.agree": "閲覧を続けることで、本サイトの規約に同意したものとみなされます",
+    "legal.close": "了解しました",
+    "legal.closeAria": "閉じる"
+  },
+  "ko": {
+    "legal.updated": "최종 업데이트: {date}",
+    "legal.agree": "계속 탐색하면 본 약관에 동의한 것으로 간주됩니다",
+    "legal.close": "확인",
+    "legal.closeAria": "닫기"
+  },
+  "fr": {
+    "legal.updated": "Dernière mise à jour : {date}",
+    "legal.agree": "En poursuivant votre navigation, vous acceptez nos conditions",
+    "legal.close": "J'ai compris",
+    "legal.closeAria": "Fermer"
+  },
+  "de": {
+    "legal.updated": "Zuletzt aktualisiert: {date}",
+    "legal.agree": "Mit der weiteren Nutzung stimmen Sie unseren Bedingungen zu",
+    "legal.close": "Verstanden",
+    "legal.closeAria": "Schließen"
+  },
+  "es": {
+    "legal.updated": "Última actualización: {date}",
+    "legal.agree": "Si continúas navegando, aceptas nuestros términos",
+    "legal.close": "Entendido",
+    "legal.closeAria": "Cerrar"
+  }
+}
