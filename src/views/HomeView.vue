@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useRoute, useRouter } from 'vue-router'
 import SingleGenerator from '../components/SingleGenerator.vue'
@@ -41,6 +41,20 @@ function goBlog() {
 
 // 各语言 hreflang（首屏 + 所有视图共享）
 useHreflang(() => route.path)
+
+// 处理来自其它页面（如 batch）带 ?tab=history 的跳转：
+// 1) 切到 history tab
+// 2) 清理 query（避免 SEO 收录带参数的 URL 与重复内容）
+watch(
+  () => route.query.tab,
+  (v) => {
+    if (v === 'history') {
+      tab.value = 'history'
+      router.replace({ query: {} })
+    }
+  },
+  { immediate: true }
+)
 
 // ---------- 结构化数据 ----------
 function stripHtml(s = '') {

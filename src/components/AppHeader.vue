@@ -77,6 +77,15 @@ const tabClass = (isActive) =>
             @click="emit('change', 'history')"
             :class="tabClass(active === 'history')"
           >{{ t('header.nav.history') }}</button>
+          <!--
+            其它页面（batch / ...）点 History 时，跳回首页并通过 ?tab=history 触发 HomeView 切到 history tab。
+            HomeView 会在挂载后清理这个 query，避免 SEO 收录带参数的 URL。
+          -->
+          <RouterLink
+            v-else
+            :to="lp('/?tab=history')"
+            :class="tabClass(false)"
+          >{{ t('header.nav.history') }}</RouterLink>
         </nav>
         <!-- Blog 入口 -->
         <RouterLink
@@ -112,6 +121,11 @@ const tabClass = (isActive) =>
         @click="emit('change', 'history')"
         :class="['tab-btn whitespace-nowrap flex-1 text-center', active === 'history' && 'tab-btn-active']"
       >{{ t('header.nav.history') }}</button>
+      <RouterLink
+        v-else
+        :to="lp('/?tab=history')"
+        :class="['tab-btn whitespace-nowrap flex-1 text-center', view === 'home' && active === 'history' && 'tab-btn-active']"
+      >{{ t('header.nav.history') }}</RouterLink>
     </nav>
   </header>
 </template>
