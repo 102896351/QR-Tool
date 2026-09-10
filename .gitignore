@@ -3,8 +3,9 @@ node_modules/
 .pnp
 .pnp.js
 
-# Build output (uncomment if you don't want to commit dist/)
-# dist/
+# Build output — Actions 工作流会 checkout + npm ci + npm run build 重新生成，
+# dist 入库只会让每次推送多传 260+ 个无用 blob，故不再跟踪
+dist/
 dist-ssr/
 
 # Local env files
