@@ -85,6 +85,8 @@ ${altLines}
 
   // 首页
   for (const lang of LOCALES) pushUrl(lang, '/', lastmod, RULES.home.priority, RULES.home.changefreq);
+  // 批量生成独立页（/batch/）
+  for (const lang of LOCALES) pushUrl(lang, '/batch/', lastmod, RULES.batch.priority, RULES.batch.changefreq);
   // 博客索引 + 静态页
   for (const lang of LOCALES) pushUrl(lang, '/blog/', lastmod, RULES.blogIndex.priority, RULES.blogIndex.changefreq);
   for (const p of ['privacy', 'terms', 'contact', 'about']) {
@@ -136,7 +138,7 @@ ${indexItems.join('\n')}
 
   const urlCount = langFiles[LOCALES[0]].length * LOCALES.length;
   console.log(`✅  sitemap generated (${totalWritten} location${totalWritten === 1 ? '' : 's'})`);
-  console.log(`    ${urlCount} URLs = 37 路由 × ${LOCALES.length} 语言`);
+  console.log(`    ${urlCount} URLs = 38 路由 × ${LOCALES.length} 语言`);
   console.log(`    ${fileSizes.length} 个分文件，每个 < 50 KB`);
   for (const s of fileSizes) console.log(`      ${s}`);
 }
