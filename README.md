@@ -1,5 +1,7 @@
 # QR Tool Studio · 纯前端在线二维码生成器
 
+**🌐 在线使用：[toolbox168.xyz](https://toolbox168.xyz)** —— 零后端、极致隐私的在线二维码工具,核心计算全部在浏览器内完成。
+
 一款零后端、极致隐私的在线二维码工具,核心计算全部在浏览器内完成,可直接托管到 GitHub Pages / Vercel / Cloudflare Pages 等静态平台。
 
 ## ✨ 功能特性
@@ -55,6 +57,19 @@ npm run build
 ## 🔒 隐私承诺
 
 所有二维码生成逻辑都在浏览器内本地执行,内容从不上传任何服务器,关闭页面即"销毁"。
+
+---
+
+## 🔗 相关链接
+
+- **官网（多语言）**：[toolbox168.xyz](https://toolbox168.xyz)
+- English：https://toolbox168.xyz/
+- 简体中文：https://toolbox168.xyz/zh/
+- 日本語：https://toolbox168.xyz/ja/
+- 한국어：https://toolbox168.xyz/ko/
+- Français：https://toolbox168.xyz/fr/
+- Deutsch：https://toolbox168.xyz/de/
+- Español：https://toolbox168.xyz/es/
 
 ---
 
