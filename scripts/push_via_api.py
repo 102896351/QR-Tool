@@ -30,7 +30,6 @@ PATHS = [
     "public/.nojekyll",
     "public/404.html",
     "public/llms.txt",
-    "public/sitemap-0.xml",
     "public/sitemap.xml",
     "scripts/generate-llms.js",
     "scripts/verify-prerender.mjs",
