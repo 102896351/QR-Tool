@@ -138,7 +138,7 @@ ${urlBlocks.join('\n')}
   console.log(`    ${urlBlocks.length} 条 URL = ${routes.length} 路由 × ${LOCALES.length} 语言`);
   console.log(`    sitemap-0.xml   : ${urlset.length} 字节（urlset 本体）`);
   console.log(`    sitemap-index.xml: ${index.length} 字节（索引，提交给 GSC）`);
-  console.log(`    robots.txt 的 Sitemap: 改为指向 /sitemap-index.xml`);
+  console.log(`    robots.txt 的 Sitemap: 改为指向 /sitemap-0.xml`);
 }
 
 main();
