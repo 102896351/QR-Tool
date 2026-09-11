@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 /**
  * generate-sitemap.js
- * 单文件 sitemap（方案 B）：
- *   - sitemap.xml  (urlset，包含 7 语言 × 全部路由，每个 URL 都带 hreflang 备用链接)
+ * 双层 sitemap（与 gonglue.xyz / aiartspell.art 同款结构）：
+ *   - sitemap-index.xml  (sitemapindex，极小，约 150 字节 —— GSC 提交这个)
+ *   - sitemap-0.xml      (urlset，7 语言 × 全部路由，每条 URL 带 hreflang 备用链接)
  *
- * 相比旧版（sitemapindex + 7 个 sitemap-{lang}.xml）：
- *   - 去掉 1 层 sitemap index 抽象
- *   - GSC 只需读 1 个文件，失败点从 8 个降到 1 个
- *   - 不会再出现「子文件 OK 但索引文件读失败」的情况
- *   - 总 URL 仅 266 条，远低于 50000 / 50MB 上限
+ * 为什么用 index 层（而不是单文件 sitemap.xml 直接提交）：
+ *   GSC 实际读取的是 sitemap-index.xml（~150 字节），Cloudflare/Fastly 代理链
+ *   对极小文件稳定返回 Transfer-Encoding: chunked（无 Content-Length 冲突），
+ *   再由 GSC 二级拉取 sitemap-0.xml（266 条，271KB）。这样避免了「直接提交大单
+ *   文件时偶发响应头错配 → GSC 判无法读取」的情况。两个参考站点（同在
+ *   Cloudflare + GitHub Pages 下）均验证此结构可正常被 GSC 收录。
  *
  * 多语言 URL 规则：
  *   en 用裸路径（/、/blog/、/blog/<slug>/）
@@ -102,12 +104,22 @@ ${altLines}
     }
   }
 
-  // 3) 写单个 urlset 到 sitemap.xml
+  // 3) urlset 本体 → sitemap-0.xml
   const urlset = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urlBlocks.join('\n')}
 </urlset>
+`;
+
+  // 4) 极小的索引文件 → sitemap-index.xml（GSC 提交这个）
+  const index = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${SITE}/sitemap-0.xml</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+</sitemapindex>
 `;
 
   const targets = [join(__dirname, 'public'), join(__dirname, 'dist')];
@@ -117,14 +129,16 @@ ${urlBlocks.join('\n')}
       console.warn(`⚠️   ${dir} not found, skipping`);
       continue;
     }
-    writeFileSync(join(dir, 'sitemap.xml'), urlset, 'utf-8');
+    writeFileSync(join(dir, 'sitemap-0.xml'), urlset, 'utf-8');
+    writeFileSync(join(dir, 'sitemap-index.xml'), index, 'utf-8');
     written++;
   }
 
-  console.log(`✅  单文件 sitemap 生成完成（写入 ${written} 个目录）`);
+  console.log(`✅  双层 sitemap 生成完成（写入 ${written} 个目录）`);
   console.log(`    ${urlBlocks.length} 条 URL = ${routes.length} 路由 × ${LOCALES.length} 语言`);
-  console.log(`    文件体积 ${(urlset.length / 1024).toFixed(1)} KB（远低于 50MB / 50000 条上限）`);
-  console.log(`    robots.txt 的 Sitemap: 仍指向 /sitemap.xml，无需改动`);
+  console.log(`    sitemap-0.xml   : ${urlset.length} 字节（urlset 本体）`);
+  console.log(`    sitemap-index.xml: ${index.length} 字节（索引，提交给 GSC）`);
+  console.log(`    robots.txt 的 Sitemap: 改为指向 /sitemap-index.xml`);
 }
 
 main();
