@@ -343,4 +343,9 @@ export default {
   "gen.err.clipboard": "浏览器不支持剪贴板图片",
   "gen.sample.name": "张三",
   "gen.sample.text": "Hello，这是一段纯文本示例。",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "相关站点",
+  "footer.sites.aiartspell": "AI 绘画提示词",
+  "footer.sites.gonglue": "AI 智能体导航",
 }

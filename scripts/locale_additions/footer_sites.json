@@ -1,0 +1,37 @@
+{
+  "en": {
+    "footer.col.sites": "Related Sites",
+    "footer.sites.aiartspell": "AI Art Prompts",
+    "footer.sites.gonglue": "AI Agents Hub"
+  },
+  "zh": {
+    "footer.col.sites": "相关站点",
+    "footer.sites.aiartspell": "AI 绘画提示词",
+    "footer.sites.gonglue": "AI 智能体导航"
+  },
+  "ja": {
+    "footer.col.sites": "関連サイト",
+    "footer.sites.aiartspell": "AIアートプロンプト",
+    "footer.sites.gonglue": "AIエージェント集"
+  },
+  "ko": {
+    "footer.col.sites": "관련 사이트",
+    "footer.sites.aiartspell": "AI 아트 프롬프트",
+    "footer.sites.gonglue": "AI 에이전트 허브"
+  },
+  "fr": {
+    "footer.col.sites": "Sites liés",
+    "footer.sites.aiartspell": "Prompts d'art IA",
+    "footer.sites.gonglue": "Hub d'agents IA"
+  },
+  "de": {
+    "footer.col.sites": "Verwandte Websites",
+    "footer.sites.aiartspell": "KI-Kunst-Prompts",
+    "footer.sites.gonglue": "KI-Agenten-Hub"
+  },
+  "es": {
+    "footer.col.sites": "Sitios relacionados",
+    "footer.sites.aiartspell": "Prompts de arte IA",
+    "footer.sites.gonglue": "Hub de agentes IA"
+  }
+}

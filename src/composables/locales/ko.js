@@ -343,4 +343,9 @@ export default {
   "gen.err.clipboard": "이 브라우저는 이미지 클립보드 복사를 지원하지 않습니다",
   "gen.sample.name": "홍길동",
   "gen.sample.text": "Hello, 이것은 일반 텍스트 예시입니다.",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "관련 사이트",
+  "footer.sites.aiartspell": "AI 아트 프롬프트",
+  "footer.sites.gonglue": "AI 에이전트 허브",
 }

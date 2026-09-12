@@ -343,4 +343,9 @@ export default {
   "gen.err.clipboard": "Ce navigateur ne permet pas de copier des images dans le presse-papiers",
   "gen.sample.name": "Jean Dupont",
   "gen.sample.text": "Hello, ceci est un exemple de texte brut.",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "Sites liés",
+  "footer.sites.aiartspell": "Prompts d'art IA",
+  "footer.sites.gonglue": "Hub d'agents IA",
 }

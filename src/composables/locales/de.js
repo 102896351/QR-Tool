@@ -343,4 +343,9 @@ export default {
   "gen.err.clipboard": "Dieser Browser unterstützt das Kopieren von Bildern in die Zwischenablage nicht",
   "gen.sample.name": "Max Mustermann",
   "gen.sample.text": "Hello, dies ist ein Beispiel für Klartext.",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "Verwandte Websites",
+  "footer.sites.aiartspell": "KI-Kunst-Prompts",
+  "footer.sites.gonglue": "KI-Agenten-Hub",
 }

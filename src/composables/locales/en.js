@@ -353,4 +353,9 @@ export default {
   "gen.err.clipboard": "This browser does not support copying images to the clipboard",
   "gen.sample.name": "John Doe",
   "gen.sample.text": "Hello, this is a plain text sample.",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "Related Sites",
+  "footer.sites.aiartspell": "AI Art Prompts",
+  "footer.sites.gonglue": "AI Agents Hub",
 }

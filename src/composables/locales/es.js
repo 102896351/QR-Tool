@@ -343,4 +343,9 @@ export default {
   "gen.err.clipboard": "Este navegador no admite copiar imágenes al portapapeles",
   "gen.sample.name": "Juan Pérez",
   "gen.sample.text": "Hello, este es un ejemplo de texto plano.",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "Sitios relacionados",
+  "footer.sites.aiartspell": "Prompts de arte IA",
+  "footer.sites.gonglue": "Hub de agentes IA",
 }

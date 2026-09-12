@@ -27,7 +27,7 @@ function lp(p) {
 
 <template>
   <footer class="mt-auto border-t border-gray-200/60 dark:border-white/10 bg-white/40 dark:bg-white/[0.02] backdrop-blur">
-    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 sm:grid-cols-5 gap-8 text-sm">
+    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 sm:grid-cols-6 gap-8 text-sm">
       <!-- 品牌区 -->
       <div class="col-span-2 sm:col-span-2">
         <RouterLink :to="lp('/')" class="flex items-center gap-2 mb-3 group">
@@ -88,6 +88,19 @@ function lp(p) {
               {{ t('footer.about.theme') }}:
               <strong class="text-gray-700 dark:text-gray-200">{{ isDark ? t('theme.dark') : t('theme.light') }}</strong>
             </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 相关站点（兄弟站 dofollow 互链） -->
+      <div>
+        <h3 class="text-xs font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-3">{{ t('footer.col.sites') }}</h3>
+        <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
+          <li>
+            <a href="https://aiartspell.art/" target="_blank" rel="noopener" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.sites.aiartspell') }}</a>
+          </li>
+          <li>
+            <a href="https://gonglue.xyz/" target="_blank" rel="noopener" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.sites.gonglue') }}</a>
           </li>
         </ul>
       </div>

@@ -343,4 +343,9 @@ export default {
   "gen.err.clipboard": "このブラウザは画像のクリップボードコピーに対応していません",
   "gen.sample.name": "山田 太郎",
   "gen.sample.text": "Hello、これはプレーンテキストのサンプルです。",
+
+  // === Footer 兄弟站互链 ===
+  "footer.col.sites": "関連サイト",
+  "footer.sites.aiartspell": "AIアートプロンプト",
+  "footer.sites.gonglue": "AIエージェント集",
 }
