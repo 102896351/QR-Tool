@@ -58,6 +58,17 @@ useHead(() => ({
           datePublished: p.date
         }))
       })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: currentLang.value === DEFAULT_LOCALE ? `${SITE}/` : `${SITE}/${currentLang.value}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: blogUrl.value }
+        ]
+      })
     }
   ]
 }))
