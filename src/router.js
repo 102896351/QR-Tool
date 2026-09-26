@@ -6,6 +6,7 @@ import PrivacyPage from './components/pages/PrivacyPage.vue'
 import TermsPage from './components/pages/TermsPage.vue'
 import ContactPage from './components/pages/ContactPage.vue'
 import AboutPage from './components/pages/AboutPage.vue'
+import DisclaimerPage from './components/pages/DisclaimerPage.vue'
 import posts from './blog/posts.json'
 import { LOCALE_CODES, DEFAULT_LOCALE } from './composables/useI18n'
 
@@ -33,7 +34,8 @@ const baseStaticRoutes = [
   { path: '/privacy', name: 'privacy', component: PrivacyPage, meta: { view: 'privacy' } },
   { path: '/terms',   name: 'terms',   component: TermsPage,   meta: { view: 'terms' } },
   { path: '/contact', name: 'contact', component: ContactPage, meta: { view: 'contact' } },
-  { path: '/about',   name: 'about',   component: AboutPage,   meta: { view: 'about' } }
+  { path: '/about',   name: 'about',   component: AboutPage,   meta: { view: 'about' } },
+  { path: '/disclaimer', name: 'disclaimer', component: DisclaimerPage, meta: { view: 'disclaimer' } }
 ]
 
 // 每篇文章一条静态路由

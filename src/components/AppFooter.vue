@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n, DEFAULT_LOCALE } from '../composables/useI18n'
-import { openLegal } from '../composables/useLegal'
 
 defineProps({
   isDark: { type: Boolean, default: false }
@@ -67,7 +66,7 @@ function lp(p) {
         <ul class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
           <li><RouterLink :to="lp('/privacy/')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</RouterLink></li>
           <li><RouterLink :to="lp('/terms/')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.terms') }}</RouterLink></li>
-          <li><button @click="openLegal()" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors text-left">{{ t('footer.legal.disclaimer') }}</button></li>
+          <li><RouterLink :to="lp('/disclaimer/')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.disclaimer') }}</RouterLink></li>
           <li><RouterLink :to="lp('/privacy/#cookies')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.cookie') }}</RouterLink></li>
         </ul>
       </div>
@@ -114,7 +113,7 @@ function lp(p) {
             <span>{{ t('footer.copy', { year }) }}</span>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <button @click="openLegal()" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.disclaimer') }}</button>
+            <RouterLink :to="lp('/disclaimer/')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.disclaimer') }}</RouterLink>
             <span>·</span>
             <RouterLink :to="lp('/privacy/')" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.legal.privacy') }}</RouterLink>
             <span>·</span>

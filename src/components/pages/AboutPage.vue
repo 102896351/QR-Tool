@@ -7,6 +7,7 @@ const { t } = useI18n()
 const route = useRoute()
 const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
 const aboutPath = computed(() => lang.value === DEFAULT_LOCALE ? '/about/' : `/${lang.value}/about/`)
+const contactPath = computed(() => lang.value === DEFAULT_LOCALE ? '/contact/' : `/${lang.value}/contact/`)
 
 usePageHead({
   title: 'About QR Tool Studio — Free, Private QR Code Generator',
@@ -105,7 +106,7 @@ usePageHead({
       <p>QR Tool Studio is free, with no usage limits, no daily caps, no premium tier. The site is supported by unobtrusive advertising. If you find the tool useful, the best way to support us is to share it with someone who'd also find it useful.</p>
 
       <h2>Get in touch</h2>
-      <p>Questions, suggestions, or just want to say hi? See our <a href="#contact">Contact</a> page.</p>
+      <p>Questions, suggestions, or just want to say hi? See our <RouterLink :to="contactPath">Contact</RouterLink> page.</p>
     </div>
   </div>
 </template>

@@ -17,6 +17,8 @@
 - [Blog](https://toolbox168.xyz/blog/): guides and troubleshooting
 - [About](https://toolbox168.xyz/about/): how the tool works and why it is free
 - [Privacy](https://toolbox168.xyz/privacy/): what is stored (nothing)
+- [Terms](https://toolbox168.xyz/terms/): terms of service
+- [Disclaimer](https://toolbox168.xyz/disclaimer/)
 - [Contact](https://toolbox168.xyz/contact/)
 
 ## Guides

@@ -7,6 +7,7 @@ const { t } = useI18n()
 const route = useRoute()
 const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
 const privacyPath = computed(() => lang.value === DEFAULT_LOCALE ? '/privacy/' : `/${lang.value}/privacy/`)
+const contactPath = computed(() => lang.value === DEFAULT_LOCALE ? '/contact/' : `/${lang.value}/contact/`)
 
 usePageHead({
   title: 'Privacy Policy — QR Tool Studio',
@@ -78,7 +79,7 @@ usePageHead({
         <li>Know what data is collected about you (see Section 2 above)</li>
         <li>Request deletion of any data we hold (we hold no personal data, but third-party services may; see their policies)</li>
         <li>Opt out of personalized advertising (Google Ad Settings: <a href="https://adssettings.google.com/" target="_blank" rel="noopener">adssettings.google.com</a>)</li>
-        <li>Object to processing (contact us via the <a href="#contact">Contact</a> page)</li>
+        <li>Object to processing (contact us via the <RouterLink :to="contactPath">Contact</RouterLink> page)</li>
       </ul>
 
       <h2>7. Third-party policies</h2>
@@ -91,8 +92,19 @@ usePageHead({
       <h2>8. Changes to this policy</h2>
       <p>We may update this policy as the tool evolves. Significant changes will be announced on the homepage. The "Last updated" date at the top of this page reflects the current version.</p>
 
-      <h2>9. Contact</h2>
-      <p>For privacy-related questions or data requests, see our <a href="#contact">Contact</a> page.</p>
+      <h2>9. Advertising (Google AdSense)</h2>
+      <p>QR Tool Studio is free to use and stays free partly through advertising served by <strong>Google AdSense</strong>. Here is exactly what that means for you:</p>
+      <ul>
+        <li>Third-party vendors, <strong>including Google</strong>, use cookies to serve ads based on a user's prior visits to this website and/or other websites on the internet.</li>
+        <li>Google's use of advertising cookies enables it and its partners to serve ads based on your visits to this site and/or other sites on the internet. The DoubleClick cookie is one such cookie; it is placed on the browser only if you are served an ad.</li>
+        <li>You may <strong>opt out of personalized advertising</strong> by visiting <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Ads Settings</a>.</li>
+        <li>You may also opt out of third-party vendors' use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/" target="_blank" rel="noopener">www.aboutads.info</a>.</li>
+      </ul>
+      <p>Advertising helps cover the cost of keeping this tool online. It has <strong>no effect on the QR codes you generate</strong>: ad code runs on the page, never inside your encoded content, and your QR data never leaves your device (see Section 1).</p>
+      <p>We do not place ad units on pages directed at children, and we do not run ads alongside adult, illegal, or user-generated content.</p>
+
+      <h2>10. Contact</h2>
+      <p>For privacy-related questions or data requests, see our <RouterLink :to="contactPath">Contact</RouterLink> page.</p>
     </div>
   </div>
 </template>

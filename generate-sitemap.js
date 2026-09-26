@@ -72,7 +72,7 @@ function main() {
   routes.push({ path: '/', lastmod, ...RULES.home });
   routes.push({ path: '/batch/', lastmod, ...RULES.batch });
   routes.push({ path: '/blog/', lastmod, ...RULES.blogIndex });
-  for (const p of ['privacy', 'terms', 'contact', 'about']) {
+  for (const p of ['privacy', 'terms', 'contact', 'about', 'disclaimer']) {
     routes.push({ path: `/${p}/`, lastmod, ...RULES.static });
   }
   for (const post of posts) {

@@ -7,6 +7,7 @@ const { t } = useI18n()
 const route = useRoute()
 const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
 const termsPath = computed(() => lang.value === DEFAULT_LOCALE ? '/terms/' : `/${lang.value}/terms/`)
+const contactPath = computed(() => lang.value === DEFAULT_LOCALE ? '/contact/' : `/${lang.value}/contact/`)
 
 usePageHead({
   title: 'Terms of Service — QR Tool Studio',
@@ -87,7 +88,7 @@ usePageHead({
       <p>These terms are governed by the laws of the jurisdiction in which the operator is based, without regard to conflict of law principles. Disputes will be resolved in the courts of that jurisdiction.</p>
 
       <h2>11. Contact</h2>
-      <p>For questions about these terms, see our <a href="#contact">Contact</a> page.</p>
+      <p>For questions about these terms, see our <RouterLink :to="contactPath">Contact</RouterLink> page.</p>
     </div>
   </div>
 </template>

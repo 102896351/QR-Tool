@@ -1,12 +1,20 @@
 <script setup>
-import { ref } from 'vue'
-import { useI18n } from '../composables/useI18n'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n, DEFAULT_LOCALE } from '../composables/useI18n'
 
 defineProps({
   onGoBlog: { type: Function, default: null }
 })
 
 const { t } = useI18n()
+const route = useRoute()
+
+// 当前语言；无前缀为 en。用于把页内链接指向同语言页面，避免 zh 页面跳回英文页。
+const lang = computed(() => route.meta?.lang || DEFAULT_LOCALE)
+function lp(p) {
+  return lang.value === DEFAULT_LOCALE ? p : `/${lang.value}${p}`
+}
 
 // 8 种类型(只保留 id + icon,文案走 i18n)
 const types = [
@@ -142,7 +150,7 @@ const featureIcons = [
         </h2>
         <p class="mt-3 text-gray-600 dark:text-gray-300">
           <span>{{ t('mkt.faq.sub') }}</span>
-          <a href="#" class="text-brand-600 dark:text-brand-300 hover:underline">{{ t('legal.contact.title') }}</a>
+          <RouterLink :to="lp('/contact/')" class="text-brand-600 dark:text-brand-300 hover:underline">{{ t('legal.contact.title') }}</RouterLink>
         </p>
       </div>
       <div class="max-w-3xl mx-auto glass-panel dark:glass-panel-dark p-2 sm:p-3 noise-bg">
