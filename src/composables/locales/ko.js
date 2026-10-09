@@ -348,4 +348,6 @@ export default {
   "footer.col.sites": "관련 사이트",
   "footer.sites.aiartspell": "AI 아트 프롬프트",
   "footer.sites.gonglue": "AI 에이전트 허브",
+  "footer.sites.toolboxImage": "이미지 도구",
+  "footer.sites.freeAIDraw": "무료 AI 사진 도구",
 }

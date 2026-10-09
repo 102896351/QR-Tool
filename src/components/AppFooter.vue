@@ -101,6 +101,12 @@ function lp(p) {
           <li>
             <a href="https://gonglue.xyz/" target="_blank" rel="noopener" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.sites.gonglue') }}</a>
           </li>
+          <li>
+            <a href="https://toolbox168.com/" target="_blank" rel="noopener" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.sites.toolboxImage') }}</a>
+          </li>
+          <li>
+            <a href="https://image.aiartspell.art/" target="_blank" rel="noopener" class="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">{{ t('footer.sites.freeAIDraw') }}</a>
+          </li>
         </ul>
       </div>
     </div>

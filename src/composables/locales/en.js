@@ -358,4 +358,6 @@ export default {
   "footer.col.sites": "Related Sites",
   "footer.sites.aiartspell": "AI Art Prompts",
   "footer.sites.gonglue": "AI Agents Hub",
+  "footer.sites.toolboxImage": "Image Tools",
+  "footer.sites.freeAIDraw": "Free AI Photo Tools",
 }

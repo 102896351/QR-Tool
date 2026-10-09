@@ -348,4 +348,6 @@ export default {
   "footer.col.sites": "Sites liés",
   "footer.sites.aiartspell": "Prompts d'art IA",
   "footer.sites.gonglue": "Hub d'agents IA",
+  "footer.sites.toolboxImage": "Outils d'image",
+  "footer.sites.freeAIDraw": "Outils photo IA gratuits",
 }

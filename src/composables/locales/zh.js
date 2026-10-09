@@ -348,4 +348,6 @@ export default {
   "footer.col.sites": "相关站点",
   "footer.sites.aiartspell": "AI 绘画提示词",
   "footer.sites.gonglue": "AI 智能体导航",
+  "footer.sites.toolboxImage": "在线图片工具箱",
+  "footer.sites.freeAIDraw": "免费AI修图生图工具",
 }

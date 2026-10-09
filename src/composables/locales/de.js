@@ -348,4 +348,6 @@ export default {
   "footer.col.sites": "Verwandte Websites",
   "footer.sites.aiartspell": "KI-Kunst-Prompts",
   "footer.sites.gonglue": "KI-Agenten-Hub",
+  "footer.sites.toolboxImage": "Bild-Tools",
+  "footer.sites.freeAIDraw": "Kostenlose KI-Fototools",
 }
